@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IHero } from '../hero';
 
 @Component({
   selector: 'hero-display',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroDisplayComponent implements OnInit {
 
-  constructor() { }
+    hero: IHero;
+    
+    constructor() {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.hero = {name: "Rob", job: "Demi-Paladin"};
+    }
 
 }

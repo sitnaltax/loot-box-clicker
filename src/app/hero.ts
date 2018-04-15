@@ -1,4 +1,4 @@
 export interface IHero {
     name: string;
-    class: string;
+    job: string;
 }
