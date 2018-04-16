@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IHero } from '../hero';
+import { IHero } from './hero';
+import { HeroService } from './hero.service';
 
 @Component({
   selector: 'hero-display',
@@ -10,11 +11,11 @@ export class HeroDisplayComponent implements OnInit {
 
     hero: IHero;
     
-    constructor() {
+    constructor(private _heroService: HeroService) {
     }
 
     ngOnInit() {
-        this.hero = {name: "Rob", job: "Demi-Paladin"};
+        this.hero = this._heroService.getHero();
     }
 
 }

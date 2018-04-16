@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { HeroDisplayComponent } from './hero-display/hero-display.component';
-
+import { HeroDisplayComponent } from './hero/hero-display.component';
+import { HeroService } from './hero/hero.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { HeroDisplayComponent } from './hero-display/hero-display.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [HeroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
