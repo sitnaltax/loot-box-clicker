@@ -1,0 +1,29 @@
+<div class="card" style="width: 18rem">
+    <div class="card-header">
+        Currency
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Currency
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let cash of getCash()'>
+                    <td>
+                        {{cash.quantity}}        
+                    </td>
+                    <td>
+                        {{getCurrencyName(cash)}}        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+</div>
