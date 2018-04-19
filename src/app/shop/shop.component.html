@@ -1,0 +1,35 @@
+<div class="card" style="width: 20rem">
+    <div class="card-header">
+        Shop
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Item
+                    </th>
+                    <th>
+                        Cost
+                    </th>
+                    <th>
+                        Purchase
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let item of getShopItems()'>
+                    <td>
+                        {{item.chestName}}
+                    </td>
+                    <td>
+                        {{item.cost.quantity}} {{getCurrencyName(item.cost)}}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" (click)='purchase(item)'>Buy</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

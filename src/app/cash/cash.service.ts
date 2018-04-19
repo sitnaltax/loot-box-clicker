@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IHero } from '../hero/hero';
 import { ICash, cashType } from './cash';
+import { IShopItem } from '../shop/shop-item';
 
 @Injectable()
 export class CashService {
@@ -28,5 +29,20 @@ export class CashService {
         else{
             this.allCash[cashType.copper] = {currency: cashType.copper, quantity: 1}
         }
+    }
+
+    purchase(item: IShopItem): boolean{
+        if (!(item.cost.currency in this.allCash)) {
+            return false;
+        }
+        else if (item.cost.quantity > this.allCash[item.cost.currency].quantity){
+            return false;
+        }
+        else {
+            this.allCash[item.cost.currency].quantity -= item.cost.quantity;
+            return true;
+        }
+
+        //TODO grant the thing you just paid for
     }
 }
