@@ -1,0 +1,14 @@
+<div class="card" style="width: 20rem">
+    <div class="card-header">
+        Loot
+    </div>
+    <div class="card-body mx-auto">
+        <div *ngIf='getLootBox()'>
+            <b>{{getLootBox().chestName}}</b>
+            <button type="button" class="btn btn-primary" (click)='open()'>Open!</button>
+        </div>
+        <div *ngIf='!(getLootBox())'>
+            No loot box right now
+        </div>
+    </div>
+</div>

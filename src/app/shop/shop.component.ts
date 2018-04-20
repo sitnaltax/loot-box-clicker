@@ -3,6 +3,7 @@ import { ShopService } from './shop-service';
 import { IShopItem } from './shop-item';
 import { ICash } from '../cash/cash';
 import { CashService } from '../cash/cash.service';
+import { LootBoxService } from '../loot-box/loot-box-service';
 
 @Component({
     selector: 'shop',
@@ -12,7 +13,8 @@ import { CashService } from '../cash/cash.service';
 export class ShopComponent implements OnInit {
 
     //TODO limit what's available to what the hero can afford with their cash
-    constructor(private _shopService: ShopService, private _cashService: CashService) { }
+    constructor(private _shopService: ShopService, private _cashService: CashService,
+         private _lootBoxService : LootBoxService)  { }
 
     getShopItems() : IShopItem[] {
         return this._shopService.getShopItems();
@@ -22,8 +24,14 @@ export class ShopComponent implements OnInit {
         return this._cashService.getCurrencyName(cash);
     }
 
+    needLootBox() : boolean {
+        return (this._lootBoxService.lootBox == null);
+    }
+
     purchase(item: IShopItem){
-        this._cashService.purchase(item);
+        if (this._cashService.purchase(item)){
+            this._lootBoxService.setLootBox(item);
+        }
     }
 
     ngOnInit() {

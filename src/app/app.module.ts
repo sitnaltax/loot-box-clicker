@@ -9,18 +9,21 @@ import { CashService } from './cash/cash.service';
 import { CashDisplayComponent } from './cash/cash-display.component';
 import { ShopComponent } from './shop/shop.component';
 import { ShopService } from './shop/shop-service';
+import { LootBoxDisplayComponent } from './loot-box/loot-box-display.component';
+import { LootBoxService } from './loot-box/loot-box-service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroDisplayComponent,
     CashDisplayComponent,
-    ShopComponent
+    ShopComponent,
+    LootBoxDisplayComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [HeroService, CashService, ShopService],
+  providers: [HeroService, CashService, ShopService, LootBoxService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

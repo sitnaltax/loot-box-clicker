@@ -26,7 +26,7 @@
                         {{item.cost.quantity}} {{getCurrencyName(item.cost)}}
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary" (click)='purchase(item)'>Buy</button>
+                        <button *ngIf='needLootBox()' type="button" class="btn btn-primary" (click)='purchase(item)'>Buy</button>
                     </td>
                 </tr>
             </tbody>
