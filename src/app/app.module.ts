@@ -11,6 +11,7 @@ import { ShopComponent } from './shop/shop.component';
 import { ShopService } from './shop/shop-service';
 import { LootBoxDisplayComponent } from './loot-box/loot-box-display.component';
 import { LootBoxService } from './loot-box/loot-box-service';
+import { EquipmentDisplayComponent } from './equipment/equipment-display.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LootBoxService } from './loot-box/loot-box-service';
     HeroDisplayComponent,
     CashDisplayComponent,
     ShopComponent,
-    LootBoxDisplayComponent
+    LootBoxDisplayComponent,
+    EquipmentDisplayComponent
   ],
   imports: [
     BrowserModule
