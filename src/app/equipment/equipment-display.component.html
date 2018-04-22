@@ -1,3 +1,35 @@
-<p>
-  equipment-display works!
-</p>
+<div class="card" style="width: 20rem">
+    <div class="card-header">
+        Equipment
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Slot
+                    </th>
+                    <th>
+                        Item
+                    </th>
+                    <th>
+                        Power
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let slot of getAllEquipmentSlots()'>
+                    <td>
+                        {{getSlotName(slot)}}        
+                    </td>
+                    <td>
+                        {{getItemNameForSlot(slot)}}        
+                    </td>
+                    <td>
+                        {{getPowerForSlot(slot)}}        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+</div>

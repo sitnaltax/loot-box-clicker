@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IShopItem } from '../shop/shop-item';
-import { ShopService } from '../shop/shop-service';
+import { ShopService } from '../shop/shop.service';
 
 @Injectable()
 export class LootBoxService {

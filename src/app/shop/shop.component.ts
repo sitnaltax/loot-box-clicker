@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShopService } from './shop-service';
+import { ShopService } from './shop.service';
 import { IShopItem } from './shop-item';
 import { ICash } from '../cash/cash';
 import { CashService } from '../cash/cash.service';
