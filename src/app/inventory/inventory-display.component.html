@@ -1,0 +1,47 @@
+<div class="card" style="width: 40rem">
+    <div class="card-header">
+        Inventory
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Item
+                    </th>
+                    <th>
+                        Slot/Type
+                    </th>
+                    <th>
+                        Power
+                    </th>
+                    <th>
+                        Equip
+                    </th>
+                    <th>
+                        Donate
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let item of getInventory()'>
+                    <td>
+                        {{item.itemName}}
+                    </td>
+                    <td>
+                        {{getSlotNameForItem(item)}}
+                    </td>
+                    <td>
+                        {{item.power}}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" (click)='equip(item)'>Equip</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" (click)='donate(item)'>Donate</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

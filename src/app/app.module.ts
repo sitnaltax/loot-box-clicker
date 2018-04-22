@@ -13,6 +13,9 @@ import { LootBoxDisplayComponent } from './loot-box/loot-box-display.component';
 import { LootBoxService } from './loot-box/loot-box-service';
 import { EquipmentDisplayComponent } from './equipment/equipment-display.component';
 import { EquipmentService } from './equipment/equipment.service';
+import { InventoryDisplayComponent } from './inventory/inventory-display.component';
+import { InventoryService } from './inventory/inventory.service';
+import { LootService } from './loot-box/loot.service';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,13 @@ import { EquipmentService } from './equipment/equipment.service';
     CashDisplayComponent,
     ShopComponent,
     LootBoxDisplayComponent,
-    EquipmentDisplayComponent
+    EquipmentDisplayComponent,
+    InventoryDisplayComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [HeroService, CashService, ShopService, LootBoxService, EquipmentService],
+  providers: [HeroService, CashService, ShopService, LootBoxService, EquipmentService, InventoryService, LootService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

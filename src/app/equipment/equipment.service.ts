@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { IHero } from '../hero/hero';
 import { IShopItem } from '../shop/shop-item';
 import { IEquipmentItem, equipmentSlot } from './equipment-item';
 
@@ -35,5 +34,12 @@ export class EquipmentService {
 
     getHeroEquipment(): IEquipmentItem[] {
         return this.heroEquipment;
+    }
+
+    //returns the old item;
+    equip(item: IEquipmentItem): IEquipmentItem {
+        var oldItem = this.heroEquipment[item.slot];
+        this.heroEquipment[item.slot] = item;
+        return oldItem;
     }
 }

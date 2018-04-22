@@ -1,11 +1,20 @@
 <nav class="navbar main-nav mb-2">
     <span class="navbar-brand mb-0 h1">
-    <img src="/assets/open-treasure-chest.png" width="30" height="30" class="d-inline-block align-top" alt="">
-    Loot Box Clicker</span>
+        <img src="/assets/open-treasure-chest.png" width="30" height="30" class="d-inline-block align-top" alt=""> Loot Box Clicker</span>
 </nav>
-<hero-display></hero-display>
-<cash-display></cash-display>
-<shop></shop>
-<loot-box-display></loot-box-display>
-<equipment-display></equipment-display>
-
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <hero-display></hero-display>
+            <cash-display></cash-display>
+            <shop></shop>
+            <loot-box-display></loot-box-display>
+        </div>
+        <div class="col-3">
+            <equipment-display></equipment-display>
+        </div>
+        <div class="col-6">
+            <inventory-display></inventory-display>
+        </div>
+    </div>
+</div>
