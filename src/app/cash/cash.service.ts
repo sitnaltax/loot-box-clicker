@@ -24,10 +24,10 @@ export class CashService {
 
     adventure(hero: IHero) {
         if (this.allCash[cashType.copper]){
-            this.allCash[cashType.copper].quantity += 1;
+            this.allCash[cashType.copper].quantity += hero.power;
         }
         else{
-            this.allCash[cashType.copper] = {currency: cashType.copper, quantity: 1}
+            this.allCash[cashType.copper] = {currency: cashType.copper, quantity: hero.power}
         }
     }
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IHero } from './hero';
 import { ICash } from '../cash/cash';
 import { CashService } from '../cash/cash.service';
+import { InventoryService } from '../inventory/inventory.service';
 
 @Injectable()
 export class HeroService {
@@ -10,11 +11,22 @@ export class HeroService {
     
     hero: IHero;
     
-    constructor(private _cashService: CashService) {
-        this.hero = {name: "Rob", job: "Demi-Druid"};
+    constructor(private _cashService: CashService, private _inventoryService: InventoryService) {
+        this.hero = {name: "Rob", job: "Demi-Druid", power: 1};
      }
     
     getHero(): IHero {
         return this.hero;
+    }
+
+    recalculatePower() {
+        var totalPower = 1;
+        this._inventoryService.getInventory().forEach(item => {
+            if (item == null) {
+                return;
+            }
+            totalPower *= item.power;
+        })
+        this.hero.power = totalPower;
     }
 }
