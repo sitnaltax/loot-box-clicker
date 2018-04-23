@@ -9,8 +9,8 @@ export class ShopService {
      }
     
     getShopItems(): IShopItem[] {
-        return [{chestName: "rookie chest", cost: {currency: cashType.copper, quantity: 5}},
-        {chestName: "basic chest", cost: {currency: cashType.copper, quantity: 50}},
-        {chestName: "ancient chest", cost: {currency: cashType.denarii, quantity: 50}}];
+        return [{chestName: "rookie chest", cost: {currency: cashType.copper, quantity: 10}, rank: 0},
+        {chestName: "basic chest", cost: {currency: cashType.copper, quantity: 100}, rank: 1},
+        {chestName: "ancient chest", cost: {currency: cashType.denarii, quantity: 100}, rank: 2}];
     }
 }
