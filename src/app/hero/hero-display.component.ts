@@ -23,7 +23,6 @@ export class HeroDisplayComponent implements OnInit {
         this._cashService.adventure(this.hero);
     }
 
-    //TODO this should toggle the button appearance
     autoAdventure() {
         this.isAutoAdventuring = !this.isAutoAdventuring;
         if (this.isAutoAdventuring) {

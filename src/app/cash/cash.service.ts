@@ -5,39 +5,53 @@ import { IShopItem } from '../shop/shop-item';
 
 @Injectable()
 export class CashService {
-    
+
     allCash: ICash[];
 
     constructor() {
         this.allCash = [];
     }
 
-    getAllCash(): ICash[]{
+    getAllCash(): ICash[] {
         return this.allCash;
     }
 
     currencyNames: string[] = ["copper pieces", "denarii", "silver pieces", "bits coin", "carnival tickets",
-"gold pieces", "unobtainium pieces", "magic beans", "diamonds", "space bucks", "ether crystals", "soul gems",
-"infinity stones"];
+        "gold pieces", "unobtainium pieces", "magic beans", "diamonds", "space bucks", "ether crystals", "soul gems",
+        "infinity stones"];
 
     getCurrencyName(cash: ICash) {
         return this.currencyNames[cash.currency];
     }
 
     adventure(hero: IHero) {
-        if (this.allCash[cashType.copper]){
-            this.allCash[cashType.copper].quantity += hero.power;
+        //Cash earned = 2dPower - 1
+        var adventurePower = Math.floor(Math.random() * hero.power + 1) + Math.floor(Math.random() * hero.power + 1) - 1;
+
+        //1 in criticalChance odds of a multiplier, which can explode
+        while (Math.random() < hero.criticalChance) {
+            adventurePower *= hero.criticalPower;
         }
-        else{
-            this.allCash[cashType.copper] = {currency: cashType.copper, quantity: hero.power}
+
+        var cashEarned = this.determineCashForAdventurePower(adventurePower);
+
+        if (this.allCash[cashEarned.currency]) {
+            this.allCash[cashEarned.currency].quantity += cashEarned.quantity;
+        }
+        else {
+            this.allCash[cashEarned.currency] = cashEarned;
         }
     }
 
-    purchase(item: IShopItem): boolean{
+    determineCashForAdventurePower(power: number): ICash {
+        return {quantity: power, currency:cashType.copper};
+    }
+
+    purchase(item: IShopItem): boolean {
         if (!(item.cost.currency in this.allCash)) {
             return false;
         }
-        else if (item.cost.quantity > this.allCash[item.cost.currency].quantity){
+        else if (item.cost.quantity > this.allCash[item.cost.currency].quantity) {
             return false;
         }
         else {

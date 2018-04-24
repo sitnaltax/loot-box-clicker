@@ -12,7 +12,7 @@ export class HeroService {
     hero: IHero;
     
     constructor(private _cashService: CashService, private _inventoryService: InventoryService) {
-        this.hero = {name: "Rob", job: "Demi-Druid", power: 1};
+        this.hero = {name: "Rob", job: "Demi-Druid", power: 1, criticalChance: 0.05, criticalPower: 10};
      }
     
     getHero(): IHero {
@@ -28,5 +28,7 @@ export class HeroService {
             totalPower *= item.power;
         })
         this.hero.power = totalPower;
+        this.hero.criticalChance = 0.05;
+        this.hero.criticalPower = 10;
     }
 }
