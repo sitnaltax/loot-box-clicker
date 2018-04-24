@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InventoryService } from './inventory.service';
 import { equipmentSlot, IEquipmentItem, equipmentType } from '../equipment/equipment-item';
 import { EquipmentService } from '../equipment/equipment.service';
+import { HeroService } from '../hero/hero.service';
 
 @Component({
     selector: 'inventory-display',
@@ -10,7 +11,7 @@ import { EquipmentService } from '../equipment/equipment.service';
 })
 export class InventoryDisplayComponent implements OnInit {
 
-    constructor(private _inventoryService: InventoryService, private _equipmentService: EquipmentService) { }
+    constructor(private _inventoryService: InventoryService, private _equipmentService: EquipmentService, private _heroService: HeroService) { }
 
     ngOnInit() {
     }
@@ -43,5 +44,6 @@ export class InventoryDisplayComponent implements OnInit {
         if (oldItem != null) {
             this._inventoryService.addToInventory(oldItem);
         }
+        this._heroService.recalculatePower();
     }
 }

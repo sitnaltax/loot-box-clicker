@@ -9,8 +9,13 @@ import { EquipmentService } from "../equipment/equipment.service";
 export class LootService {
 
     allEquipmentSlots: equipmentSlot[]
+    materialsByChestRank;
+    baseItemsBySlot;
     constructor(private _equipmentService: EquipmentService) {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
+        this.materialsByChestRank = [[{ name: "unknown", power: 1 }], [{ name: "iron", power: 2 }, { name: "steel", power: 3 }]];
+        this.baseItemsBySlot = [["briefcase"], ["pint glass"], ["robe"], ["hat"], ["pants"], ["sandals"], ["gloves"], ["cloak"],
+        ["wristguards"], ["belt"], ["shoulder pads"], ["ring"], ["amulet"], ["badge"]];
     }
 
     getItemsForLootBox(lootBox: IShopItem): IEquipmentItem[] {
@@ -20,10 +25,25 @@ export class LootService {
                 power: 3, value: 1
             }]
         }
-        return [];
+        var slot = this.getRandomSlotForLootBox(lootBox);
+        var baseItem = this.getNameAndPowerForItem(lootBox, slot);
+        return [{ itemName: baseItem.name, type: equipmentType.equipabble, slot: slot, power: baseItem.power, value: baseItem.power }];
     }
 
     getRandomSlotForLootBox(lootBox: IShopItem): equipmentSlot {
-        return this.allEquipmentSlots[Math.floor(Math.random()*this.allEquipmentSlots.length)];
+        return this.allEquipmentSlots[Math.floor(Math.random() * this.allEquipmentSlots.length)];
+    }
+
+    //TODO add rarity too?
+
+    getNameAndPowerForItem(lootBox: IShopItem, slot: equipmentSlot) {
+        var materialAndPowerList = this.materialsByChestRank[lootBox.rank];
+        var materialAndPower = materialAndPowerList[Math.floor(Math.random() * materialAndPowerList.length)];
+        return { name: materialAndPower.name + " " + this.baseItemsBySlot[slot], power: materialAndPower.power };
+    }
+
+    getBaseItemBySlot(slot: equipmentSlot) {
+        return this.baseItemsBySlot[slot];
     }
 }
+

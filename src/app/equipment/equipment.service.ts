@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IShopItem } from '../shop/shop-item';
 import { IEquipmentItem, equipmentSlot } from './equipment-item';
-import { HeroService } from '../hero/hero.service';
 
 @Injectable()
 export class EquipmentService {
@@ -12,7 +11,7 @@ export class EquipmentService {
 
     equipmentSlotNames: string[];
 
-    constructor(private _heroService: HeroService) {
+    constructor() {
         this.allEquipmentSlots = [equipmentSlot.mainhand, equipmentSlot.offhand, equipmentSlot.armor, equipmentSlot.helm, equipmentSlot.legs,
         equipmentSlot.feet, equipmentSlot.hands, equipmentSlot.cloak, equipmentSlot.wrists, equipmentSlot.waist, equipmentSlot.shoulders,
         equipmentSlot.ring, equipmentSlot.amulet, equipmentSlot.accessory];
@@ -39,9 +38,18 @@ export class EquipmentService {
 
     //returns the old item;
     equip(item: IEquipmentItem): IEquipmentItem {
-        var oldItem = this.heroEquipment[item.slot];
+        let oldItem = this.heroEquipment[item.slot];
         this.heroEquipment[item.slot] = item;
-        this._heroService.recalculatePower();
         return oldItem;
+    }
+
+    calculatePower(): number {
+        let totalPower = 1;
+        this.getHeroEquipment().forEach(item => {
+            if (item != null) {
+                totalPower *= item.power;
+            }
+        })
+        return totalPower;
     }
 }
