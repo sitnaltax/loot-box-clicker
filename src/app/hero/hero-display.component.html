@@ -19,7 +19,7 @@
                 </tr>
             </tbody>
         </table>
-        <button type="button" class="btn btn-primary" (click)='adventure()'>Adventure</button>
-        <button type="button" class="btn btn-primary" (click)='autoAdventure()' data-toggle="button" aria-pressed="false">Auto-Adventure</button>
+        <button type="button" class="btn btn-primary" (click)='adventure()'>Adventure</button> 
+        <button [ngClass]="{'active': isAutoAdventuring}" id="autoAdventure" type="button" class="btn btn-primary" (click)='autoAdventure()' data-toggle="button" aria-pressed="false">Auto-Adventure</button>
     </div>
 </div>
