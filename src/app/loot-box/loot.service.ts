@@ -11,11 +11,15 @@ export class LootService {
     allEquipmentSlots: equipmentSlot[]
     materialsByChestRank;
     baseItemsBySlot;
+    //The rookie chest shouldn't have anything. The basic chest can only have the first 5 slots. After that every
+    //chest allows 1 more slot.
+    slotsAllowedByRank;
     constructor(private _equipmentService: EquipmentService) {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
         this.materialsByChestRank = [[{ name: "unknown", power: 1 }], [{ name: "iron", power: 2 }, { name: "steel", power: 3 }]];
         this.baseItemsBySlot = [["briefcase"], ["pint glass"], ["robe"], ["hat"], ["pants"], ["sandals"], ["gloves"], ["cloak"],
         ["wristguards"], ["belt"], ["shoulder pads"], ["ring"], ["amulet"], ["badge"]];
+        this.slotsAllowedByRank = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     }
 
     getItemsForLootBox(lootBox: IShopItem): IEquipmentItem[] {
@@ -31,7 +35,12 @@ export class LootService {
     }
 
     getRandomSlotForLootBox(lootBox: IShopItem): equipmentSlot {
-        return this.allEquipmentSlots[Math.floor(Math.random() * this.allEquipmentSlots.length)];
+        let slotsAllowed;
+        if (lootBox.rank > this.slotsAllowedByRank.length + 1) {
+            slotsAllowed = this.allEquipmentSlots.length;
+        }
+        slotsAllowed = Math.min(this.allEquipmentSlots.length, this.slotsAllowedByRank[lootBox.rank])
+        return this.allEquipmentSlots[Math.floor(Math.random() * slotsAllowed)];
     }
 
     //TODO add rarity too?
