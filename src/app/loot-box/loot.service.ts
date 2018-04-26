@@ -10,19 +10,18 @@ export class LootService {
 
     allEquipmentSlots: equipmentSlot[]
     materialsByChestRank;
-    baseItemsBySlot;
+    baseItemsBySlot : string[][] = [["axe", "wand", "mageblade", "briefcase"], ["fidget spinner", "orb", "book", "pint glass"],
+    ["robe", "armor"], ["hat", "helm", "beanie"], ["pants", "pantaloons", "greaves", "leg guards", "chaps"],
+    ["sandals", "shoes", "boots"], ["gloves"], ["cloak"], ["wristguards"], ["belt"], ["shoulder pads"], ["ring"], ["amulet"], ["badge"]];
     //The rookie chest shouldn't have anything. The basic chest can only have the first 5 slots. After that every
     //chest allows 1 more slot.
-    slotsAllowedByRank;
+    slotsAllowedByRank : number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     constructor(private _equipmentService: EquipmentService) {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
         this.materialsByChestRank = [[{ name: "unknown", power: 1 }],
          [{ name: "iron", power: 2 }, { name: "steel", power: 3 }],
          [{ name: "decrepit", power: 2 }, { name: "unearthed", power: 3 }, { name: "historic", power: 4 }]
         ];
-        this.baseItemsBySlot = [["briefcase"], ["pint glass"], ["robe"], ["hat"], ["pants"], ["sandals"], ["gloves"], ["cloak"],
-        ["wristguards"], ["belt"], ["shoulder pads"], ["ring"], ["amulet"], ["badge"]];
-        this.slotsAllowedByRank = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     }
 
     getItemsForLootBox(lootBox: IShopItem): IEquipmentItem[] {
@@ -50,7 +49,7 @@ export class LootService {
         var materialAndPowerList = this.materialsByChestRank[lootBox.rank];
         var materialAndPower = materialAndPowerList[Math.floor(Math.random() * materialAndPowerList.length)];
         var enchantmentCount = this.getEnchantmentCountForChest(lootBox);
-        return { name: materialAndPower.name + " " + this.baseItemsBySlot[slot],
+        return { name: materialAndPower.name + " " + this.getBaseItemBySlot(slot),
          power: materialAndPower.power + this.powerForEnchantmentCount[enchantmentCount] };
     }
 
@@ -74,8 +73,9 @@ export class LootService {
         return this.powerForEnchantmentCount[count];
     }
 
-    getBaseItemBySlot(slot: equipmentSlot) {
-        return this.baseItemsBySlot[slot];
+    getBaseItemBySlot(slot: equipmentSlot): string {
+        let possibleBaseItems = this.baseItemsBySlot[slot];
+        return possibleBaseItems[Math.floor(Math.random() * possibleBaseItems.length)];
     }
 }
 
