@@ -46,4 +46,9 @@ export class InventoryDisplayComponent implements OnInit {
         }
         this._heroService.recalculatePower();
     }
+
+    donate(item: IEquipmentItem) {
+        this._inventoryService.removeFromInventory(item);
+        this._heroService.addKarma(item.value);
+    }
 }

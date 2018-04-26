@@ -6,4 +6,5 @@ export interface IHero {
     power: number;
     criticalChance: number;
     criticalPower: number;
+    fame: number;
 }

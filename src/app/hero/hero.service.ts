@@ -12,7 +12,7 @@ export class HeroService {
     hero: IHero;
     
     constructor(private _cashService: CashService, private _equipmentService: EquipmentService) {
-        this.hero = {name: "Rob", job: "Demi-Druid", power: 1, criticalChance: 0.04, criticalPower: 5};
+        this.hero = {name: "Rob", job: "Demi-Druid", power: 1, criticalChance: 0.04, criticalPower: 5, fame: 0};
      }
     
     getHero(): IHero {
@@ -23,5 +23,9 @@ export class HeroService {
         this.hero.power = this._equipmentService.calculatePower();
         this.hero.criticalChance = 0.04;
         this.hero.criticalPower = 5;
+    }
+
+    addKarma(fame: number) {
+        this.hero.fame += fame;
     }
 }

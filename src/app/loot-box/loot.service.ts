@@ -16,7 +16,10 @@ export class LootService {
     slotsAllowedByRank;
     constructor(private _equipmentService: EquipmentService) {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
-        this.materialsByChestRank = [[{ name: "unknown", power: 1 }], [{ name: "iron", power: 2 }, { name: "steel", power: 3 }]];
+        this.materialsByChestRank = [[{ name: "unknown", power: 1 }],
+         [{ name: "iron", power: 2 }, { name: "steel", power: 3 }],
+         [{ name: "decrepit", power: 2 }, { name: "unearthed", power: 3 }, { name: "historic", power: 4 }]
+        ];
         this.baseItemsBySlot = [["briefcase"], ["pint glass"], ["robe"], ["hat"], ["pants"], ["sandals"], ["gloves"], ["cloak"],
         ["wristguards"], ["belt"], ["shoulder pads"], ["ring"], ["amulet"], ["badge"]];
         this.slotsAllowedByRank = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
