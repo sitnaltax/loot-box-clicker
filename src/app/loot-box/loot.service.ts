@@ -46,12 +46,32 @@ export class LootService {
         return this.allEquipmentSlots[Math.floor(Math.random() * slotsAllowed)];
     }
 
-    //TODO add rarity too?
-
     getNameAndPowerForItem(lootBox: IShopItem, slot: equipmentSlot) {
         var materialAndPowerList = this.materialsByChestRank[lootBox.rank];
         var materialAndPower = materialAndPowerList[Math.floor(Math.random() * materialAndPowerList.length)];
-        return { name: materialAndPower.name + " " + this.baseItemsBySlot[slot], power: materialAndPower.power };
+        var enchantmentCount = this.getEnchantmentCountForChest(lootBox);
+        return { name: materialAndPower.name + " " + this.baseItemsBySlot[slot],
+         power: materialAndPower.power + this.powerForEnchantmentCount[enchantmentCount] };
+    }
+
+    chanceOfEnchantment: number = 1/6;
+
+    /*Each rank beyond the first gives a 1/6 chance of an enchantment.
+    Enchantment power is triangular so 1/2/3/4 enchantments gives 1/3/6/10 power.*/
+    getEnchantmentCountForChest(lootBox: IShopItem): number {
+        let enchantments = 0;
+        for(let i = 1; i < lootBox.rank; i++) {
+            if (Math.random() < this.chanceOfEnchantment) {
+                enchantments++;
+            }
+        }
+        return enchantments;
+    }
+
+    powerForEnchantmentCount: number[] = [0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120, 136, 153, 171, 190, 210, 231, 253, 276, 300, 325, 351, 378, 406, 435, 465, 496, 528, 561, 595, 630, 666];
+
+    getPowerForEnchantmentCount(count: number): number {
+        return this.powerForEnchantmentCount[count];
     }
 
     getBaseItemBySlot(slot: equipmentSlot) {

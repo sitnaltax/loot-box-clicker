@@ -20,6 +20,8 @@ export class CashService {
         "gold pieces", "unobtainium pieces", "magic beans", "diamonds", "space bucks", "ether crystals", "soul gems",
         "infinity stones"];
 
+    currencyRatios: number[] = [100, 80, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 9999999];
+
     getCurrencyName(cash: ICash) {
         return this.currencyNames[cash.currency];
     }
@@ -46,8 +48,8 @@ export class CashService {
     determineCashForAdventurePower(power: number): ICash {
         let quantity = power;
         let currency = cashType.copper;
-        while (quantity > 100 && currency < cashType.CASHTYPE_MAX - 1) {
-            quantity = Math.floor(quantity / 100);
+        while (quantity > this.currencyRatios[currency] && currency < cashType.CASHTYPE_MAX - 1) {
+            quantity = Math.floor(quantity / this.currencyRatios[currency]);
             currency++;
         }
         return {quantity: quantity, currency:currency};
