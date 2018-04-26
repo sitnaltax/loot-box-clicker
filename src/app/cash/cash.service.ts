@@ -44,7 +44,13 @@ export class CashService {
     }
 
     determineCashForAdventurePower(power: number): ICash {
-        return {quantity: power, currency:cashType.copper};
+        let quantity = power;
+        let currency = cashType.copper;
+        while (quantity > 100 && currency < cashType.CASHTYPE_MAX - 1) {
+            quantity = Math.floor(quantity / 100);
+            currency++;
+        }
+        return {quantity: quantity, currency:currency};
     }
 
     purchase(item: IShopItem): boolean {
