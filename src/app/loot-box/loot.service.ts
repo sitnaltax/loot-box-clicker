@@ -10,9 +10,10 @@ export class LootService {
 
     allEquipmentSlots: equipmentSlot[]
     materialsByChestRank;
-    baseItemsBySlot : string[][] = [["axe", "wand", "mageblade", "briefcase"], ["fidget spinner", "orb", "book", "pint glass"],
-    ["robe", "armor"], ["hat", "helm", "beanie"], ["pants", "pantaloons", "greaves", "leg guards", "chaps"],
-    ["sandals", "shoes", "boots"], ["gloves"], ["cloak"], ["wristguards"], ["belt"], ["shoulder pads"], ["ring"], ["amulet"], ["badge"]];
+    baseItemsBySlot : string[][] = [["wand", "staff", "briefcase", "towel", "screwdriver", "paintbrush", "checkbook"],
+    ["fidget spinner", "orb", "book", "pint glass", "duckie"],
+    ["robe", "armor", "suit"], ["hat", "helm", "beanie"], ["pants", "pantaloons", "greaves", "leg guards", "chaps"],
+    ["sandals", "shoes", "boots"], ["gloves"], ["cloak", "cape", "backguard", "backpack"], ["wristguards"], ["belt"], ["shoulder pads"], ["ring"], ["amulet"], ["badge"]];
     //The rookie chest shouldn't have anything. The basic chest can only have the first 5 slots. After that every
     //chest allows 1 more slot.
     slotsAllowedByRank : number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
