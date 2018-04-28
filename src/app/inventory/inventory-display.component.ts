@@ -51,4 +51,10 @@ export class InventoryDisplayComponent implements OnInit {
         this._inventoryService.removeFromInventory(item);
         this._heroService.addKarma(item.value);
     }
+
+    donateAll() {
+        while(this._inventoryService.getInventory().length > 0){
+            this._inventoryService.getInventory().forEach(item => {this.donate(item)});
+        }
+    }
 }
