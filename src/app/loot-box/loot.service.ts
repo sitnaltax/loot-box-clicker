@@ -21,7 +21,8 @@ export class LootService {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
         this.materialsByChestRank = [[{ name: "unknown", power: 1 }],
          [{ name: "iron", power: 2 }, { name: "steel", power: 3 }],
-         [{ name: "decrepit", power: 2 }, { name: "unearthed", power: 3 }, { name: "historic", power: 4 }]
+         [{ name: "decrepit", power: 2 }, { name: "unearthed", power: 3 }, { name: "historic", power: 4 }],
+         [{ name: "zinc", power: 2 }, { name: "tin", power: 3 }, { name: "silver", power: 4 }, { name: "mithril", power: 5 }]
         ];
     }
 
