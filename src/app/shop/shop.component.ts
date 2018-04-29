@@ -29,6 +29,9 @@ export class ShopComponent implements OnInit {
     }
 
     purchase(item: IShopItem){
+        if (!this.needLootBox()) {
+            return;
+        }
         if (this._cashService.purchase(item)){
             this._lootBoxService.setLootBox(item);
         }

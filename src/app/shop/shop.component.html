@@ -12,21 +12,16 @@
                     <th>
                         Cost
                     </th>
-                    <th>
-                        Purchase
-                    </th>
+
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor='let item of getShopItems()'>
                     <td>
-                        {{item.chestName}}
+                        <a (click)='purchase(item)'><span class="text-primary" style="cursor: pointer; ">{{item.chestName}}</span></a>
                     </td>
                     <td>
                         {{item.cost.quantity}} {{getCurrencyName(item.cost)}}
-                    </td>
-                    <td>
-                        <button *ngIf='needLootBox()' type="button" class="btn btn-primary" (click)='purchase(item)'>Buy</button>
                     </td>
                 </tr>
             </tbody>
