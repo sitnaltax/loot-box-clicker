@@ -24,16 +24,9 @@ export class ShopComponent implements OnInit {
         return this._cashService.getCurrencyName(cash);
     }
 
-    needLootBox() : boolean {
-        return (this._lootBoxService.lootBox == null);
-    }
-
     purchase(item: IShopItem){
-        if (!this.needLootBox()) {
-            return;
-        }
         if (this._cashService.purchase(item)){
-            this._lootBoxService.setLootBox(item);
+            this._lootBoxService.addLootBox(item);
         }
     }
 

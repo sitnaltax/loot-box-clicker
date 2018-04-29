@@ -3,11 +3,13 @@
         Loot
     </div>
     <div class="card-body mx-auto">
-        <div *ngIf='getLootBox()'>
-            <b>{{getLootBox().chestName}}</b>
-            <button type="button" class="btn btn-primary" (click)='open()'>Open!</button>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" [@boxState]="boxState" ></div>
         </div>
-        <div *ngIf='!(getLootBox())'>
+        <div *ngIf='getCurrentlyOpeningBox()'>
+            Opening a <b>{{getCurrentlyOpeningBox().chestName}}</b>...
+        </div>
+        <div *ngIf='!(getCurrentlyOpeningBox())'>
             No loot box right now
         </div>
     </div>
