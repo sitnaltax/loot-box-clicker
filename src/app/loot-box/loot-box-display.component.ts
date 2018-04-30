@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IShopItem } from '../shop/shop-item';
 import { LootBoxService } from './loot-box-service';
-import { trigger, state, style, animate, transition, sequence } from '@angular/animations';
+import { AnimationEvent, trigger, state, style, animate, transition, sequence } from '@angular/animations';
 @Component({
     selector: 'loot-box-display',
     templateUrl: './loot-box-display.component.html',
@@ -23,7 +23,9 @@ export class LootBoxDisplayComponent implements OnInit {
     constructor(private _lootBoxService: LootBoxService) {
     }
 
-    boxState : string;
+    boxState: string;
+    isAnimating: boolean;
+    animationsOwed: number;
 
     getCurrentlyOpeningBox(): IShopItem {
         return this._lootBoxService.getCurrentlyOpeningBox();
@@ -33,9 +35,38 @@ export class LootBoxDisplayComponent implements OnInit {
         return this._lootBoxService.getLootBoxProgress();
     }
 
+    animationStarted(event: AnimationEvent) {
+        if (event.toState == "begin") {
+            this.isAnimating = true;
+        }
+        console.log("Animations owed (begin): " + this.animationsOwed);
+    }
+
+    animationEnded(event: AnimationEvent) {
+        if (event.toState == "begin") {
+            this.isAnimating = false;
+        }
+        if (this.animationsOwed > 0 && event.toState == "end") {
+            this.animationsOwed--;
+            this.boxState = "begin";
+            window.setTimeout(() => {this.boxState = "end"}, 2500);
+        }
+        console.log("Animations owed (end): " + this.animationsOwed);
+    }
+
     ngOnInit() {
+        this.isAnimating = false;
         this.boxState = "end";
-        this._lootBoxService.progressNotification.subscribe((state) => {this.boxState = state;});
+        this.animationsOwed = 0;
+        this._lootBoxService.progressNotification.subscribe((state) => {
+            if (!this.isAnimating || state == "end") {
+                this.boxState = state;
+            }
+            else {
+                //else, we're already animating, and another begin came in
+                this.animationsOwed++;
+            }
+        });
     }
 
 }

@@ -4,7 +4,7 @@
     </div>
     <div class="card-body mx-auto">
         <div class="progress">
-            <div class="progress-bar" role="progressbar" [@boxState]="boxState" ></div>
+            <div class="progress-bar" role="progressbar" [@boxState]="boxState" (@boxState.start)="animationStarted($event)" (@boxState.done)="animationEnded($event)" ></div>
         </div>
         <div *ngIf='getCurrentlyOpeningBox()'>
             Opening a <b>{{getCurrentlyOpeningBox().chestName}}</b>...
