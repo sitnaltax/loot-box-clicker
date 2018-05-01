@@ -53,10 +53,6 @@ export class LootBoxService {
             , this.lootBoxOpeningTime);
     }
 
-    getLootBoxProgress(): number {
-        return Math.floor(100 * this.lootBoxOpeningProgress / this.lootBoxOpeningTime);
-    }
-
     gainLoot() {
         if (this.currentlyOpeningBox == null) {
             return;

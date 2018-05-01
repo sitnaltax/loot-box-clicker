@@ -31,15 +31,10 @@ export class LootBoxDisplayComponent implements OnInit {
         return this._lootBoxService.getCurrentlyOpeningBox();
     }
 
-    getLootBoxProgress(): number {
-        return this._lootBoxService.getLootBoxProgress();
-    }
-
     animationStarted(event: AnimationEvent) {
         if (event.toState == "begin") {
             this.isAnimating = true;
         }
-        console.log("Animations owed (begin): " + this.animationsOwed);
     }
 
     animationEnded(event: AnimationEvent) {
@@ -51,7 +46,6 @@ export class LootBoxDisplayComponent implements OnInit {
             this.boxState = "begin";
             window.setTimeout(() => {this.boxState = "end"}, 2500);
         }
-        console.log("Animations owed (end): " + this.animationsOwed);
     }
 
     ngOnInit() {
