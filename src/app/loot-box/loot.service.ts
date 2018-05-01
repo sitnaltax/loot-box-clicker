@@ -24,7 +24,8 @@ export class LootService {
     "serpentine", "hircine", "hirsute", "xenophilic", "blessed", "well-crafted", "deluxe", "shiny",
     "humorous", "ill-tempered", "solid", "ectoplasmic", "adamantine", "faceted", "sancified", "kinky",
     "perverted", "diurnal", "crepuscular", "nocturnal", "saturnine", "grim", "hardened", "hallowed",
-    "elven", "dwarven", "inhuman", "divine", "profane", "axiomatic", "tautological", "your mom's"];
+    "elven", "dwarven", "inhuman", "divine", "profane", "axiomatic", "tautological", "your mom's",
+    "nonbinary", "engorged"];
     suffixes : string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear", 
      "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
      "of the mole rat", "of masculinity/femininity", "+1", ", defender", "+2", "of ill repute"]
