@@ -27,7 +27,7 @@ export class LootService {
     "elven", "dwarven", "inhuman", "divine", "profane", "axiomatic", "tautological", "your mom's"];
     suffixes : string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear", 
      "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
-     "of the mole rat", "of masculinity/femininity", "+1", "defender", "+2", "of ill repute"]
+     "of the mole rat", "of masculinity/femininity", "+1", ", defender", "+2", "of ill repute"]
     allEnchantments : IEnchantment[] = [];
 
 
