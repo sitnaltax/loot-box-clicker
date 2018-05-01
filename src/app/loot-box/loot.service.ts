@@ -38,7 +38,8 @@ export class LootService {
          [{ name: "iron", power: 2 }, { name: "steel", power: 3 }],
          [{ name: "decrepit", power: 2 }, { name: "unearthed", power: 3 }, { name: "historic", power: 4 }],
          [{ name: "zinc", power: 2 }, { name: "tin", power: 3 }, { name: "silver", power: 4 }, { name: "mithril", power: 5 }],
-         [{ name: "silicone", power: 3 }, { name: "silicon", power: 4 }, { name: "electric", power: 5 }, { name: "cybernetic", power: 6 }]
+         [{ name: "silicone", power: 3 }, { name: "silicon", power: 4 }, { name: "electric", power: 5 }, { name: "cybernetic", power: 6 }],
+         [{ name: "pyrite", power: 4 }, { name: "gilt", power: 5 }, { name: "gold", power: 6 }, { name: "orichalcum", power: 7 }]
         ];
         this.prefixes.forEach((item) => this.allEnchantments.push({text: item, type: enchantmentType.prefix}));
         this.suffixes.forEach((item) => this.allEnchantments.push({text: item, type: enchantmentType.suffix}));
