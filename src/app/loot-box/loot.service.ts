@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IShopItem } from '../shop/shop-item';
 import { IEquipmentItem, equipmentType, equipmentSlot } from '../equipment/equipment-item';
 import { EquipmentService } from "../equipment/equipment.service";
+import { IEnchantment, enchantmentType } from './enchantment';
 
 //Responsible for determining what you get from a chest
 
@@ -17,6 +18,19 @@ export class LootService {
     ["belt", "girdle", "fanny pack", "waistguard"], ["shoulder pads", "pauldrons"], ["ring"], ["amulet"], ["badge"]];
     //The rookie chest shouldn't have anything. The basic chest can only have the first 5 slots. After that every
     //chest allows 1 more slot.
+    
+    prefixes : string[] = ["lustrous", "vorpal", "acidic", "questionable", "vibrating", "ineffable", "silly",
+     "reknowned", "glistening", "gossamer", "toxic", "bejeweled", "shadowy", "shady", "resplendent",
+    "serpentine", "hircine", "hirsute", "xenophilic", "blessed", "well-crafted", "deluxe", "shiny",
+    "humorous", "ill-tempered", "solid", "ectoplasmic", "adamantine", "faceted", "sancified", "kinky",
+    "perverted", "diurnal", "crepuscular", "nocturnal", "saturnine", "grim", "hardened", "hallowed",
+    "elven", "dwarven", "inhuman", "divine", "profane", "axiomatic", "tautological", "your mom's"];
+    suffixes : string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear", 
+     "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
+     "of the mole rat", "of masculinity/femininity", "+1", "defender", "+2", "of ill repute"]
+    allEnchantments : IEnchantment[] = [];
+
+
     slotsAllowedByRank : number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     constructor(private _equipmentService: EquipmentService) {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
@@ -26,6 +40,8 @@ export class LootService {
          [{ name: "zinc", power: 2 }, { name: "tin", power: 3 }, { name: "silver", power: 4 }, { name: "mithril", power: 5 }],
          [{ name: "silicone", power: 3 }, { name: "silicon", power: 4 }, { name: "electric", power: 5 }, { name: "cybernetic", power: 6 }]
         ];
+        this.prefixes.forEach((item) => this.allEnchantments.push({text: item, type: enchantmentType.prefix}));
+        this.suffixes.forEach((item) => this.allEnchantments.push({text: item, type: enchantmentType.suffix}));
     }
 
     getItemsForLootBox(lootBox: IShopItem): IEquipmentItem[] {
@@ -50,11 +66,30 @@ export class LootService {
     }
 
     getNameAndPowerForItem(lootBox: IShopItem, slot: equipmentSlot) {
-        var materialAndPowerList = this.materialsByChestRank[lootBox.rank];
-        var materialAndPower = materialAndPowerList[Math.floor(Math.random() * materialAndPowerList.length)];
-        var enchantmentCount = this.getEnchantmentCountForChest(lootBox);
-        return { name: materialAndPower.name + " " + this.getBaseItemBySlot(slot),
+        let materialAndPowerList = this.materialsByChestRank[lootBox.rank];
+        let materialAndPower = materialAndPowerList[Math.floor(Math.random() * materialAndPowerList.length)];
+        let enchantmentCount = this.getEnchantmentCountForChest(lootBox);
+        let baseName = materialAndPower.name + " " + this.getBaseItemBySlot(slot);
+
+        return { name: this.getEnchantedName(baseName, enchantmentCount),
          power: materialAndPower.power + this.powerForEnchantmentCount[enchantmentCount] };
+    }
+
+    getEnchantedName(baseName: string, enchantmentCount: number): string {
+        let enchantments : IEnchantment[] = [];
+        for (let i = 0; i < enchantmentCount; i++) {
+            enchantments.push(this.allEnchantments[Math.floor(Math.random() * this.allEnchantments.length)]);
+        }
+        let workingName : string = baseName;
+        enchantments.forEach((enchantment) => {
+            if (enchantment.type == enchantmentType.prefix){
+                workingName = enchantment.text + " " + workingName;
+            }
+            else { //it's a suffix
+                workingName = workingName + " " + enchantment.text;
+            }
+        })
+        return workingName;
     }
 
     chanceOfEnchantment: number = 1/6;
