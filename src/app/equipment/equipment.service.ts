@@ -1,32 +1,42 @@
 import { Injectable } from '@angular/core';
 import { IShopItem } from '../shop/shop-item';
 import { IEquipmentItem, equipmentSlot } from './equipment-item';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable()
 export class EquipmentService {
-    
+
     heroEquipment: IEquipmentItem[];
 
     allEquipmentSlots: equipmentSlot[];
 
     equipmentSlotNames: string[];
 
-    constructor() {
+    constructor(private _storageService: StorageService) {
         this.allEquipmentSlots = [equipmentSlot.mainhand, equipmentSlot.offhand, equipmentSlot.armor, equipmentSlot.helm, equipmentSlot.legs,
         equipmentSlot.feet, equipmentSlot.hands, equipmentSlot.cloak, equipmentSlot.wrists, equipmentSlot.waist, equipmentSlot.shoulders,
         equipmentSlot.ring, equipmentSlot.amulet, equipmentSlot.accessory];
 
         this.equipmentSlotNames = ["Main Hand", "Off Hand", "Body", "Head", "Legs", "Feet", "Hands", "Back", "Wrists", "Waist",
-        "Shoulders", "Finger", "Neck", "Accessory"];
+            "Shoulders", "Finger", "Neck", "Accessory"];
 
-        this.heroEquipment = [];
+        if (this._storageService.retrieve("equipment")) {
+            this.heroEquipment = this._storageService.retrieve("equipment");
+        }
+        else {
+            this.heroEquipment = [];
+            this.equipmentSlotNames.forEach(e => this.heroEquipment.push(null));
+        }
 
-        this.equipmentSlotNames.forEach(e => this.heroEquipment.push(null));
+        this._storageService.autoSaveNotification.subscribe((dummy) => {
+            this._storageService.store("equipment", this.heroEquipment);
+        });
+
     }
 
     getSlotName(slot: equipmentSlot): string {
         return this.equipmentSlotNames[slot];
-    } 
+    }
 
     getAllEquipmentSlots(): equipmentSlot[] {
         return this.allEquipmentSlots;

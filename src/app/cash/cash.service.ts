@@ -2,14 +2,26 @@ import { Injectable } from '@angular/core';
 import { IHero } from '../hero/hero';
 import { ICash, cashType } from './cash';
 import { IShopItem } from '../shop/shop-item';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable()
 export class CashService {
 
     allCash: ICash[];
 
-    constructor() {
-        this.allCash = [];
+    constructor(private _storageService: StorageService) {
+        if (this._storageService.retrieve("cash")) {
+            this.allCash = this._storageService.retrieve("cash");
+        }
+        else {
+            this.allCash = [];
+        }
+
+        console.log(this.allCash);
+
+        this._storageService.autoSaveNotification.subscribe((dummy) => {
+            this._storageService.store("cash", this.allCash);
+        });
     }
 
     getAllCash(): ICash[] {
@@ -52,7 +64,7 @@ export class CashService {
             quantity = Math.floor(quantity / this.currencyRatios[currency]);
             currency++;
         }
-        return {quantity: quantity, currency:currency};
+        return { quantity: quantity, currency: currency };
     }
 
     purchase(item: IShopItem): boolean {
@@ -66,7 +78,5 @@ export class CashService {
             this.allCash[item.cost.currency].quantity -= item.cost.quantity;
             return true;
         }
-
-        //TODO grant the thing you just paid for
     }
 }
