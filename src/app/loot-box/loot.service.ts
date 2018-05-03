@@ -11,40 +11,41 @@ export class LootService {
 
     allEquipmentSlots: equipmentSlot[]
     materialsByChestRank;
-    baseItemsBySlot : string[][] = [["wand", "staff", "briefcase", "towel", "screwdriver", "paintbrush", "checkbook"],
+    baseItemsBySlot: string[][] = [["wand", "staff", "briefcase", "towel", "screwdriver", "paintbrush", "checkbook"],
     ["fidget spinner", "orb", "book", "pint glass", "duckie"],
     ["robe", "armor", "suit"], ["hat", "helm", "beanie", "headphones"], ["pants", "pantaloons", "greaves", "leg guards", "chaps"],
     ["sandals", "shoes", "boots"], ["gloves"], ["cloak", "cape", "backguard", "backpack"], ["wristguards", "bracelets", "manacles"],
     ["belt", "girdle", "fanny pack", "waistguard"], ["shoulder pads", "pauldrons"], ["ring"], ["amulet"], ["badge"]];
     //The rookie chest shouldn't have anything. The basic chest can only have the first 5 slots. After that every
     //chest allows 1 more slot.
-    
-    prefixes : string[] = ["lustrous", "vorpal", "acidic", "questionable", "vibrating", "ineffable", "silly",
-     "reknowned", "glistening", "gossamer", "toxic", "bejeweled", "shadowy", "shady", "resplendent",
-    "serpentine", "hircine", "hirsute", "xenophilic", "blessed", "well-crafted", "deluxe", "shiny",
-    "humorous", "ill-tempered", "solid", "ectoplasmic", "adamantine", "faceted", "sancified", "kinky",
-    "perverted", "diurnal", "crepuscular", "nocturnal", "saturnine", "grim", "hardened", "hallowed",
-    "elven", "dwarven", "inhuman", "divine", "profane", "axiomatic", "tautological", "your mom's",
-    "nonbinary", "engorged", "problematic", "blue", "dour", "mythic", "legendary"];
-    suffixes : string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear", 
-     "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
-     "of the mole rat", "of masculinity/femininity", "+1", ", defender", "+2", "of ill repute"]
-    allEnchantments : IEnchantment[] = [];
+
+    prefixes: string[] = ["lustrous", "vorpal", "acidic", "questionable", "vibrating", "ineffable", "silly",
+        "renowned", "glistening", "gossamer", "toxic", "bejeweled", "shadowy", "shady", "resplendent",
+        "serpentine", "hircine", "hirsute", "xenophilic", "blessed", "well-crafted", "deluxe", "shiny",
+        "humorous", "ill-tempered", "solid", "ectoplasmic", "adamantine", "faceted", "sancified", "kinky",
+        "perverted", "diurnal", "crepuscular", "nocturnal", "saturnine", "grim", "hardened", "hallowed",
+        "elven", "dwarven", "inhuman", "divine", "profane", "axiomatic", "tautological", "your mom's",
+        "nonbinary", "engorged", "problematic", "blue", "dour", "mythic", "legendary"];
+    suffixes: string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear",
+        "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
+        "of the mole rat", "of masculinity/femininity", "+1", ", defender", "+2", "of ill repute",
+        "of the night", ]
+    allEnchantments: IEnchantment[] = [];
 
 
-    slotsAllowedByRank : number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+    slotsAllowedByRank: number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     constructor(private _equipmentService: EquipmentService) {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
         this.materialsByChestRank = [[{ name: "unknown", power: 1 }],
-         [{ name: "iron", power: 2 }, { name: "steel", power: 3 }],
-         [{ name: "decrepit", power: 2 }, { name: "unearthed", power: 3 }, { name: "historic", power: 4 }],
-         [{ name: "zinc", power: 2 }, { name: "tin", power: 3 }, { name: "silver", power: 4 }, { name: "mithril", power: 5 }],
-         [{ name: "silicone", power: 3 }, { name: "silicon", power: 4 }, { name: "electric", power: 5 }, { name: "cybernetic", power: 6 }],
-         [{ name: "imitation", power: 4 }, { name: "rubber", power: 5 }, { name: "inflatable", power: 6 }, { name: "rainbow", power: 7 }],
-         [{ name: "pyrite", power: 5 }, { name: "gilt", power: 6 }, { name: "gold", power: 7 }, { name: "orichalcum", power: 8 }]
+        [{ name: "iron", power: 2 }, { name: "steel", power: 3 }],
+        [{ name: "decrepit", power: 2 }, { name: "unearthed", power: 3 }, { name: "historic", power: 4 }],
+        [{ name: "zinc", power: 2 }, { name: "tin", power: 3 }, { name: "silver", power: 4 }, { name: "mithril", power: 5 }],
+        [{ name: "silicone", power: 3 }, { name: "silicon", power: 4 }, { name: "electric", power: 5 }, { name: "cybernetic", power: 6 }],
+        [{ name: "imitation", power: 4 }, { name: "rubber", power: 5 }, { name: "inflatable", power: 6 }, { name: "rainbow", power: 7 }],
+        [{ name: "pyrite", power: 5 }, { name: "gilt", power: 6 }, { name: "gold", power: 7 }, { name: "orichalcum", power: 8 }]
         ];
-        this.prefixes.forEach((item) => this.allEnchantments.push({text: item, type: enchantmentType.prefix}));
-        this.suffixes.forEach((item) => this.allEnchantments.push({text: item, type: enchantmentType.suffix}));
+        this.prefixes.forEach((item) => this.allEnchantments.push({ text: item, type: enchantmentType.prefix }));
+        this.suffixes.forEach((item) => this.allEnchantments.push({ text: item, type: enchantmentType.suffix }));
     }
 
     getItemsForLootBox(lootBox: IShopItem): IEquipmentItem[] {
@@ -74,18 +75,20 @@ export class LootService {
         let enchantmentCount = this.getEnchantmentCountForChest(lootBox);
         let baseName = materialAndPower.name + " " + this.getBaseItemBySlot(slot);
 
-        return { name: this.getEnchantedName(baseName, enchantmentCount),
-         power: materialAndPower.power + this.powerForEnchantmentCount[enchantmentCount] };
+        return {
+            name: this.getEnchantedName(baseName, enchantmentCount),
+            power: materialAndPower.power + this.powerForEnchantmentCount[enchantmentCount]
+        };
     }
 
     getEnchantedName(baseName: string, enchantmentCount: number): string {
-        let enchantments : IEnchantment[] = [];
+        let enchantments: IEnchantment[] = [];
         for (let i = 0; i < enchantmentCount; i++) {
             enchantments.push(this.allEnchantments[Math.floor(Math.random() * this.allEnchantments.length)]);
         }
-        let workingName : string = baseName;
+        let workingName: string = baseName;
         enchantments.forEach((enchantment) => {
-            if (enchantment.type == enchantmentType.prefix){
+            if (enchantment.type == enchantmentType.prefix) {
                 workingName = enchantment.text + " " + workingName;
             }
             else { //it's a suffix
@@ -95,13 +98,13 @@ export class LootService {
         return workingName;
     }
 
-    chanceOfEnchantment: number = 1/6;
+    chanceOfEnchantment: number = 1 / 6;
 
     /*Each rank beyond the first gives a 1/6 chance of an enchantment.
     Enchantment power is triangular so 1/2/3/4 enchantments gives 1/3/6/10 power.*/
     getEnchantmentCountForChest(lootBox: IShopItem): number {
         let enchantments = 0;
-        for(let i = 1; i < lootBox.rank; i++) {
+        for (let i = 1; i < lootBox.rank; i++) {
             if (Math.random() < this.chanceOfEnchantment) {
                 enchantments++;
             }
