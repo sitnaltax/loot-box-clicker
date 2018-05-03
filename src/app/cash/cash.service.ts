@@ -17,8 +17,6 @@ export class CashService {
             this.allCash = [];
         }
 
-        console.log(this.allCash);
-
         this._storageService.autoSaveNotification.subscribe((dummy) => {
             this._storageService.store("cash", this.allCash);
         });

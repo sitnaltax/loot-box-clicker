@@ -5,6 +5,7 @@ import { LootService } from './loot.service';
 import { InventoryService } from '../inventory/inventory.service';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable()
 export class LootBoxService {
@@ -17,9 +18,19 @@ export class LootBoxService {
     progressNotification: Observable<string>;
     private progressSubject: Subject<string>;
 
-    constructor(private _shopService: ShopService, private _lootService: LootService,
+    constructor(private _shopService: ShopService, private _lootService: LootService, private _storageService: StorageService,
         private _inventoryService: InventoryService) {
-        this.lootBoxList = [];
+        if (this._storageService.retrieve("lootBoxes")) {
+            this.lootBoxList = this._storageService.retrieve("lootBoxes");
+        }
+        else {
+            this.lootBoxList = [];
+        }
+
+        this._storageService.autoSaveNotification.subscribe((dummy) => {
+            this._storageService.store("lootBoxes", this.lootBoxList);
+        });
+
         this.currentlyOpeningBox = null;
         this.lootBoxOpeningTime = 2500;
         this.progressSubject = new Subject<string>();
