@@ -25,7 +25,7 @@ export class LootService {
     "humorous", "ill-tempered", "solid", "ectoplasmic", "adamantine", "faceted", "sancified", "kinky",
     "perverted", "diurnal", "crepuscular", "nocturnal", "saturnine", "grim", "hardened", "hallowed",
     "elven", "dwarven", "inhuman", "divine", "profane", "axiomatic", "tautological", "your mom's",
-    "nonbinary", "engorged"];
+    "nonbinary", "engorged", "problematic", "blue", "dour", "mythic", "legendary"];
     suffixes : string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear", 
      "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
      "of the mole rat", "of masculinity/femininity", "+1", ", defender", "+2", "of ill repute"]
@@ -40,7 +40,8 @@ export class LootService {
          [{ name: "decrepit", power: 2 }, { name: "unearthed", power: 3 }, { name: "historic", power: 4 }],
          [{ name: "zinc", power: 2 }, { name: "tin", power: 3 }, { name: "silver", power: 4 }, { name: "mithril", power: 5 }],
          [{ name: "silicone", power: 3 }, { name: "silicon", power: 4 }, { name: "electric", power: 5 }, { name: "cybernetic", power: 6 }],
-         [{ name: "pyrite", power: 4 }, { name: "gilt", power: 5 }, { name: "gold", power: 6 }, { name: "orichalcum", power: 7 }]
+         [{ name: "imitation", power: 4 }, { name: "rubber", power: 5 }, { name: "inflatable", power: 6 }, { name: "rainbow", power: 7 }],
+         [{ name: "pyrite", power: 5 }, { name: "gilt", power: 6 }, { name: "gold", power: 7 }, { name: "orichalcum", power: 8 }]
         ];
         this.prefixes.forEach((item) => this.allEnchantments.push({text: item, type: enchantmentType.prefix}));
         this.suffixes.forEach((item) => this.allEnchantments.push({text: item, type: enchantmentType.suffix}));

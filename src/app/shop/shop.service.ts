@@ -14,7 +14,8 @@ export class ShopService {
         {chestName: "ancient chest", cost: {currency: cashType.denarii, quantity: 100}, rank: 2},
         {chestName: "enhanced chest", cost: {currency: cashType.silver, quantity: 100}, rank: 3},
         {chestName: "electronic chest", cost: {currency: cashType.bitcoin, quantity: 100}, rank: 4},
-        {chestName: "gold chest", cost: {currency: cashType.gold, quantity: 100}, rank: 5}];
+        {chestName: "whimsical chest", cost: {currency: cashType.tickets, quantity: 100}, rank: 5},
+        {chestName: "gold chest", cost: {currency: cashType.gold, quantity: 100}, rank: 6}];
         //further chests: forbidden(uranium), living (magic beans), whimsical (carnival tickets), adamantine (diamonds),
         //interstellar (space bucks), gossamer (ether crystals), gothic (soul gems), cosmic (infinity stones)
     }
