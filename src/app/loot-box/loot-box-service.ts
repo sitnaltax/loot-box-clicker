@@ -46,6 +46,10 @@ export class LootBoxService {
         return this.currentlyOpeningBox;
     }
 
+    getLootBoxCount(): number {
+        return this.lootBoxList.length;
+    }
+
     openBox() {
         if (this.lootBoxList.length == 0) {
             return;

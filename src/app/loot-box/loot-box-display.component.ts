@@ -31,6 +31,10 @@ export class LootBoxDisplayComponent implements OnInit {
         return this._lootBoxService.getCurrentlyOpeningBox();
     }
 
+    getLootBoxCount(): number {
+        return this._lootBoxService.getLootBoxCount();
+    }
+
     animationStarted(event: AnimationEvent) {
         if (event.toState == "begin") {
             this.isAnimating = true;
