@@ -16,26 +16,27 @@
                         Power
                     </th>
                     <th>
-
-                    </th>
-                    <th>
-                        <a (click)='donateAll()'><span class="text-primary" style="cursor: pointer; ">Donate All</span></a>
+                        <a (click)='donateAll()'>
+                            <span class="text-primary" style="cursor: pointer; ">Donate All</span>
+                        </a>
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor='let item of getInventory()'>
                     <td>
-                        {{item.itemName}}
+                        <div *ngIf='item.type == 0; else noequip'>
+                            <a (click)='equip(item)'>
+                                <span class="text-primary" style="cursor: pointer; ">{{item.itemName}}</span>
+                            </a>
+                        </div>
+                        <ng-template #noequip>{{item.itemName}}</ng-template>
                     </td>
                     <td>
                         {{getSlotNameForItem(item)}}
                     </td>
                     <td>
                         {{getPowerOrValueForItem(item)}}
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-primary" (click)='equip(item)'>Equip</button>
                     </td>
                     <td>
                         <button type="button" class="btn btn-primary" (click)='donate(item)'>Donate</button>

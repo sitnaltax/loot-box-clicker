@@ -141,8 +141,8 @@ export class LootService {
         return possibleBaseItems[Math.floor(Math.random() * possibleBaseItems.length)];
     }
 
-    chanceOfJunk: number = 0.25; //chance of finding some junk item
-    chanceOfArt: number = 0.25; //chance of it being valuable (more Fame) art
+    chanceOfJunk: number = 1/8; //chance of finding some junk item
+    chanceOfArt: number = 1/4; //chance of it being valuable (more Fame) art
 
 
     getJunkForLootBox(box: IShopItem): IEquipmentItem[] {
