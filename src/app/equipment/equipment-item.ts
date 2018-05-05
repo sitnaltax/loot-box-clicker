@@ -8,7 +8,7 @@ export enum equipmentSlot {mainhand, offhand, armor, helm, legs, feet, hands, cl
 export interface IEquipmentItem{
     itemName: string;
     type: equipmentType;
-    slot: equipmentSlot;
-    power: number;
+    slot?: equipmentSlot;
+    power?: number;
     value: number;
 }

@@ -35,6 +35,15 @@ export class InventoryDisplayComponent implements OnInit {
         }
     }
 
+    getPowerOrValueForItem(item: IEquipmentItem): number {
+        if (item.type == equipmentType.equipabble) {
+            return item.power;
+        }
+        else {
+            return item.value;
+        }
+    }
+
     equip(item: IEquipmentItem) {
         if (item.type != equipmentType.equipabble) {
             return;

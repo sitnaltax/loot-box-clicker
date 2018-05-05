@@ -29,9 +29,14 @@ export class LootService {
     suffixes: string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear",
         "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
         "of the mole rat", "of masculinity/femininity", "+1", ", defender", "+2", "of ill repute",
-        "of the night", ]
+        "of the night",]
     allEnchantments: IEnchantment[] = [];
 
+    junkNames: string[] = ["widget", "dingus", "tchotchke", "thingy", "doodad", "wad", "conjecture",
+        "nonce", "scribble", "ditty", "tidbit", "trinket", "trifle", "triviality", "mite"];
+    artNames: string[] = ["painting", "sculpture", "song", "opera", "symphony", "bracelet", "novel", "play",
+        "board game", "video game", "comic", "dance", "theorem", "fanfic", "story", "novella", "TV show", "dish",
+        "urn", "coffer", "outfit"];
 
     slotsAllowedByRank: number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     constructor(private _equipmentService: EquipmentService) {
@@ -51,13 +56,25 @@ export class LootService {
     getItemsForLootBox(lootBox: IShopItem): IEquipmentItem[] {
         if (lootBox.rank == 0) {
             return [{
-                itemName: "Sword of Starting", type: equipmentType.equipabble, slot: equipmentSlot.mainhand,
+                itemName: "Claymore of Commencement", type: equipmentType.equipabble, slot: equipmentSlot.mainhand,
                 power: 3, value: 1
             }]
         }
-        var slot = this.getRandomSlotForLootBox(lootBox);
-        var baseItem = this.getNameAndPowerForItem(lootBox, slot);
-        return [{ itemName: baseItem.name, type: equipmentType.equipabble, slot: slot, power: baseItem.power, value: baseItem.power }];
+        let slot = this.getRandomSlotForLootBox(lootBox);
+        let baseItem = this.getNameAndPowerForItem(lootBox, slot);
+
+        let equipmentItem: IEquipmentItem = {
+            itemName: baseItem.name, type: equipmentType.equipabble, slot: slot,
+            power: baseItem.power, value: baseItem.power
+        };
+
+        let junkItems: IEquipmentItem[] = this.getJunkForLootBox(lootBox);
+
+        let allItems = [];
+        allItems.push(equipmentItem);
+        junkItems.forEach((item) => {allItems.push(item)});
+
+        return allItems;
     }
 
     getRandomSlotForLootBox(lootBox: IShopItem): equipmentSlot {
@@ -121,6 +138,38 @@ export class LootService {
     getBaseItemBySlot(slot: equipmentSlot): string {
         let possibleBaseItems = this.baseItemsBySlot[slot];
         return possibleBaseItems[Math.floor(Math.random() * possibleBaseItems.length)];
+    }
+
+    chanceOfJunk: number = 0.25; //chance of finding some junk item
+    chanceOfArt: number = 0.25; //chance of it being valuable (more Fame) art
+
+
+    getJunkForLootBox(box: IShopItem): IEquipmentItem[] {
+        let items: IEquipmentItem[] = [];
+        let junkName: string;
+        let junkValue: number;
+        if (Math.random() < this.chanceOfJunk) {
+            if (Math.random() < this.chanceOfArt) {
+                junkName = this.artNames[Math.floor(Math.random() * this.artNames.length)];
+                junkValue = 0;
+                for (let i = 0; i < 3; i++) {
+                    junkValue += Math.floor(Math.random() * box.rank * box.rank * 10);
+                }
+            }
+            else {
+                junkName = this.junkNames[Math.floor(Math.random() * this.junkNames.length)];
+                junkValue = Math.floor(Math.random() * box.rank * 10) + 1;
+            }
+
+            let fullName = this.prefixes[Math.floor(Math.random() * this.prefixes.length)] + " " + junkName;
+
+            items.push({
+                itemName: fullName, type: equipmentType.art,
+                value: junkValue
+            })
+        }
+
+        return items;
     }
 }
 
