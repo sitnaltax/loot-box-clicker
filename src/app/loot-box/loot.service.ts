@@ -33,7 +33,8 @@ export class LootService {
     allEnchantments: IEnchantment[] = [];
 
     junkNames: string[] = ["widget", "dingus", "tchotchke", "thingy", "doodad", "wad", "conjecture",
-        "nonce", "scribble", "ditty", "tidbit", "trinket", "trifle", "triviality", "mite"];
+        "nonce", "scribble", "ditty", "tidbit", "trinket", "trifle", "triviality", "mite", "bauble",
+    "novelty", "knickknack", "doggerel", "curio", "novelty"];
     artNames: string[] = ["painting", "sculpture", "song", "opera", "symphony", "bracelet", "novel", "play",
         "board game", "video game", "comic", "dance", "theorem", "fanfic", "story", "novella", "TV show", "dish",
         "urn", "coffer", "outfit"];
