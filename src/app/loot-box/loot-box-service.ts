@@ -3,8 +3,8 @@ import { IShopItem } from '../shop/shop-item';
 import { ShopService } from '../shop/shop.service';
 import { LootService } from './loot.service';
 import { InventoryService } from '../inventory/inventory.service';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { StorageService } from '../storage/storage.service';
 
 @Injectable()
