@@ -25,19 +25,21 @@ export class LootService {
         "humorous", "ill-tempered", "solid", "ectoplasmic", "adamantine", "faceted", "sancified", "kinky",
         "perverted", "diurnal", "crepuscular", "nocturnal", "saturnine", "grim", "hardened", "hallowed",
         "elven", "dwarven", "inhuman", "divine", "profane", "axiomatic", "tautological", "your mom's",
-        "nonbinary", "engorged", "problematic", "blue", "dour", "mythic", "legendary"];
+        "nonbinary", "engorged", "problematic", "blue", "dour", "mythic", "legendary", "menacing", "semiotic",
+        "wondrous", "splendid", "resplendent", "furry", "majestic", "mighty", "mirthful", "unparalleled",
+        "pleasant", "suspicious", "doomed", "blackguard's"];
     suffixes: string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear",
         "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
-        "of the mole rat", "of masculinity/femininity", "+1", ", defender", "+2", "of ill repute",
-        "of the night",]
+        "of the mole rat", "of masculinity/femininity", "+1", "defender", "+2", "of ill repute",
+        "of the night", "-10"]
     allEnchantments: IEnchantment[] = [];
 
     junkNames: string[] = ["widget", "dingus", "tchotchke", "thingy", "doodad", "wad", "conjecture",
         "nonce", "scribble", "ditty", "tidbit", "trinket", "trifle", "triviality", "mite", "bauble",
-    "novelty", "knickknack", "doggerel", "curio", "novelty", "whatsit"];
+        "novelty", "knickknack", "doggerel", "curio", "novelty", "whatsit"];
     artNames: string[] = ["painting", "sculpture", "song", "opera", "symphony", "bracelet", "novel", "play",
         "board game", "video game", "comic", "dance", "theorem", "fanfic", "story", "novella", "TV show", "dish",
-        "urn", "coffer", "outfit"];
+        "urn", "coffer", "outfit", "statue", "idol"];
 
     slotsAllowedByRank: number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     constructor(private _equipmentService: EquipmentService) {
@@ -73,7 +75,7 @@ export class LootService {
 
         let allItems = [];
         allItems.push(equipmentItem);
-        junkItems.forEach((item) => {allItems.push(item)});
+        junkItems.forEach((item) => { allItems.push(item) });
 
         return allItems;
     }
@@ -141,8 +143,8 @@ export class LootService {
         return possibleBaseItems[Math.floor(Math.random() * possibleBaseItems.length)];
     }
 
-    chanceOfJunk: number = 1/8; //chance of finding some junk item
-    chanceOfArt: number = 1/4; //chance of it being valuable (more Fame) art
+    chanceOfJunk: number = 1 / 8; //chance of finding some junk item
+    chanceOfArt: number = 1 / 4; //chance of it being valuable (more Fame) art
 
 
     getJunkForLootBox(box: IShopItem): IEquipmentItem[] {
