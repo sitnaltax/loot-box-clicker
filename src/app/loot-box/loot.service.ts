@@ -50,7 +50,9 @@ export class LootService {
         [{ name: "zinc", power: 2 }, { name: "tin", power: 3 }, { name: "silver", power: 4 }, { name: "mithril", power: 5 }],
         [{ name: "silicone", power: 3 }, { name: "silicon", power: 4 }, { name: "electric", power: 5 }, { name: "cybernetic", power: 6 }],
         [{ name: "imitation", power: 4 }, { name: "rubber", power: 5 }, { name: "inflatable", power: 6 }, { name: "rainbow", power: 7 }],
-        [{ name: "pyrite", power: 5 }, { name: "gilt", power: 6 }, { name: "gold", power: 7 }, { name: "orichalcum", power: 8 }]
+        [{ name: "pyrite", power: 5 }, { name: "gilt", power: 6 }, { name: "gold", power: 7 }, { name: "orichalcum", power: 8 }],
+        [{ name: "unclaimed", power: 6 }, { name: "forbidding", power: 7 }, { name: "impossible", power: 8 }, { name: "prophesied", power: 9 }],
+        [{ name: "wooden", power: 7 }, { name: "organic", power: 8 }, { name: "living", power: 9 }, { name: "biological", power: 10 }]
         ];
         this.prefixes.forEach((item) => this.allEnchantments.push({ text: item, type: enchantmentType.prefix }));
         this.suffixes.forEach((item) => this.allEnchantments.push({ text: item, type: enchantmentType.suffix }));
