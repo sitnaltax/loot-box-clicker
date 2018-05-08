@@ -14,9 +14,9 @@ export class ShopComponent implements OnInit {
 
     //TODO limit what's available to what the hero can afford with their cash
     constructor(private _shopService: ShopService, private _cashService: CashService,
-         private _lootBoxService : LootBoxService)  { }
+        private _lootBoxService: LootBoxService) { }
 
-    getShopItems() : IShopItem[] {
+    getShopItems(): IShopItem[] {
         return this._shopService.getShopItems();
     }
 
@@ -24,9 +24,15 @@ export class ShopComponent implements OnInit {
         return this._cashService.getCurrencyName(cash);
     }
 
-    purchase(item: IShopItem){
-        if (this._cashService.purchase(item)){
-            this._lootBoxService.addLootBox(item);
+    purchase(item: IShopItem, event) {
+        let iterations: number = 1;
+        if (event.ctrlKey) {
+            iterations = 25;
+        }
+        for (let i = 0; i < iterations; i++) {
+            if (this._cashService.purchase(item)) {
+                this._lootBoxService.addLootBox(item);
+            }
         }
     }
 
