@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeroDisplayComponent } from './hero/hero-display.component';
@@ -17,30 +17,36 @@ import { EquipmentService } from './equipment/equipment.service';
 import { InventoryDisplayComponent } from './inventory/inventory-display.component';
 import { InventoryService } from './inventory/inventory.service';
 import { LootService } from './loot-box/loot.service';
-import {StorageService} from './storage/storage.service';
+import { StorageService } from './storage/storage.service';
 import { HeroPageComponent } from './pages/hero-page/hero-page.component';
 import { ShopPageComponent } from './pages/shop-page/shop-page.component';
 import { InventoryPageComponent } from './pages/inventory-page/inventory-page.component';
 import { TrainerPageComponent } from './pages/trainer-page/trainer-page.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeroDisplayComponent,
-    CashDisplayComponent,
-    ShopComponent,
-    LootBoxDisplayComponent,
-    EquipmentDisplayComponent,
-    InventoryDisplayComponent,
-    HeroPageComponent,
-    ShopPageComponent,
-    InventoryPageComponent,
-    TrainerPageComponent
-  ],
-  imports: [
-    BrowserModule, BrowserAnimationsModule
-  ],
-  providers: [HeroService, CashService, ShopService, LootBoxService, EquipmentService, InventoryService, LootService, StorageService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeroDisplayComponent,
+        CashDisplayComponent,
+        ShopComponent,
+        LootBoxDisplayComponent,
+        EquipmentDisplayComponent,
+        InventoryDisplayComponent,
+        HeroPageComponent,
+        ShopPageComponent,
+        InventoryPageComponent,
+        TrainerPageComponent
+    ],
+    imports: [
+        BrowserModule, BrowserAnimationsModule, RouterModule.forRoot([
+            {path: 'hero', component: HeroPageComponent},
+            {path: 'shop', component: ShopPageComponent},
+            {path: 'inventory', component: InventoryPageComponent},
+            {path: '', redirectTo: 'hero', pathMatch: 'full'},
+            {path: '**', redirectTo: 'hero', pathMatch: 'full'},
+        ])
+    ],
+    providers: [HeroService, CashService, ShopService, LootBoxService, EquipmentService, InventoryService, LootService, StorageService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
