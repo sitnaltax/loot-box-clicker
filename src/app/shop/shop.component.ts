@@ -6,7 +6,7 @@ import { CashService } from '../cash/cash.service';
 import { LootBoxService } from '../loot-box/loot-box-service';
 
 @Component({
-    selector: 'shop',
+    selector: 'shop-display',
     templateUrl: './shop.component.html',
     styleUrls: ['./shop.component.css']
 })

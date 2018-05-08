@@ -18,6 +18,10 @@ import { InventoryDisplayComponent } from './inventory/inventory-display.compone
 import { InventoryService } from './inventory/inventory.service';
 import { LootService } from './loot-box/loot.service';
 import {StorageService} from './storage/storage.service';
+import { HeroPageComponent } from './pages/hero-page/hero-page.component';
+import { ShopPageComponent } from './pages/shop-page/shop-page.component';
+import { InventoryPageComponent } from './pages/inventory-page/inventory-page.component';
+import { TrainerPageComponent } from './pages/trainer-page/trainer-page.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import {StorageService} from './storage/storage.service';
     ShopComponent,
     LootBoxDisplayComponent,
     EquipmentDisplayComponent,
-    InventoryDisplayComponent
+    InventoryDisplayComponent,
+    HeroPageComponent,
+    ShopPageComponent,
+    InventoryPageComponent,
+    TrainerPageComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule
