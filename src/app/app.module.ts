@@ -22,6 +22,8 @@ import { HeroPageComponent } from './pages/hero-page/hero-page.component';
 import { ShopPageComponent } from './pages/shop-page/shop-page.component';
 import { InventoryPageComponent } from './pages/inventory-page/inventory-page.component';
 import { TrainerPageComponent } from './pages/trainer-page/trainer-page.component';
+import { TrainerDisplayComponent } from './trainer/trainer-display.component';
+import { TrainerService } from './trainer/trainer.service';
 
 @NgModule({
     declarations: [
@@ -35,18 +37,21 @@ import { TrainerPageComponent } from './pages/trainer-page/trainer-page.componen
         HeroPageComponent,
         ShopPageComponent,
         InventoryPageComponent,
-        TrainerPageComponent
+        TrainerPageComponent,
+        TrainerDisplayComponent
     ],
     imports: [
         BrowserModule, BrowserAnimationsModule, RouterModule.forRoot([
             {path: 'hero', component: HeroPageComponent},
             {path: 'shop', component: ShopPageComponent},
             {path: 'inventory', component: InventoryPageComponent},
+            {path: 'trainer', component: TrainerPageComponent},
             {path: '', redirectTo: 'hero', pathMatch: 'full'},
             {path: '**', redirectTo: 'hero', pathMatch: 'full'},
         ])
     ],
-    providers: [HeroService, CashService, ShopService, LootBoxService, EquipmentService, InventoryService, LootService, StorageService],
+    providers: [HeroService, CashService, ShopService, LootBoxService, EquipmentService,
+         InventoryService, LootService, StorageService, TrainerService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

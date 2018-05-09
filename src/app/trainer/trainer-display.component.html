@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-header">
+        Trainer
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Ranks
+                    </th>
+                    <th>
+                        Cost
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let skill of getSkills()'>
+                    <td>
+                        <a (click)='purchase(skill)'><span class="text-primary" style="cursor: pointer; ">{{skill.name}}</span></a>
+                    </td>
+                    <td>
+                        {{getRanksForSkill(skill)}}
+                    </td>
+                    <td>
+                        {{getCostForSkill(skill)}} Fame
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
