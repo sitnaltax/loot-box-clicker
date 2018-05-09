@@ -27,7 +27,7 @@ export class TrainerService {
     }
 
     getCostForSkill(skill: ISkill): number {
-        return Math.round(skill.baseCost * Math.pow(skill.scalingFactor, this.playerSkillList[skill.skillId]);
+        return Math.round(skill.baseCost * Math.pow(skill.scalingFactor, this.playerSkillList[skill.skillId]));
     }
 
     getRanksForSkill(skill: ISkill): number {
