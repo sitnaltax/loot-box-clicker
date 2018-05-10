@@ -14,27 +14,17 @@ export class HeroDisplayComponent implements OnInit {
     isAutoAdventuring: boolean;
     intervalId: number;
 
-    constructor(private _heroService: HeroService, private _cashService: CashService) {
+    constructor(private _heroService: HeroService) {
         this.isAutoAdventuring = false;
         this.intervalId = 0;
     }
 
     adventure() {
-        this._cashService.adventure(this.hero);
+        this._heroService.adventure();
     }
 
-    autoAdventure() {
-        this.isAutoAdventuring = !this.isAutoAdventuring;
-        if (this.isAutoAdventuring) {
-            window.clearInterval(this.intervalId);
-            this.intervalId = window.setInterval(() => {
-                this.adventure();
-            }
-                , 1000);
-        }
-        else {
-            window.clearInterval(this.intervalId);
-        }
+    toggleAutoAdventure() {
+        this._heroService.toggleAutoAdventure();
     }
 
 
