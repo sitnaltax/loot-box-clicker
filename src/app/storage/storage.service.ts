@@ -26,4 +26,8 @@ export class StorageService {
      retrieve(key: string) {
          return JSON.parse(localStorage.getItem(key));
      }
+
+     triggerStore() {
+         this.autoSaveSubject.next("autosave");
+     }
 }
