@@ -1,0 +1,4 @@
+.scrollbox {
+    max-height: 70rem;
+    overflow-y: scroll;
+}

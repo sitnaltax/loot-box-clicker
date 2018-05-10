@@ -10,7 +10,6 @@ export class AppComponent {
     title = 'Loot Box Clicker';
 
     constructor(private _storageService: StorageService) {
-
     }
 
     save() {
