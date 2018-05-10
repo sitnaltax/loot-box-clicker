@@ -23,6 +23,10 @@ export class HeroService {
             this._storageService.store("hero", this.hero);
         });
 
+        if (this.hero.isAutoAdventuring) {
+            this.beginAutoAdventure();
+        }
+
         this.recalculatePower();
     }
 
@@ -41,15 +45,19 @@ export class HeroService {
     toggleAutoAdventure() {
         this.hero.isAutoAdventuring = !this.hero.isAutoAdventuring;
         if (this.hero.isAutoAdventuring) {
-            window.clearInterval(this.intervalId);
-            this.intervalId = window.setInterval(() => {
-                this.adventure();
-            }
-                , 1000);
+            this.beginAutoAdventure();
         }
         else {
             window.clearInterval(this.intervalId);
         }
+    }
+
+    beginAutoAdventure() {
+        window.clearInterval(this.intervalId);
+        this.intervalId = window.setInterval(() => {
+            this.adventure();
+        }
+            , 1000);
     }
 
     adventure() {

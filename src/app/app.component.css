@@ -2,3 +2,8 @@
     background-color: rgb(10, 55, 204);
     color: white;
 }
+
+.header-text {
+    color: white;
+    cursor: pointer;
+}
