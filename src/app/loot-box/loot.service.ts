@@ -29,11 +29,11 @@ export class LootService {
         "wondrous", "splendid", "resplendent", "furry", "majestic", "mighty", "mirthful", "unparalleled",
         "pleasant", "suspicious", "doomed", "blackguard's", "Mordenkainen's", "masterful", "well-intentioned",
         "lunar", "solar", "quirky", "resolute", "tenacious", "quick", "inhumane", "tight", "oversized",
-        "outlandish", "freezing"];
+        "outlandish", "freezing", "malicious", "beneficient", "portable"];
     suffixes: string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear",
         "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
         "of the mole rat", "of masculinity/femininity", "+1", "defender", "+2", "of ill repute",
-        "of the night", "aflame"]
+        "of the night", "aflame", "of holding"]
     allEnchantments: IEnchantment[] = [];
 
     junkNames: string[] = ["widget", "dingus", "tchotchke", "thingy", "doodad", "wad", "conjecture",
