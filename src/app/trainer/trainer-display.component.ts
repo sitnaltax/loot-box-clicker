@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainerService } from './trainer.service';
 import { ISkill } from './skill';
+import { HeroService } from '../hero/hero.service';
 
 @Component({
     selector: 'trainer-display',
@@ -9,7 +10,7 @@ import { ISkill } from './skill';
 })
 export class TrainerDisplayComponent implements OnInit {
 
-    constructor(private _trainerService: TrainerService) { }
+    constructor(private _trainerService: TrainerService, private _heroService : HeroService) { }
 
     getSkills(): ISkill[] {
         return this._trainerService.getSkills();
@@ -24,7 +25,7 @@ export class TrainerDisplayComponent implements OnInit {
     }
 
     purchase(skill: ISkill){
-        this._trainerService.purchase(skill);
+        this._heroService.purchaseTraining(skill);
     }
 
     ngOnInit() {

@@ -44,6 +44,7 @@ export class CashService {
         while (Math.random() < hero.criticalChance) {
             adventurePower *= hero.criticalPower;
         }
+        adventurePower = Math.floor(adventurePower);
 
         var cashEarned = this.determineCashForAdventurePower(adventurePower);
 

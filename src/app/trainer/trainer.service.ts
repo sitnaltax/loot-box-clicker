@@ -21,7 +21,7 @@ export class TrainerService {
     }
 
     getSkills(): ISkill[] {
-        return [{ skillId: skillId.critRate, name: "Critical Rate", baseCost: 100, scalingFactor: 1.15 },
+        return [{ skillId: skillId.critChance, name: "Critical Chance", baseCost: 100, scalingFactor: 1.15 },
         { skillId: skillId.critPower, name: "Critical Power", baseCost: 100, scalingFactor: 1.15 },
         { skillId: skillId.autoDonate, name: "Auto-Donate", baseCost: 1000, scalingFactor: 2 },];
     }
@@ -34,7 +34,11 @@ export class TrainerService {
         return this.playerSkillList[skill.skillId];
     }
 
-    purchase(skill: ISkill){
-        //TODO
+    getRanksForSkillById(skillId: skillId): number {
+        return this.playerSkillList[skillId];
+    }
+
+    incrementSkill(skill: ISkill) {
+        this.playerSkillList[skill.skillId] += 1;
     }
 }
