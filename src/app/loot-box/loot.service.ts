@@ -13,9 +13,12 @@ export class LootService {
     materialsByChestRank;
     baseItemsBySlot: string[][] = [["wand", "staff", "briefcase", "towel", "screwdriver", "paintbrush", "checkbook"],
     ["fidget spinner", "orb", "book", "pint glass", "duckie"],
-    ["robe", "armor", "suit"], ["hat", "helm", "beanie", "headphones"], ["pants", "pantaloons", "greaves", "leg guards", "chaps"],
-    ["sandals", "shoes", "boots"], ["gloves"], ["cloak", "cape", "backguard", "backpack"], ["wristguards", "bracelets", "manacles"],
-    ["belt", "girdle", "fanny pack", "waistguard"], ["shoulder pads", "pauldrons"], ["ring"], ["amulet"], ["badge"]];
+    ["robe", "armor", "suit", "jacket", "vest", "shirt"], ["hat", "helm", "beanie", "headphones", "beret", "helmet"],
+    ["pants", "pantaloons", "greaves", "leg guards", "chaps", "trousers", "shorts", "skirt", "kilt"],
+    ["sandals", "shoes", "boots", "kicks", "treads", "waders"], ["gloves", "handguards", "gauntlets", "mitts", "mittens"], ["cloak", "cape", "backguard", "backpack"], ["wristguards", "bracelets", "manacles"],
+    ["belt", "girdle", "fanny pack", "waistguard"], ["shoulder pads", "pauldrons", "shoulderguards"],
+    ["ring", "signet", "solitaire", "loop", "hoop", "knot", "band"], ["amulet", "necklace", "choker", "chain", "pendant", "locket", "torc"],
+    ["badge", "hair clip", "wristwatch", "piercing", "purse", "bag"]];
     //The rookie chest shouldn't have anything. The basic chest can only have the first 5 slots. After that every
     //chest allows 1 more slot.
 
@@ -30,7 +33,7 @@ export class LootService {
         "pleasant", "suspicious", "doomed", "blackguard's", "Mordenkainen's", "masterful", "well-intentioned",
         "lunar", "solar", "quirky", "resolute", "tenacious", "quick", "inhumane", "tight", "oversized",
         "outlandish", "freezing", "malicious", "beneficient", "portable", "unimaginable", "forbidden",
-        "forbidding", "masterwork"];
+        "forbidding", "masterwork", "grand", "grandiose", "loquacious", "laconic", "stoic", "hardy"];
     suffixes: string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear",
         "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
         "of the mole rat", "of masculinity/femininity", "+1", "defender", "+2", "of ill repute",
@@ -62,7 +65,7 @@ export class LootService {
         [{ name: "wispy", power: 11 }, { name: "ectoplasmic", power: 13 }, { name: "ethereal", power: 15 }, { name: "astral", power: 17 }],
         [{ name: "black", power: 14 }, { name: "silver-filigreed", power: 17 }, { name: "obsidian", power: 20 }, { name: "bloodstone", power: 23 }],
         [{ name: "inconceivable", power: 18 }, { name: "infinite", power: 22 }, { name: "eternal", power: 26 }, { name: "endless", power: 23 }]
-    ];
+        ];
         this.prefixes.forEach((item) => this.allEnchantments.push({ text: item, type: enchantmentType.prefix }));
         this.suffixes.forEach((item) => this.allEnchantments.push({ text: item, type: enchantmentType.suffix }));
     }
