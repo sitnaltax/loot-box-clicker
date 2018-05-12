@@ -35,7 +35,6 @@ export class InventoryService {
             let chance = 1 - Math.pow(3/4, this._trainerService.getRanksForSkillById(skillId.autoDonate));
             if (Math.random() < chance) {
                 this._heroService.addKarma(item.value);
-                console.log("auto-donated a " + item.itemName + " with value of " + item.value);
                 return; //And it's gone
             }
         }
