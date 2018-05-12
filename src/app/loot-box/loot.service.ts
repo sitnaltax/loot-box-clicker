@@ -29,7 +29,8 @@ export class LootService {
         "wondrous", "splendid", "resplendent", "furry", "majestic", "mighty", "mirthful", "unparalleled",
         "pleasant", "suspicious", "doomed", "blackguard's", "Mordenkainen's", "masterful", "well-intentioned",
         "lunar", "solar", "quirky", "resolute", "tenacious", "quick", "inhumane", "tight", "oversized",
-        "outlandish", "freezing", "malicious", "beneficient", "portable"];
+        "outlandish", "freezing", "malicious", "beneficient", "portable", "unimaginable", "forbidden",
+        "forbidding", "masterwork"];
     suffixes: string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear",
         "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
         "of the mole rat", "of masculinity/femininity", "+1", "defender", "+2", "of ill repute",
@@ -43,7 +44,7 @@ export class LootService {
         "board game", "video game", "comic", "dance", "theorem", "fanfic", "story", "novella", "TV show", "dish",
         "urn", "coffer", "outfit", "statue", "idol"];
 
-    slotsAllowedByRank: number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+    slotsAllowedByRank: number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14, 14, 14, 14, 14, 14];
     constructor(private _equipmentService: EquipmentService) {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
         this.materialsByChestRank = [[{ name: "unknown", power: 1 }],
@@ -53,9 +54,15 @@ export class LootService {
         [{ name: "silicone", power: 3 }, { name: "silicon", power: 4 }, { name: "electric", power: 5 }, { name: "cybernetic", power: 6 }],
         [{ name: "imitation", power: 4 }, { name: "rubber", power: 5 }, { name: "inflatable", power: 6 }, { name: "rainbow", power: 7 }],
         [{ name: "pyrite", power: 5 }, { name: "gilt", power: 6 }, { name: "gold", power: 7 }, { name: "orichalcum", power: 8 }],
-        [{ name: "unclaimed", power: 6 }, { name: "forbidding", power: 7 }, { name: "impossible", power: 8 }, { name: "prophesied", power: 9 }],
-        [{ name: "wooden", power: 7 }, { name: "organic", power: 8 }, { name: "living", power: 9 }, { name: "biological", power: 10 }]
-        ];
+        [{ name: "unclaimed", power: 6 }, { name: "hovering", power: 7 }, { name: "impossible", power: 8 }, { name: "prophesied", power: 9 }],
+        [{ name: "wooden", power: 7 }, { name: "organic", power: 8 }, { name: "living", power: 9 }, { name: "biological", power: 10 }],
+        [{ name: "quartz", power: 8 }, { name: "crystalline", power: 9 }, { name: "diamond", power: 10 }, { name: "adamantine", power: 11 }],
+        [{ name: "meteoric", power: 9 }, { name: "planetary", power: 10 }, { name: "stellar", power: 11 }, { name: "galactic", power: 12 }],
+        //At this point all the slots are used so the power increases more
+        [{ name: "wispy", power: 11 }, { name: "ectoplasmic", power: 13 }, { name: "ethereal", power: 15 }, { name: "astral", power: 17 }],
+        [{ name: "black", power: 14 }, { name: "silver-filigreed", power: 17 }, { name: "obsidian", power: 20 }, { name: "bloodstone", power: 23 }],
+        [{ name: "inconceivable", power: 18 }, { name: "infinite", power: 22 }, { name: "eternal", power: 26 }, { name: "endless", power: 23 }]
+    ];
         this.prefixes.forEach((item) => this.allEnchantments.push({ text: item, type: enchantmentType.prefix }));
         this.suffixes.forEach((item) => this.allEnchantments.push({ text: item, type: enchantmentType.suffix }));
     }

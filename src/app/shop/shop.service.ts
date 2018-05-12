@@ -17,8 +17,11 @@ export class ShopService {
         {chestName: "whimsical chest", cost: {currency: cashType.tickets, quantity: 100}, rank: 5},
         {chestName: "gold chest", cost: {currency: cashType.gold, quantity: 100}, rank: 6},
         {chestName: "forbidden chest", cost: {currency: cashType.unobtainium, quantity: 100}, rank: 7},
-        {chestName: "living chest", cost: {currency: cashType.beans, quantity: 100}, rank: 8}];
-        //further chests: adamantine (diamonds),
-        //interstellar (space bucks), gossamer (ether crystals), gothic (soul gems), cosmic (infinity stones)
+        {chestName: "living chest", cost: {currency: cashType.beans, quantity: 100}, rank: 8},
+        {chestName: "adamantine chest", cost: {currency: cashType.diamonds, quantity: 100}, rank: 9},
+        {chestName: "interstellar chest", cost: {currency: cashType.spacebucks, quantity: 100}, rank: 10},
+        {chestName: "gossamer chest", cost: {currency: cashType.ether, quantity: 100}, rank: 11},
+        {chestName: "gothic chest", cost: {currency: cashType.soulgems, quantity: 100}, rank: 12},
+        {chestName: "cosmic chest", cost: {currency: cashType.infinity, quantity: 100}, rank: 13}];
     }
 }
