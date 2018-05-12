@@ -11,7 +11,8 @@ import { HeroService } from '../hero/hero.service';
 })
 export class InventoryDisplayComponent implements OnInit {
 
-    constructor(private _inventoryService: InventoryService, private _equipmentService: EquipmentService, private _heroService: HeroService) { }
+    constructor(private _inventoryService: InventoryService, private _equipmentService: EquipmentService,
+         private _heroService: HeroService) { }
 
     ngOnInit() {
     }
