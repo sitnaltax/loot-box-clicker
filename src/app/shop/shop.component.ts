@@ -12,13 +12,12 @@ import { LootBoxService } from '../loot-box/loot-box-service';
 })
 export class ShopComponent implements OnInit {
 
-    //TODO limit what's available to what the hero can afford with their cash
-    constructor(private _shopService: ShopService, private _cashService: CashService,
-        private _lootBoxService: LootBoxService) { }
+    allShopItems: IShopItem[] = [];
 
-    getShopItems(): IShopItem[] {
-        return this._shopService.getShopItems();
-    }
+    constructor(private _shopService: ShopService, private _cashService: CashService,
+        private _lootBoxService: LootBoxService) {
+            this.allShopItems = this._shopService.getShopItems();
+         }
 
     getCurrencyName(cash: ICash) {
         return this._cashService.getCurrencyName(cash);

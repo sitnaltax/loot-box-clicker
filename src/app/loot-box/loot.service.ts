@@ -15,9 +15,11 @@ export class LootService {
     ["fidget spinner", "orb", "book", "pint glass", "duckie"],
     ["robe", "armor", "suit", "jacket", "vest", "shirt"], ["hat", "helm", "beanie", "headphones", "beret", "helmet"],
     ["pants", "pantaloons", "greaves", "leg guards", "chaps", "trousers", "shorts", "skirt", "kilt"],
-    ["sandals", "shoes", "boots", "kicks", "treads", "waders"], ["gloves", "handguards", "gauntlets", "mitts", "mittens"], ["cloak", "cape", "backguard", "backpack"], ["wristguards", "bracelets", "manacles"],
+    ["sandals", "shoes", "boots", "kicks", "treads", "waders"], ["gloves", "handguards", "gauntlets", "mitts", "mittens"],
+    ["cloak", "cape", "backguard", "backpack"], ["wristguards", "bracelets", "manacles"],
     ["belt", "girdle", "fanny pack", "waistguard"], ["shoulder pads", "pauldrons", "shoulderguards"],
-    ["ring", "signet", "solitaire", "loop", "hoop", "knot", "band"], ["amulet", "necklace", "choker", "chain", "pendant", "locket", "torc"],
+    ["ring", "signet", "solitaire", "loop", "hoop", "knot", "band"],
+    ["amulet", "necklace", "choker", "chain", "pendant", "locket", "torc"],
     ["badge", "hair clip", "wristwatch", "piercing", "purse", "bag"]];
     //The rookie chest shouldn't have anything. The basic chest can only have the first 5 slots. After that every
     //chest allows 1 more slot.
@@ -25,7 +27,7 @@ export class LootService {
     prefixes: string[] = ["lustrous", "vorpal", "acidic", "questionable", "vibrating", "ineffable", "silly",
         "renowned", "glistening", "gossamer", "toxic", "bejeweled", "shadowy", "shady", "resplendent",
         "serpentine", "hircine", "hirsute", "xenophilic", "blessed", "well-crafted", "deluxe", "shiny",
-        "humorous", "ill-tempered", "solid", "ectoplasmic", "adamantine", "faceted", "sancified", "kinky",
+        "humorous", "ill-tempered", "solid", "ectoplasmic", "adamantine", "faceted", "sanctified", "kinky",
         "perverted", "diurnal", "crepuscular", "nocturnal", "saturnine", "grim", "hardened", "hallowed",
         "elven", "dwarven", "inhuman", "divine", "profane", "axiomatic", "tautological", "your mom's",
         "nonbinary", "engorged", "problematic", "blue", "dour", "mythic", "legendary", "menacing", "semiotic",
@@ -33,7 +35,9 @@ export class LootService {
         "pleasant", "suspicious", "doomed", "blackguard's", "Mordenkainen's", "masterful", "well-intentioned",
         "lunar", "solar", "quirky", "resolute", "tenacious", "quick", "inhumane", "tight", "oversized",
         "outlandish", "freezing", "malicious", "beneficient", "portable", "unimaginable", "forbidden",
-        "forbidding", "masterwork", "grand", "grandiose", "loquacious", "laconic", "stoic", "hardy"];
+        "forbidding", "masterwork", "grand", "grandiose", "loquacious", "laconic", "stoic", "hardy",
+        "reinforced", "adequate", "superior", "superlative", "exquisite", "extraordinary", "jovial",
+        "martial", "marital", "venerated"];
     suffixes: string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear",
         "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
         "of the mole rat", "of masculinity/femininity", "+1", "defender", "+2", "of ill repute",

@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor='let item of getShopItems()'>
+                <tr *ngFor='let item of allShopItems'>
                     <td>
                         <a (click)='purchase(item, $event)'><span class="text-primary" style="cursor: pointer; ">{{item.chestName}}</span></a>
                     </td>
