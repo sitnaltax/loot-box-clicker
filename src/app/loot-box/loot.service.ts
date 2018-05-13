@@ -11,8 +11,8 @@ export class LootService {
 
     allEquipmentSlots: equipmentSlot[]
     materialsByChestRank;
-    baseItemsBySlot: string[][] = [["wand", "staff", "briefcase", "towel", "screwdriver", "paintbrush", "checkbook"],
-    ["fidget spinner", "orb", "book", "pint glass", "duckie"],
+    baseItemsBySlot: string[][] = [["wand", "staff", "briefcase", "towel", "screwdriver", "paintbrush", "checkbook", "smartphone", "science phone"],
+    ["fidget spinner", "orb", "book", "pint glass", "duckie", "umbrella"],
     ["robe", "armor", "suit", "jacket", "vest", "shirt"], ["hat", "helm", "beanie", "headphones", "beret", "helmet"],
     ["pants", "pantaloons", "greaves", "leg guards", "chaps", "trousers", "shorts", "skirt", "kilt"],
     ["sandals", "shoes", "boots", "kicks", "treads", "waders"], ["gloves", "handguards", "gauntlets", "mitts", "mittens"],
