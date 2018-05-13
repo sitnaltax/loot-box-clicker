@@ -30,11 +30,12 @@ export class InventoryService {
 
     addToInventory(item: IEquipmentItem) {
         //possibly auto-donate
-        if (this.checkShouldAutoDonate) {
+        if (this.checkShouldAutoDonate(item)) {
             //now have to make the check. The chance of NOT being able to auto-donate is (0.75 ^ (ranks in autodonate))
             let chance = 1 - Math.pow(3/4, this._trainerService.getRanksForSkillById(skillId.autoDonate));
             if (Math.random() < chance) {
                 this._heroService.addKarma(item.value);
+                console.log("Auto-donated a " + item.itemName + " with value: " + item.value);
                 return; //And it's gone
             }
         }
