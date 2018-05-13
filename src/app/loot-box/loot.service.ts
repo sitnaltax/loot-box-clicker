@@ -11,8 +11,8 @@ export class LootService {
 
     allEquipmentSlots: equipmentSlot[]
     materialsByChestRank;
-    baseItemsBySlot: string[][] = [["wand", "staff", "briefcase", "towel", "screwdriver", "paintbrush", "checkbook", "smartphone", "science phone"],
-    ["fidget spinner", "orb", "book", "pint glass", "duckie", "umbrella"],
+    baseItemsBySlot: string[][] = [["wand", "staff", "briefcase", "towel", "screwdriver", "paintbrush", "checkbook", "smartphone", "science phone", "multitool"],
+    ["fidget spinner", "orb", "book", "pint glass", "duckie", "umbrella", "scissors"],
     ["robe", "armor", "suit", "jacket", "vest", "shirt"], ["hat", "helm", "beanie", "headphones", "beret", "helmet"],
     ["pants", "pantaloons", "greaves", "leg guards", "chaps", "trousers", "shorts", "skirt", "kilt"],
     ["sandals", "shoes", "boots", "kicks", "treads", "waders"], ["gloves", "handguards", "gauntlets", "mitts", "mittens"],
@@ -37,7 +37,7 @@ export class LootService {
         "outlandish", "freezing", "malicious", "beneficient", "portable", "unimaginable", "forbidden",
         "forbidding", "masterwork", "grand", "grandiose", "loquacious", "laconic", "stoic", "hardy",
         "reinforced", "adequate", "superior", "superlative", "exquisite", "extraordinary", "jovial",
-        "martial", "marital", "venerated", "sonic"];
+        "martial", "marital", "venerated", "sonic", "acerbic"];
     suffixes: string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear",
         "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
         "of the mole rat", "of masculinity/femininity", "+1", "defender", "+2", "of ill repute",

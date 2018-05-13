@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor='let skill of getSkills()'>
+                <tr *ngFor='let skill of allSkills'>
                     <td>
                         <a (click)='purchase(skill)'><span class="text-primary" style="cursor: pointer; ">{{skill.name}}</span></a>
                     </td>

@@ -10,21 +10,32 @@ import { HeroService } from '../hero/hero.service';
 })
 export class TrainerDisplayComponent implements OnInit {
 
-    constructor(private _trainerService: TrainerService, private _heroService : HeroService) { }
-
-    getSkills(): ISkill[] {
-        return this._trainerService.getSkills();
+    allSkills: ISkill[];
+    allCosts: number[];
+    allRanks: number[];
+    constructor(private _trainerService: TrainerService, private _heroService: HeroService) {
+        this.allSkills = this._trainerService.getSkills();
+        this.updateCostsAndRanks();
     }
 
-    getCostForSkill(skill: ISkill) : number {
+    updateCostsAndRanks() {
+        this.allCosts = [];
+        this.allRanks = [];
+        this.allSkills.forEach((skill) => {
+            this.allCosts.push(this.getCostForSkill[skill.skillId]);
+            this.allRanks.push(this.getRanksForSkill[skill.skillId]);
+        })
+    }
+
+    getCostForSkill(skill: ISkill): number {
         return this._trainerService.getCostForSkill(skill);
     }
 
-    getRanksForSkill(skill: ISkill) : number {
-        return this._trainerService.getRanksForSkill(skill);        
+    getRanksForSkill(skill: ISkill): number {
+        return this._trainerService.getRanksForSkill(skill);
     }
 
-    purchase(skill: ISkill){
+    purchase(skill: ISkill) {
         this._heroService.purchaseTraining(skill);
     }
 
