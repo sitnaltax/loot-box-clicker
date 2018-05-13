@@ -142,6 +142,10 @@ export class LootService {
     Enchantment power is triangular so 1/2/3/4 enchantments gives 1/3/6/10 power.*/
     getEnchantmentCountForChest(lootBox: IShopItem): number {
         let enchantments = 0;
+        let possibleEnchantments = lootBox.rank;
+        if (lootBox.rank >= 11) {
+            possibleEnchantments += (lootBox.rank - 10); //At this level there are no slots left so allow more enchantments
+        }
         for (let i = 1; i < lootBox.rank; i++) {
             if (Math.random() < this.chanceOfEnchantment) {
                 enchantments++;
