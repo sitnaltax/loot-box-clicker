@@ -25,15 +25,15 @@
             <tbody>
                 <tr *ngFor='let item of getInventory()'>
                     <td>
-                        <div *ngIf='item.type == 0; else noequip'>
-                            <a (click)='equip(item)'>
-                                <span class="text-primary" style="cursor: pointer; ">{{item.itemName}}</span>
-                            </a>
-                        </div>
-                        <ng-template #noequip>{{item.itemName}}</ng-template>
+                        {{item.itemName}}
                     </td>
                     <td>
-                        {{getSlotNameForItem(item)}}
+                        <div *ngIf='item.type == 0; else noequip'>
+                            <a (click)='equip(item)'>
+                                <span class="text-primary" style="cursor: pointer; ">{{getSlotNameForItem(item)}}</span>
+                            </a>
+                        </div>
+                        <ng-template #noequip>{{getSlotNameForItem(item)}}</ng-template>
                     </td>
                     <td>
                         {{getPowerOrValueForItem(item)}}
