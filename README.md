@@ -2,8 +2,6 @@
 
 An idle game designed to let you get the thrill of opening ever-better treasure boxes without any pressure to pay for them. (Or any pesky game in the way, for that matter.)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
-
 ## Gameplay
 
 Press Adventure to go on an adventure and collect treasure. The more power you have, the more treasure you collect. As your power increases you'll eventually be able to collect better types of currency, which can be used to purchase better chests with better loot.
@@ -36,4 +34,6 @@ Increases the degree to which a critical success grants additional treasure. It 
 
 Whenever you open an item in a chest that isn't an upgrade for you, you have a 1/4 chance per rank of Auto-Donate for it to be automatically donated rather than going into your inventory.
 
+## Acknowledgements
 
+This was designed using Angular and Bootstrap. The logo is from http://game-icons.net.
