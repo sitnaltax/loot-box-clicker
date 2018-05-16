@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IShopItem } from '../shop/shop-item';
-import { IEquipmentItem, equipmentType, equipmentSlot } from '../equipment/equipment-item';
+import { IEquipmentItem, equipmentType, equipmentSlot, rarity } from '../equipment/equipment-item';
 import { EquipmentService } from "../equipment/equipment.service";
 import { IEnchantment, enchantmentType } from './enchantment';
 
@@ -78,11 +78,12 @@ export class LootService {
         if (lootBox.rank == 0) {
             return [{
                 itemName: "Claymore of Commencement", type: equipmentType.equipabble, slot: equipmentSlot.mainhand,
-                power: 3, value: 1
+                power: 3, value: 1, rarity: 0
             }]
         }
         let slot = this.getRandomSlotForLootBox(lootBox);
         let baseItem = this.getNameAndPowerForItem(lootBox, slot);
+        let rarity = this.getRarityForItem(lootBox, baseItem.power);
 
         let equipmentItem: IEquipmentItem = {
             itemName: baseItem.name, type: equipmentType.equipabble, slot: slot,
@@ -117,6 +118,23 @@ export class LootService {
             name: this.getEnchantedName(baseName, enchantmentCount),
             power: materialAndPower.power + this.powerForEnchantmentCount[enchantmentCount]
         };
+    }
+
+    //TODO: see what works with these values 
+    uncommonThresholds: number[] = [1000, 1000, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    rareThresholds: number[] = [1000, 1000, 1000, 1000, 9, 10, 11, 12, 13, 14, 15, 16, 20, 22];
+    epicThresholds: number[] = [1000, 1000, 1000, 1000, 1000, 1000, 13, 14, 15, 16, 20, 22, 24, 26];
+
+    getRarityForItem(lootBox: IShopItem, power: number): rarity {
+        if (power >= this.epicThresholds[lootBox.rank]) {
+            return rarity.epic;
+        }
+        else if (power >= this.rareThresholds[lootBox.rank]) {
+            return rarity.rare;
+        }
+        else if (power >= this.uncommonThresholds[lootBox.rank]) {
+            return rarity.uncommon;
+        }
     }
 
     getEnchantedName(baseName: string, enchantmentCount: number): string {
@@ -190,7 +208,7 @@ export class LootService {
 
             items.push({
                 itemName: fullName, type: equipmentType.art,
-                value: junkValue
+                value: junkValue, rarity: rarity.common
             })
         }
 
