@@ -144,7 +144,7 @@ export class LootService {
         let enchantments = 0;
         let possibleEnchantments = lootBox.rank;
         if (lootBox.rank >= 11) {
-            possibleEnchantments += (lootBox.rank - 10); //At this level there are no slots left so allow more enchantments
+            possibleEnchantments += ((lootBox.rank - 10) * (lootBox.rank - 10)); //At this level there are no slots left so allow more enchantments
         }
         for (let i = 1; i < lootBox.rank; i++) {
             if (Math.random() < this.chanceOfEnchantment) {
