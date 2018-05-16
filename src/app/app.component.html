@@ -1,9 +1,12 @@
 <nav class="navbar main-nav mb-2">
     <span class="navbar-brand mb-0 h1">
-        <img src="/assets/open-treasure-chest.png" width="30" height="30" class="d-inline-block align-top" alt=""/>
-        Loot Box Clicker
+        <img src="/assets/open-treasure-chest.png" width="30" height="30" class="d-inline-block align-top" alt="" /> Loot Box Clicker
         <a class="header-text ml-5" (click)="save()">Save</a>
         <span id="save-check" [@checkState]="checkState"> ✓</span>
+        <span class="header-text ml-5" data-toggle="modal" data-target="#about">About</span>
+    </span>
+    <span class="navbar-brand mb-0 h1">
+        Reset
     </span>
 </nav>
 <div class='container'>
@@ -22,4 +25,24 @@
         </li>
     </ul>
     <router-outlet></router-outlet>
+</div>
+
+<div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="aboutLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header main-nav justify-content-start d-flex">
+                <h5 class="modal-title" id="aboutLabel">About Loot Box Clicker</h5>
+                <img src="/assets/open-treasure-chest.png" width="30" height="30" class="ml-1" />
+            </div>
+            <div class="modal-body">
+                <p>by Rob Herman</p>
+                <p>Contact me on Twitter <a target="_blank" href="https://twitter.com/Rule0">@Rule0</a> or check out the source and some minimal documentation on 
+                <a target="_blank" href="https://github.com/sitnaltax/loot-box-clicker">Github</a><br/></p>
+                <p>Logo from <a target="_blank" href="http://game-icons.net">Game-icons.net</a></p>               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
 </div>
