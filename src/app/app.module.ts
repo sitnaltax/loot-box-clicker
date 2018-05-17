@@ -24,6 +24,7 @@ import { InventoryPageComponent } from './pages/inventory-page/inventory-page.co
 import { TrainerPageComponent } from './pages/trainer-page/trainer-page.component';
 import { TrainerDisplayComponent } from './trainer/trainer-display.component';
 import { TrainerService } from './trainer/trainer.service';
+import { RarityToColorPipe } from './shared/rarity-to-color.pipe';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { TrainerService } from './trainer/trainer.service';
         ShopPageComponent,
         InventoryPageComponent,
         TrainerPageComponent,
-        TrainerDisplayComponent
+        TrainerDisplayComponent,
+        RarityToColorPipe
     ],
     imports: [
         BrowserModule, BrowserAnimationsModule, RouterModule.forRoot([

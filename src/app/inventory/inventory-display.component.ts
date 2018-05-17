@@ -3,6 +3,7 @@ import { InventoryService } from './inventory.service';
 import { equipmentSlot, IEquipmentItem, equipmentType } from '../equipment/equipment-item';
 import { EquipmentService } from '../equipment/equipment.service';
 import { HeroService } from '../hero/hero.service';
+import { RarityToColorPipe } from '../shared/rarity-to-color.pipe';
 
 @Component({
     selector: 'inventory-display',
@@ -12,7 +13,7 @@ import { HeroService } from '../hero/hero.service';
 export class InventoryDisplayComponent implements OnInit {
 
     constructor(private _inventoryService: InventoryService, private _equipmentService: EquipmentService,
-         private _heroService: HeroService) { }
+        private _heroService: HeroService) { }
 
     ngOnInit() {
     }
@@ -63,8 +64,8 @@ export class InventoryDisplayComponent implements OnInit {
     }
 
     donateAll() {
-        while(this._inventoryService.getInventory().length > 0){
-            this._inventoryService.getInventory().forEach(item => {this.donate(item)});
+        while (this._inventoryService.getInventory().length > 0) {
+            this._inventoryService.getInventory().forEach(item => { this.donate(item) });
         }
     }
 }

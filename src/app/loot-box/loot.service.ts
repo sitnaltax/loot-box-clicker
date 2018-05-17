@@ -78,7 +78,7 @@ export class LootService {
         if (lootBox.rank == 0) {
             return [{
                 itemName: "Claymore of Commencement", type: equipmentType.equipabble, slot: equipmentSlot.mainhand,
-                power: 3, value: 1, rarity: 0
+                power: 3, value: 1, rarity: 1
             }]
         }
         let slot = this.getRandomSlotForLootBox(lootBox);
@@ -87,7 +87,7 @@ export class LootService {
 
         let equipmentItem: IEquipmentItem = {
             itemName: baseItem.name, type: equipmentType.equipabble, slot: slot,
-            power: baseItem.power, value: baseItem.power
+            power: baseItem.power, value: baseItem.power, rarity: rarity
         };
 
         let junkItems: IEquipmentItem[] = this.getJunkForLootBox(lootBox);
@@ -134,6 +134,9 @@ export class LootService {
         }
         else if (power >= this.uncommonThresholds[lootBox.rank]) {
             return rarity.uncommon;
+        }
+        else {
+            return rarity.common;
         }
     }
 
@@ -208,7 +211,7 @@ export class LootService {
 
             items.push({
                 itemName: fullName, type: equipmentType.art,
-                value: junkValue, rarity: rarity.common
+                value: junkValue, rarity: rarity.junk
             })
         }
 
