@@ -28,9 +28,9 @@ export class CashService {
 
     currencyNames: string[] = ["copper pieces", "denarii", "silver pieces", "bits coin", "carnival tickets",
         "gold pieces", "unobtainium pieces", "magic beans", "diamonds", "space bucks", "ether crystals", "soul gems",
-        "infinity stones"];
+        "infinity stones", "completion coins"];
 
-    currencyRatios: number[] = [100, 80, 100, 100, 100, 100, 100, 100, 100, 100, 50, 50, 9999999];
+    currencyRatios: number[] = [100, 80, 100, 100, 100, 100, 100, 100, 100, 100, 50, 50, 100, 9999999];
 
     getCurrencyName(cash: ICash) {
         return this.currencyNames[cash.currency];

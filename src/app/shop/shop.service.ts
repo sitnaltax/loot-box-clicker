@@ -22,6 +22,7 @@ export class ShopService {
         {chestName: "interstellar chest", cost: {currency: cashType.spacebucks, quantity: 100}, rank: 10},
         {chestName: "gossamer chest", cost: {currency: cashType.ether, quantity: 100}, rank: 11},
         {chestName: "gothic chest", cost: {currency: cashType.soulgems, quantity: 100}, rank: 12},
-        {chestName: "cosmic chest", cost: {currency: cashType.infinity, quantity: 100}, rank: 13}];
+        {chestName: "cosmic chest", cost: {currency: cashType.infinity, quantity: 100}, rank: 13},
+        {chestName: "chest of completion", cost: {currency: cashType.completion, quantity: 100}, rank: 14}];
     }
 }
