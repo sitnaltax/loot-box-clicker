@@ -77,7 +77,7 @@ export class LootService {
     getItemsForLootBox(lootBox: IShopItem): IEquipmentItem[] {
         if (lootBox.rank == 0) {
             return [{
-                itemName: "Claymore of Commencement", type: equipmentType.equipabble, slot: equipmentSlot.mainhand,
+                itemName: "Claymore of Commencement", type: equipmentType.equippable, slot: equipmentSlot.mainhand,
                 power: 3, value: 1, rarity: 1
             }]
         }
@@ -86,7 +86,7 @@ export class LootService {
         let rarity = this.getRarityForItem(lootBox, baseItem.power);
 
         let equipmentItem: IEquipmentItem = {
-            itemName: baseItem.name, type: equipmentType.equipabble, slot: slot,
+            itemName: baseItem.name, type: equipmentType.equippable, slot: slot,
             power: baseItem.power, value: baseItem.power, rarity: rarity
         };
 

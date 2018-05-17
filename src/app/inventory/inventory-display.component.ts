@@ -29,7 +29,7 @@ export class InventoryDisplayComponent implements OnInit {
         else if (item.type == equipmentType.trophy) {
             return "Trophy";
         }
-        else if (item.type == equipmentType.equipabble) {
+        else if (item.type == equipmentType.equippable) {
             return this._equipmentService.getSlotName(item.slot);
         }
         else {
@@ -38,7 +38,7 @@ export class InventoryDisplayComponent implements OnInit {
     }
 
     getPowerOrValueForItem(item: IEquipmentItem): number {
-        if (item.type == equipmentType.equipabble) {
+        if (item.type == equipmentType.equippable) {
             return item.power;
         }
         else {
@@ -47,7 +47,7 @@ export class InventoryDisplayComponent implements OnInit {
     }
 
     equip(item: IEquipmentItem) {
-        if (item.type != equipmentType.equipabble) {
+        if (item.type != equipmentType.equippable) {
             return;
         }
         var oldItem = this._equipmentService.equip(item);

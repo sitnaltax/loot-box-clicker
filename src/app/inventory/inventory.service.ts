@@ -57,7 +57,7 @@ export class InventoryService {
         if (item.type == equipmentType.art) {
             return true;
         }
-        else if (item.type == equipmentType.equipabble) {
+        else if (item.type == equipmentType.equippable) {
             let existingEquipment: IEquipmentItem = this._equipmentService.getHeroEquipment()[item.slot];
             if (existingEquipment == null) {
                 return false;
