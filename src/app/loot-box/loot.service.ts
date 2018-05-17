@@ -17,7 +17,7 @@ export class LootService {
     ["pants", "pantaloons", "greaves", "leg guards", "chaps", "trousers", "shorts", "skirt", "kilt"],
     ["sandals", "shoes", "boots", "kicks", "treads", "waders"], ["gloves", "handguards", "gauntlets", "mitts", "mittens"],
     ["cloak", "cape", "backguard", "backpack"], ["wristguards", "bracelets", "manacles"],
-    ["belt", "girdle", "fanny pack", "waistguard"], ["shoulder pads", "pauldrons", "shoulderguards"],
+    ["belt", "girdle", "fanny pack", "waistguard"], ["shoulder pads", "pauldrons", "shoulderguards", "epaulets"],
     ["ring", "signet", "solitaire", "loop", "hoop", "knot", "band"],
     ["amulet", "necklace", "choker", "chain", "pendant", "locket", "torc"],
     ["badge", "hair clip", "wristwatch", "piercing", "purse", "bag"]];
