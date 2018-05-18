@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-header">
+        Edit Hero Details
+    </div>
+    <div class="card-body">
+        <table>
+            <tr>
+                <td>
+                    <label>Name:</label>
+                </td>
+                <td>
+                    <input [(ngModel)]="modelHero.name">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Job:</label>
+                </td>
+                <td>
+                    <select [(ngModel)]="modelHero.job">
+                        <option *ngFor="let job of possibleJobs">{{job}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                    <td>
+                        <label>Gender:</label>
+                    </td>
+                    <td>
+                        <textarea [(ngModel)]="modelHero.gender" style="min-width: 800; min-height: 400; overflow-y: scroll"></textarea>
+                    </td>
+                </tr>
+        </table>
+        <button type="button" class="btn btn-outline-primary my-2 float-right" (click)='saveHero()'>Save</button>
+    </div>
+</div>

@@ -18,7 +18,7 @@ export class HeroService {
             this.hero = this._storageService.retrieve("hero");
         }
         else {
-            this.hero = { name: "Rob", job: "Demi-Druid", power: 1, criticalChance: 0.04, criticalPower: 5, fame: 0, isAutoAdventuring: false };
+            this.hero = { name: "Nameless Adventurer", job: "Demi-Druid", power: 1, criticalChance: 0.04, criticalPower: 5, fame: 0, isAutoAdventuring: false, gender: "" };
         }
 
         this._storageService.autoSaveNotification.subscribe((dummy) => {
@@ -85,5 +85,11 @@ export class HeroService {
 
     adventure() {
         this._cashService.adventure(this.hero);
+    }
+
+    saveVanityOptions(name: string, job: string, gender: string) {
+        this.hero.name = name;
+        this.hero.job = job;
+        this.hero.gender = gender;
     }
 }

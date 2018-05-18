@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeroDisplayComponent } from './hero/hero-display.component';
@@ -25,6 +26,8 @@ import { TrainerPageComponent } from './pages/trainer-page/trainer-page.componen
 import { TrainerDisplayComponent } from './trainer/trainer-display.component';
 import { TrainerService } from './trainer/trainer.service';
 import { RarityToColorPipe } from './shared/rarity-to-color.pipe';
+import { DetailsEditComponent } from './details/details-edit/details-edit.component';
+import { DetailsPageComponent } from './pages/details-page/details-page/details-page.component';
 
 @NgModule({
     declarations: [
@@ -40,14 +43,17 @@ import { RarityToColorPipe } from './shared/rarity-to-color.pipe';
         InventoryPageComponent,
         TrainerPageComponent,
         TrainerDisplayComponent,
-        RarityToColorPipe
+        RarityToColorPipe,
+        DetailsEditComponent,
+        DetailsPageComponent
     ],
     imports: [
-        BrowserModule, BrowserAnimationsModule, RouterModule.forRoot([
+        BrowserModule, BrowserAnimationsModule, FormsModule, RouterModule.forRoot([
             {path: 'hero', component: HeroPageComponent},
             {path: 'shop', component: ShopPageComponent},
             {path: 'inventory', component: InventoryPageComponent},
             {path: 'trainer', component: TrainerPageComponent},
+            {path: 'details', component: DetailsPageComponent},
             {path: '', redirectTo: 'hero', pathMatch: 'full'},
             {path: '**', redirectTo: 'hero', pathMatch: 'full'},
         ])
