@@ -51,6 +51,7 @@ export class LootService {
         "board game", "video game", "comic", "dance", "theorem", "fanfic", "story", "novella", "TV show", "dish",
         "urn", "coffer", "outfit", "statue", "idol"];
 
+    equipmentItemsPerLootBox: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 999]
     slotsAllowedByRank: number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14, 14, 14, 14, 14, 14];
     constructor(private _equipmentService: EquipmentService) {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
@@ -84,22 +85,28 @@ export class LootService {
         if (lootBox.rank == 14) {
             return this.getItemsForVictoryChest();
         }
+
+        let allItems = [];
+
+        for (let i = 0; i < this.equipmentItemsPerLootBox[lootBox.rank]; i++) {
+            allItems.push(this.createEquipmentItemForLootBox(lootBox));
+        }
+
+        let junkItems: IEquipmentItem[] = this.getJunkForLootBox(lootBox);
+        junkItems.forEach((item) => { allItems.push(item) });
+
+        return allItems;
+    }
+
+    createEquipmentItemForLootBox(lootBox: IShopItem): IEquipmentItem {
         let slot = this.getRandomSlotForLootBox(lootBox);
         let baseItem = this.getNameAndPowerForItem(lootBox, slot);
         let rarity = this.getRarityForItem(lootBox, baseItem.power);
 
-        let equipmentItem: IEquipmentItem = {
+        return {
             itemName: baseItem.name, type: equipmentType.equippable, slot: slot,
             power: baseItem.power, value: baseItem.power, rarity: rarity
         };
-
-        let junkItems: IEquipmentItem[] = this.getJunkForLootBox(lootBox);
-
-        let allItems = [];
-        allItems.push(equipmentItem);
-        junkItems.forEach((item) => { allItems.push(item) });
-
-        return allItems;
     }
 
     getRandomSlotForLootBox(lootBox: IShopItem): equipmentSlot {
@@ -222,34 +229,62 @@ export class LootService {
     }
 
     getItemsForVictoryChest(): IEquipmentItem[] {
-        return [{itemName: "Claymore of Completion", type: equipmentType.equippable, slot: equipmentSlot.mainhand,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Cassette of Culmination", type: equipmentType.equippable, slot: equipmentSlot.offhand,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Armor of Achievement", type: equipmentType.equippable, slot: equipmentSlot.armor,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Trilby of Triumph", type: equipmentType.equippable, slot: equipmentSlot.helm,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Pants of Performance", type: equipmentType.equippable, slot: equipmentSlot.legs,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Shoes of Success", type: equipmentType.equippable, slot: equipmentSlot.feet,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Gloves of Greatness", type: equipmentType.equippable, slot: equipmentSlot.hands,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Cloak of Conclusion", type: equipmentType.equippable, slot: equipmentSlot.cloak,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Manacles of Merit", type: equipmentType.equippable, slot: equipmentSlot.wrists,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Cummerbund of Consummation", type: equipmentType.equippable, slot: equipmentSlot.waist,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Epaulets of Effort", type: equipmentType.equippable, slot: equipmentSlot.shoulders,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Ring of Realization", type: equipmentType.equippable, slot: equipmentSlot.ring,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Amulet of Achievement", type: equipmentType.equippable, slot: equipmentSlot.amulet,
-            power: 500, value: 50000, rarity: rarity.legendary},
-            {itemName: "Claymore of Completion", type: equipmentType.equippable, slot: equipmentSlot.accessory,
-            power: 500, value: 50000, rarity: rarity.legendary}
+        return [{
+            itemName: "Claymore of Completion", type: equipmentType.equippable, slot: equipmentSlot.mainhand,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Cassette of Culmination", type: equipmentType.equippable, slot: equipmentSlot.offhand,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Armor of Achievement", type: equipmentType.equippable, slot: equipmentSlot.armor,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Trilby of Triumph", type: equipmentType.equippable, slot: equipmentSlot.helm,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Pants of Performance", type: equipmentType.equippable, slot: equipmentSlot.legs,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Shoes of Success", type: equipmentType.equippable, slot: equipmentSlot.feet,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Gloves of Greatness", type: equipmentType.equippable, slot: equipmentSlot.hands,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Cloak of Conclusion", type: equipmentType.equippable, slot: equipmentSlot.cloak,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Manacles of Merit", type: equipmentType.equippable, slot: equipmentSlot.wrists,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Cummerbund of Consummation", type: equipmentType.equippable, slot: equipmentSlot.waist,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Epaulets of Effort", type: equipmentType.equippable, slot: equipmentSlot.shoulders,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Ring of Realization", type: equipmentType.equippable, slot: equipmentSlot.ring,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Amulet of Achievement", type: equipmentType.equippable, slot: equipmentSlot.amulet,
+            power: 500, value: 50000, rarity: rarity.legendary
+        },
+        {
+            itemName: "Claymore of Completion", type: equipmentType.equippable, slot: equipmentSlot.accessory,
+            power: 500, value: 50000, rarity: rarity.legendary
+        }
         ];
     }
 }
