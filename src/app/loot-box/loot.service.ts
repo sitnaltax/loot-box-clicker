@@ -51,7 +51,7 @@ export class LootService {
         "board game", "video game", "comic", "dance", "theorem", "fanfic", "story", "novella", "TV show", "dish",
         "urn", "coffer", "outfit", "statue", "idol"];
 
-    equipmentItemsPerLootBox: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 999]
+    chanceOfExtraItemPerLootBox: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.3, 0.7, 1, 0]
     slotsAllowedByRank: number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14, 14, 14, 14, 14, 14];
     constructor(private _equipmentService: EquipmentService) {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
@@ -88,7 +88,9 @@ export class LootService {
 
         let allItems = [];
 
-        for (let i = 0; i < this.equipmentItemsPerLootBox[lootBox.rank]; i++) {
+        allItems.push(this.createEquipmentItemForLootBox(lootBox));
+
+        if (Math.random() < this.chanceOfExtraItemPerLootBox[lootBox.rank]) {
             allItems.push(this.createEquipmentItemForLootBox(lootBox));
         }
 
