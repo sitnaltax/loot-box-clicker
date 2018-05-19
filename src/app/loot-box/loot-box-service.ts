@@ -12,7 +12,6 @@ export class LootBoxService {
 
     lootBoxList: IShopItem[];
     currentlyOpeningBox: IShopItem;
-    openIntervalId: number;
     lootBoxOpeningTime: number;
     lootBoxOpeningProgress: number;
     progressNotification: Observable<string>;
@@ -57,10 +56,9 @@ export class LootBoxService {
         if (this.currentlyOpeningBox != null) {
             return;
         }
-        this.progressSubject.next("begin");
+        this.progressSubject.next("box");
         this.currentlyOpeningBox = this.lootBoxList.pop();
-        window.clearInterval(this.openIntervalId);
-        this.openIntervalId = window.setInterval(() => {
+        window.setTimeout(() => {
 
             this.gainLoot();
             this.openBox();
@@ -75,6 +73,5 @@ export class LootBoxService {
 
         this._lootService.getItemsForLootBox(this.currentlyOpeningBox).forEach(item => this._inventoryService.addToInventory(item));
         this.currentlyOpeningBox = null;
-        this.progressSubject.next("end");
     }
 }
