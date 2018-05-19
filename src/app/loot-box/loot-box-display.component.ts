@@ -14,7 +14,7 @@ import { AnimationEvent, trigger, state, style, animate, transition, sequence } 
             state('begin', style({
                 width: '0%',
             })),
-            transition('begin => end', animate('2500ms')),
+            transition('begin => end', animate('2400ms')),
             transition('end => begin', animate('0ms'))
         ])
     ]
@@ -44,9 +44,6 @@ export class LootBoxDisplayComponent implements OnInit {
         if (event.toState == "end") {
             this.isAnimating = false;
             this.boxState = "begin";
-            if (this._lootBoxService.getCurrentlyOpeningBox() != null) {
-                window.setTimeout(() => {this.boxState = "end"}, 0);
-            }
         }
     }
 
