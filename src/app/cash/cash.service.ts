@@ -26,7 +26,7 @@ export class CashService {
         return this.allCash;
     }
 
-    currencyNames: string[] = ["copper pieces", "denarii", "silver pieces", "bits coin", "carnival tickets",
+    currencyNames: string[] = ["copper pieces", "denarii", "silver pieces", "bit coins", "carnival tickets",
         "gold pieces", "unobtainium pieces", "magic beans", "diamonds", "space bucks", "ether crystals", "soul gems",
         "infinity stones", "completion coins"];
 
