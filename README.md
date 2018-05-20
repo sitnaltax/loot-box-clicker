@@ -10,7 +10,7 @@ Press Auto-Adventure to automatically adventure once a second. You can still cli
 
 ## Loot Boxes and Equipment
 
-Every loot box has one piece of equipment. Basic chests can hold equipment from any of the first five slots; every subsequent loot box makes one more slot available until they're all available. Your power is the product of the power of each equipment piece.
+Every loot box has one piece of equipment. Basic chests can hold equipment from any of the first five slots; every subsequent loot box makes one more slot available until they're all available. Your power is the product of the power of each equipment piece. (The best three loot boxes all have a chance to have an additional piece of equipment.)
 
 You can donate unwanted equipment for Fame, which you can use at the Trainer for passive bonuses.
 

@@ -39,7 +39,7 @@ export class LootService {
         "reinforced", "adequate", "superior", "superlative", "exquisite", "extraordinary", "jovial",
         "martial", "marital", "venerated", "sonic", "acerbic", "vigilant"];
     suffixes: string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear",
-        "of feather fall ", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
+        "of feather fall", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
         "of the mole rat", "of masculinity/femininity", "+1", "defender", "+2", "of ill repute",
         "of the night", "aflame", "of holding"]
     allEnchantments: IEnchantment[] = [];
