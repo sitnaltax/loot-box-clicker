@@ -30,7 +30,7 @@ export class CashService {
         "gold pieces", "unobtainium pieces", "magic beans", "diamonds", "space bucks", "ether crystals", "soul gems",
         "infinity stones", "completion coins"];
 
-    currencyRatios: number[] = [100, 80, 100, 100, 100, 100, 100, 100, 100, 100, 50, 50, 150, 9999999];
+    currencyRatios: number[] = [100, 80, 100, 100, 100, 100, 100, 100, 100, 100, 50, 40, 500, 9999999];
 
     getCurrencyName(cash: ICash) {
         return this.currencyNames[cash.currency];
