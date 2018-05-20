@@ -36,4 +36,4 @@ Whenever you open an item in a chest that isn't an upgrade for you, you have a 1
 
 ## Acknowledgements
 
-This was designed using Angular and Bootstrap. The logo is from http://game-icons.net.
+This was built using Angular and Bootstrap. The logo is from http://game-icons.net.
