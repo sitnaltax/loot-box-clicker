@@ -20,11 +20,11 @@ Some loot boxes (1 in 8) also contain an art object or trinket which cannot be e
 
 ## Trainer
 
-At the trainer, you can spend fame to increase your passive abilities. The cost of each increases exponentially by rank.
+At the trainer, you can spend Fame to increase your passive abilities. The cost of each increases exponentially by rank.
 
 ### Critical Chance
 
-Increases the chance per adventure that you have a "critical success", which greatly increases the amount of treasure you get (and is a good way to get the next currency up). This chance starts out at 4% and increases by 1% per 15 ranks. This chance also "explodes" which means if you get a critical success, you have the chance to try again and further multiply the rewards of the adventure
+Increases the chance per adventure that you have a "critical success", which greatly increases the amount of treasure you get (and is a good way to get the next currency up). This chance starts out at 4% and increases by 1% per 15 ranks. This chance also "explodes" which means if you get a critical success, you have the chance to try again and further multiply the rewards of the adventure.
 
 ### Critical Power
 
