@@ -69,7 +69,7 @@ export class LootService {
         //At this point all the slots are used so the power increases more
         [{ name: "wispy", power: 11 }, { name: "ectoplasmic", power: 13 }, { name: "ethereal", power: 15 }, { name: "astral", power: 17 }],
         [{ name: "black", power: 14 }, { name: "silver-filigreed", power: 17 }, { name: "obsidian", power: 20 }, { name: "bloodstone", power: 23 }],
-        [{ name: "inconceivable", power: 18 }, { name: "infinite", power: 22 }, { name: "eternal", power: 26 }, { name: "endless", power: 23 }]
+        [{ name: "inconceivable", power: 18 }, { name: "infinite", power: 22 }, { name: "eternal", power: 26 }, { name: "endless", power: 30 }]
         ];
         this.prefixes.forEach((item) => this.allEnchantments.push({ text: item, type: enchantmentType.prefix }));
         this.suffixes.forEach((item) => this.allEnchantments.push({ text: item, type: enchantmentType.suffix }));
