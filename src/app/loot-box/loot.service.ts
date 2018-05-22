@@ -148,9 +148,9 @@ export class LootService {
     }
 
     //TODO: see what works with these values 
-    uncommonThresholds: number[] = [1000, 1000, 5, 6, 7, 8, 9, 10, 11, 12, 13, 25, 30, 35];
-    rareThresholds: number[] = [1000, 1000, 1000, 1000, 9, 10, 11, 12, 13, 14, 15, 28, 35, 40];
-    epicThresholds: number[] = [1000, 1000, 1000, 1000, 1000, 1000, 13, 14, 15, 16, 20, 35, 40, 45];
+    uncommonThresholds: number[] = [1000, 1000, 5, 6, 7, 8, 9, 10, 11, 12, 13, 25, 30, 40];
+    rareThresholds: number[] = [1000, 1000, 1000, 1000, 9, 10, 11, 12, 13, 14, 15, 28, 35, 45];
+    epicThresholds: number[] = [1000, 1000, 1000, 1000, 1000, 1000, 13, 14, 15, 16, 20, 35, 40, 50];
 
     getRarityForItem(lootBox: IShopItem, power: number): rarity {
         if (power >= this.epicThresholds[lootBox.rank]) {
