@@ -23,7 +23,7 @@
                         {{getSlotName(slot)}}        
                     </td>
                     <td>
-                        {{getItemNameForSlot(slot)}}        
+                        <span [style.color]="getColorForSlot(slot)">{{getItemNameForSlot(slot)}}</span>        
                     </td>
                     <td>
                         {{getPowerForSlot(slot)}}        

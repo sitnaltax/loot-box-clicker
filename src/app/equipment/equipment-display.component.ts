@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EquipmentService } from './equipment.service';
 import { IEquipmentItem, equipmentSlot } from './equipment-item';
+import { RarityToColorPipe } from '../shared/rarity-to-color.pipe';
 
 @Component({
     selector: 'equipment-display',
@@ -9,7 +10,10 @@ import { IEquipmentItem, equipmentSlot } from './equipment-item';
 })
 export class EquipmentDisplayComponent implements OnInit {
 
-    constructor(private _equipmentService: EquipmentService) { }
+    colorPipe: RarityToColorPipe;
+    constructor(private _equipmentService: EquipmentService) {
+        this.colorPipe = new RarityToColorPipe();
+     }
 
     getHeroEquipment(): IEquipmentItem[] {
         return this._equipmentService.getHeroEquipment();
@@ -35,6 +39,15 @@ export class EquipmentDisplayComponent implements OnInit {
             return 1;
         }
         return this.getHeroEquipment()[slot].power;
+    }
+
+    getColorForSlot(slot: equipmentSlot): string {
+        if (this.getHeroEquipment()[slot] == null) {
+            return "#000000";
+        }
+        else {
+            return this.colorPipe.transform(this.getHeroEquipment()[slot].rarity);
+        }
     }
 
     ngOnInit() {
