@@ -51,7 +51,7 @@ export class LootService {
         "board game", "video game", "comic", "dance", "theorem", "fanfic", "story", "novella", "TV show", "dish",
         "urn", "coffer", "outfit", "statue", "idol"];
 
-    chanceOfExtraItemPerLootBox: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.3, 0.7, 1, 0]
+    extraItemsPerLootBox: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.3, 0.7, 25, 0]
     slotsAllowedByRank: number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14, 14, 14, 14, 14, 14];
     constructor(private _equipmentService: EquipmentService) {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
@@ -87,12 +87,21 @@ export class LootService {
         }
 
         let allItems = [];
+        let possibleItems = [];
 
-        allItems.push(this.createEquipmentItemForLootBox(lootBox));
+        possibleItems.push(this.createEquipmentItemForLootBox(lootBox));
 
-        if (Math.random() < this.chanceOfExtraItemPerLootBox[lootBox.rank]) {
-            allItems.push(this.createEquipmentItemForLootBox(lootBox));
+        let extraItems = this.extraItemsPerLootBox[lootBox.rank];
+        while (extraItems > 1) {
+            possibleItems.push(this.createEquipmentItemForLootBox(lootBox));
+            extraItems -= 1;
         }
+
+        if (Math.random() < extraItems) {
+            possibleItems.push(this.createEquipmentItemForLootBox(lootBox));
+        }
+
+        allItems.push(this.findMostPowerfulItem(possibleItems));
 
         let junkItems: IEquipmentItem[] = this.getJunkForLootBox(lootBox);
         junkItems.forEach((item) => { allItems.push(item) });
@@ -130,6 +139,12 @@ export class LootService {
             name: this.getEnchantedName(baseName, enchantmentCount),
             power: materialAndPower.power + this.powerForEnchantmentCount[enchantmentCount]
         };
+    }
+
+    findMostPowerfulItem(items: IEquipmentItem[]): IEquipmentItem{
+        let best: IEquipmentItem = items[0];
+        items.forEach((item) => {if (item.power > best.power) {best = item;}});
+        return best;
     }
 
     //TODO: see what works with these values 
