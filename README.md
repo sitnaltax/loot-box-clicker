@@ -12,6 +12,10 @@ Press Auto-Adventure to automatically adventure once a second. You can still cli
 
 Every loot box has one piece of equipment. Basic chests can hold equipment from any of the first five slots; every subsequent loot box makes one more slot available until they're all available. Your power is the product of the power of each equipment piece. (The best three loot boxes all get bonus rolls to have better equipment, with cosmic chests having many chances.)
 
+Higher level loot boxes not only hold equipment in more slots; the equipment is more powerful baseline and has a chance to have one or more enchantments. The higher level the loot box, the more enchantments the item can possibly have.
+
+Fancier equipment comes with a color, roughly corresponding to the familiar green/blue/purple/orange rarity scheme. Color roughly indicates how rare the item is for the box it appears in, so a blue item might be weaker than a green item from a chest the next level up.
+
 You can donate unwanted equipment for Fame, which you can use at the Trainer for passive bonuses.
 
 You can Ctrl-click on a chest to buy 25 of that chest.
