@@ -25,6 +25,10 @@ export class HeroService {
             this._storageService.store("hero", this.hero);
         });
 
+        this._storageService.resetNotification.subscribe((dummy) => {
+            this.hero = { name: "Nameless Adventurer", job: "Demi-Druid", power: 1, criticalChance: 0.04, criticalPower: 5, fame: 0, isAutoAdventuring: false, gender: "" };
+        });
+
         if (this.hero.isAutoAdventuring) {
             this.beginAutoAdventure();
         }

@@ -30,6 +30,11 @@ export class LootBoxService {
             this._storageService.store("lootBoxes", this.lootBoxList);
         });
 
+        this._storageService.resetNotification.subscribe((dummy) => {
+            this.lootBoxList = [];
+            this.currentlyOpeningBox = null;
+        });        
+
         this.currentlyOpeningBox = null;
         this.lootBoxOpeningTime = 2500;
         this.progressSubject = new Subject<string>();

@@ -30,4 +30,8 @@ export class AppComponent {
         this.checkState = "show";
         window.setTimeout(() => this.checkState = "hide", 200);
     }
+
+    reset() {
+        this._storageService.triggerReset();
+    }
 }

@@ -26,6 +26,10 @@ export class InventoryService {
         this._storageService.autoSaveNotification.subscribe((dummy) => {
             this._storageService.store("inventory", this.inventory);
         });
+
+        this._storageService.resetNotification.subscribe((dummy) => {
+            this.inventory = [];
+        });
     }
 
     addToInventory(item: IEquipmentItem) {

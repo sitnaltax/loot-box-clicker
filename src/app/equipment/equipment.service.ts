@@ -32,6 +32,11 @@ export class EquipmentService {
             this._storageService.store("equipment", this.heroEquipment);
         });
 
+        this._storageService.resetNotification.subscribe((dummy) => {
+            this.heroEquipment = [];
+            this.equipmentSlotNames.forEach(e => this.heroEquipment.push(null));
+        });
+
     }
 
     getSlotName(slot: equipmentSlot): string {

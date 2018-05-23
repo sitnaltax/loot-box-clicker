@@ -20,6 +20,10 @@ export class CashService {
         this._storageService.autoSaveNotification.subscribe((dummy) => {
             this._storageService.store("cash", this.allCash);
         });
+
+        this._storageService.resetNotification.subscribe((dummy) => {
+            this.allCash = [];
+        });
     }
 
     getAllCash(): ICash[] {

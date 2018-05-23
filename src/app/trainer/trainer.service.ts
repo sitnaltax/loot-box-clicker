@@ -18,6 +18,11 @@ export class TrainerService {
         this._storageService.autoSaveNotification.subscribe((dummy) => {
             this._storageService.store("skills", this.playerSkillList);
         });
+
+        this._storageService.resetNotification.subscribe((dummy) => {
+            this.playerSkillList = [];
+            this.getSkills().forEach(() => {this.playerSkillList.push(0);});
+        });
     }
 
     getSkills(): ISkill[] {
