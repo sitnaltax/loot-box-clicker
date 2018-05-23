@@ -21,15 +21,16 @@
                         <option *ngFor="let job of possibleJobs">{{job}}</option>
                     </select>
                 </td>
-            </tr>
+            </tr>     
             <tr>
-                    <td>
-                        <label>Gender:</label>
-                    </td>
-                    <td>
-                        <textarea [(ngModel)]="modelHero.gender" style="min-width: 800; min-height: 400; overflow-y: scroll"></textarea>
-                    </td>
-                </tr>
+                <td>
+                    <label>Gender:</label>
+                </td>
+                <td>
+                    <textarea rows="6" [(ngModel)]="modelHero.gender" style="min-width: 800; min-height: 400; overflow-y: scroll"></textarea>
+                </td>
+            </tr>
+
         </table>
         <button type="button" class="btn btn-outline-primary my-2 float-right" (click)='saveHero()'>Save</button>
     </div>
