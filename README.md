@@ -42,4 +42,6 @@ Whenever you open an item in a chest that isn't an upgrade for you, you have a 1
 
 ## Acknowledgements
 
-This was built using Angular and Bootstrap. The logo is from http://game-icons.net.
+Thanks to the idle games that inspired me: [Cookie Clicker](http://orteil.dashnet.org/cookieclicker/), [Kittens Game](http://www.bloodrizer.ru/games/kittens/), [Swarm Simulator](https://swarmsim.github.io/#/), and [Clicker Heroes](https://www.clickerheroes.com/).
+
+This was built using [Angular](https://angular.io/) and [Bootstrap](http://getbootstrap.com/). The logo is from http://game-icons.net.
