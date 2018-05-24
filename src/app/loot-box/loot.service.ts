@@ -51,7 +51,7 @@ export class LootService {
         "board game", "video game", "comic", "dance", "theorem", "fanfic", "story", "novella", "TV show", "dish",
         "urn", "coffer", "outfit", "statue", "idol"];
 
-    extraItemsPerLootBox: number[] = [0, 0, 0, 0.3, 0.3, 0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.5, 0.8, 25, 0]
+    extraItemsPerLootBox: number[] = [0, 0, 0, 0.3, 0.3, 0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 1, 1.5, 25, 0]
     slotsAllowedByRank: number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14, 14, 14, 14, 14, 14];
     constructor(private _equipmentService: EquipmentService) {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
@@ -149,7 +149,7 @@ export class LootService {
 
     //TODO: see what works with these values                 
     uncommonThresholds: number[] =  [99, 99, 5,  6,  8,   9, 11, 13, 15, 18, 20, 25, 30, 40];
-    rareThresholds: number[] =      [99, 99, 99, 8,  9,  11, 14, 16, 18, 20, 23, 28, 35, 45];
+    rareThresholds: number[] =      [99, 99, 99, 8,  9,  11, 14, 16, 18, 21, 24, 28, 35, 45];
     epicThresholds: number[] =      [99, 99, 99, 99, 99, 13, 17, 19, 21, 25, 30, 35, 40, 50];
     legendaryThresholds: number[] = [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70];
 
