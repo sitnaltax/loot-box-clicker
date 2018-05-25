@@ -18,7 +18,7 @@ export class HeroService {
             this.hero = this._storageService.retrieve("hero");
         }
         else {
-            this.hero = { name: "Nameless Adventurer", job: "Demi-Druid", power: 1, criticalChance: 0.04, criticalPower: 5, fame: 0, isAutoAdventuring: false, gender: "" };
+            this.hero = { name: "Nameless Adventurer", job: "Demi-Druid", power: 1, criticalChance: 0.04, criticalPower: 5, fame: 0, gender: "" };
         }
 
         this._storageService.autoSaveNotification.subscribe((dummy) => {
@@ -26,12 +26,10 @@ export class HeroService {
         });
 
         this._storageService.resetNotification.subscribe((dummy) => {
-            this.hero = { name: "Nameless Adventurer", job: "Demi-Druid", power: 1, criticalChance: 0.04, criticalPower: 5, fame: 0, isAutoAdventuring: false, gender: "" };
+            this.hero = { name: "Nameless Adventurer", job: "Demi-Druid", power: 1, criticalChance: 0.04, criticalPower: 5, fame: 0, gender: "" };
         });
 
-        if (this.hero.isAutoAdventuring) {
-            this.beginAutoAdventure();
-        }
+        this.beginAutoAdventure();
 
         this.recalculatePower();
     }
@@ -66,16 +64,6 @@ export class HeroService {
             this.hero.fame -= cost;
             this._trainerService.incrementSkill(skill);
             this.recalculatePower();
-        }
-    }
-
-    toggleAutoAdventure() {
-        this.hero.isAutoAdventuring = !this.hero.isAutoAdventuring;
-        if (this.hero.isAutoAdventuring) {
-            this.beginAutoAdventure();
-        }
-        else {
-            window.clearInterval(this.intervalId);
         }
     }
 

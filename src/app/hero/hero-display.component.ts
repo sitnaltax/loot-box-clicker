@@ -23,11 +23,6 @@ export class HeroDisplayComponent implements OnInit {
         this._heroService.adventure();
     }
 
-    toggleAutoAdventure() {
-        this._heroService.toggleAutoAdventure();
-    }
-
-
     ngOnInit() {
         this.hero = this._heroService.getHero();
     }

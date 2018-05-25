@@ -7,6 +7,5 @@ export interface IHero {
     criticalChance: number;
     criticalPower: number;
     fame: number;
-    isAutoAdventuring: boolean;
     gender: string;
 }
