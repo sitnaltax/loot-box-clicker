@@ -36,7 +36,7 @@ export class InventoryService {
         //possibly auto-donate
         if (this.checkShouldAutoDonate(item)) {
             //now have to make the check. The chance of NOT being able to auto-donate is (0.75 ^ (ranks in autodonate))
-            let chance = 1 - Math.pow(3/4, this._trainerService.getRanksForSkillById(skillId.autoDonate));
+            let chance = 1 - Math.pow(3 / 4, this._trainerService.getRanksForSkillById(skillId.autoDonate));
             if (Math.random() < chance) {
                 this._heroService.addKarma(item.value);
                 console.log("Auto-donated a " + item.itemName + " with value: " + item.value);
@@ -70,6 +70,47 @@ export class InventoryService {
         }
         else {
             return false;
+        }
+    }
+
+    sortBySlot() {
+        this.inventory.sort(this.slotComparator);
+    }
+
+    sortByPower() {
+        this.inventory.sort(this.powerComparator);
+    }
+
+    slotComparator(item1: IEquipmentItem, item2: IEquipmentItem) {
+        if (item1.type == equipmentType.art && item2.type == equipmentType.equippable) {
+            return 1;
+        }
+        else if (item2.type == equipmentType.art && item1.type == equipmentType.equippable) {
+            return -1;
+        }
+        else if (item1.type == equipmentType.art && item1.type == equipmentType.art) {
+            return 0;
+        }
+        else {
+            if (item1.slot != item2.slot) {
+                return item1.slot - item2.slot;
+            }
+            return item2.power - item1.power;
+        }
+    }
+
+    powerComparator(item1: IEquipmentItem, item2: IEquipmentItem) {
+        if (item1.type == equipmentType.art && item2.type == equipmentType.equippable) {
+            return 1;
+        }
+        else if (item2.type == equipmentType.art && item1.type == equipmentType.equippable) {
+            return -1;
+        }
+        else if (item1.type == equipmentType.art && item1.type == equipmentType.art) {
+            return 0;
+        }
+        else {
+            return item2.power - item1.power;
         }
     }
 }

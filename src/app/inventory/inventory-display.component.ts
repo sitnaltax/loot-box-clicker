@@ -58,6 +58,14 @@ export class InventoryDisplayComponent implements OnInit {
         this._heroService.recalculatePower();
     }
 
+    sortBySlot() {
+        this._inventoryService.sortBySlot();
+    }
+
+    sortByPower() {
+        this._inventoryService.sortByPower();
+    }
+
     donate(item: IEquipmentItem) {
         this._inventoryService.removeFromInventory(item);
         this._heroService.addKarma(item.value);
