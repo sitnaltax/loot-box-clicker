@@ -6,7 +6,7 @@ An idle game designed to let you get the thrill of opening ever-better treasure 
 
 Press Adventure to go on an adventure and collect treasure. The more power you have, the more treasure you collect. As your power increases you'll eventually be able to collect better types of currency, which can be used to purchase better chests with better loot.
 
-Press Auto-Adventure to automatically adventure once a second. You can still click the Adventure button fast if you really want to.
+You automatically adventure once a second, whether or not you are clicking.
 
 ## Loot Boxes and Equipment
 
