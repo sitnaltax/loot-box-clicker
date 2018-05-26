@@ -4,6 +4,8 @@ import { IShopItem } from './shop-item';
 import { ICash } from '../cash/cash';
 import { CashService } from '../cash/cash.service';
 import { LootBoxService } from '../loot-box/loot-box-service';
+import { TrainerService } from '../trainer/trainer.service';
+import { skillId } from '../trainer/skill';
 
 @Component({
     selector: 'shop-display',
@@ -15,7 +17,7 @@ export class ShopComponent implements OnInit {
     allShopItems: IShopItem[] = [];
 
     constructor(private _shopService: ShopService, private _cashService: CashService,
-        private _lootBoxService: LootBoxService) {
+        private _lootBoxService: LootBoxService, private _trainerService: TrainerService) {
             this.allShopItems = this._shopService.getShopItems();
          }
 
@@ -24,13 +26,13 @@ export class ShopComponent implements OnInit {
     }
 
     purchase(item: IShopItem, event) {
-        let iterations: number = 1;
-        if (event.ctrlKey) {
-            iterations = 25;
-        }
+        let iterations: number = Math.pow(5, this._trainerService.getRanksForSkillById(skillId.multiBuy));
         for (let i = 0; i < iterations; i++) {
             if (this._cashService.purchase(item)) {
                 this._lootBoxService.addLootBox(item);
+            }
+            else {
+                break;
             }
         }
     }

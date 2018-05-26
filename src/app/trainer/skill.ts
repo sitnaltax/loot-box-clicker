@@ -1,4 +1,4 @@
-export enum skillId { critChance, critPower, autoDonate };
+export enum skillId { critChance, critPower, autoDonate, multiBuy };
 
 export interface ISkill{
     skillId: skillId;
