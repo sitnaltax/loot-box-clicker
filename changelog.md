@@ -3,6 +3,7 @@
 ## 5/25/2018
 
 Removed the auto-adventure toggle. Auto-adventuring is now permanently enabled.
+Added sorting by slot and power in the inventory list.
 Added tooltips for skills.
 
 ## 5/23/2018
