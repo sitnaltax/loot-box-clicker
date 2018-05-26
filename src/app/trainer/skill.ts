@@ -5,4 +5,5 @@ export interface ISkill{
     name: string;
     baseCost: number;
     scalingFactor: number;
+    helpText: string;
 }

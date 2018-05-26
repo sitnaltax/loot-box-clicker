@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HeroDisplayComponent } from './hero/hero-display.component';
@@ -48,18 +49,18 @@ import { DetailsPageComponent } from './pages/details-page/details-page/details-
         DetailsPageComponent
     ],
     imports: [
-        BrowserModule, BrowserAnimationsModule, FormsModule, RouterModule.forRoot([
-            {path: 'hero', component: HeroPageComponent},
-            {path: 'shop', component: ShopPageComponent},
-            {path: 'inventory', component: InventoryPageComponent},
-            {path: 'trainer', component: TrainerPageComponent},
-            {path: 'details', component: DetailsPageComponent},
-            {path: '', redirectTo: 'hero', pathMatch: 'full'},
-            {path: '**', redirectTo: 'hero', pathMatch: 'full'},
+        NgbModule.forRoot(), BrowserModule, BrowserAnimationsModule, FormsModule, RouterModule.forRoot([
+            { path: 'hero', component: HeroPageComponent },
+            { path: 'shop', component: ShopPageComponent },
+            { path: 'inventory', component: InventoryPageComponent },
+            { path: 'trainer', component: TrainerPageComponent },
+            { path: 'details', component: DetailsPageComponent },
+            { path: '', redirectTo: 'hero', pathMatch: 'full' },
+            { path: '**', redirectTo: 'hero', pathMatch: 'full' },
         ])
     ],
     providers: [HeroService, CashService, ShopService, LootBoxService, EquipmentService,
-         InventoryService, LootService, StorageService, TrainerService],
+        InventoryService, LootService, StorageService, TrainerService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
