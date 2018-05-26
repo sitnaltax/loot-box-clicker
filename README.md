@@ -18,8 +18,6 @@ Fancier equipment comes with a color, roughly corresponding to the familiar gree
 
 You can donate unwanted equipment for Fame, which you can use at the Trainer for passive bonuses.
 
-You can Ctrl-click on a chest to buy 25 of that chest.
-
 When you buy chests, they open in a last-in-first-out order. So if you buy 5 of an expensive chest, wait for them to open before you buy 300 of the cheap chest. Likewise, if you're currently cracking 300 cheap chests and can afford 1 of an expensive one, just buy it and you'll open it next.
 
 Some loot boxes (1 in 8) also contain an art object or trinket which cannot be equipped, but can be donated for additional Fame.
@@ -39,6 +37,10 @@ Increases the degree to which a critical success grants additional treasure. It 
 ### Auto-Donate
 
 Whenever you open an item in a chest that isn't an upgrade for you, you have a 1/4 chance per rank of Auto-Donate for it to be automatically donated rather than going into your inventory.
+
+### Multi-Buy
+
+Whenever you click to buy a chest, you'll buy 5 times more for every rank of this skill (so 5, 25, 125, etc.), limited by how much of the currency you have.
 
 ## Acknowledgements
 
