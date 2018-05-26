@@ -46,6 +46,23 @@ export class InventoryDisplayComponent implements OnInit {
         }
     }
 
+    getUpgradeStatusForItem(item: IEquipmentItem): string {
+        let existingEquipment: IEquipmentItem = this._equipmentService.getHeroEquipment()[item.slot];
+            if (existingEquipment == null) {
+                return "Upgrade";
+            }
+            if (item.power < existingEquipment.power) {
+                return "Downgrade";
+            }
+            else if (item.power == existingEquipment.power) {
+                return "Sidegrade";
+            }
+            else if (item.power > existingEquipment.power) {
+                return "Upgrade";
+            }
+            return "Unknown";
+        }
+
     equip(item: IEquipmentItem) {
         if (item.type != equipmentType.equippable) {
             return;
