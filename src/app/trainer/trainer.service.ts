@@ -32,7 +32,8 @@ export class TrainerService {
         return [{ skillId: skillId.critChance, name: "Critical Chance", baseCost: 100, scalingFactor: 1.15, helpText: "Grants a chance to gain extra treasure on each adventure. Chance is 4% + 1% per 15 ranks." },
         { skillId: skillId.critPower, name: "Critical Power", baseCost: 100, scalingFactor: 1.15, helpText: "Increases the amount of extra treasure on a critical success. Multiplier is 5x, + 1x per 15 ranks."},
         { skillId: skillId.autoDonate, name: "Auto-Donate", baseCost: 1000, scalingFactor: 2, helpText: "Gives you a chance to automatically donate items that are worse than your currently equipped item. 1/4 chance (independent) per rank." },
-        { skillId: skillId.multiBuy, name: "Multi-Buy", baseCost: 500, scalingFactor: 5, helpText: "When you buy a chest, you buy 5 times more for every rank in Multi-Buy (up to what you can afford)." }
+        { skillId: skillId.multiBuy, name: "Multi-Buy", baseCost: 500, scalingFactor: 5, helpText: "When you buy a chest, you buy 5 times more for every rank in Multi-Buy (up to what you can afford)." },
+        { skillId: skillId.advancedAvarice, name: "Advanced Avarice", baseCost: 400, scalingFactor: 3, helpText: "Whenever you open a chest, you have a 7% chance per rank to open another one." }
     ];
     }
 

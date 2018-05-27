@@ -1,5 +1,9 @@
 # Changelog
 
+## 5/27/2018
+
+* Added the Advanced Avaice skill, to open chests faster
+
 ## 5/26/2018
 
 * Compressed the tables to get more on the screen

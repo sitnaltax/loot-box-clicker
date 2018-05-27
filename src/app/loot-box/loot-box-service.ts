@@ -6,6 +6,8 @@ import { InventoryService } from '../inventory/inventory.service';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
 import { StorageService } from '../storage/storage.service';
+import { TrainerService } from '../trainer/trainer.service';
+import { skillId } from '../trainer/skill';
 
 @Injectable()
 export class LootBoxService {
@@ -18,7 +20,7 @@ export class LootBoxService {
     private progressSubject: Subject<string>;
 
     constructor(private _shopService: ShopService, private _lootService: LootService, private _storageService: StorageService,
-        private _inventoryService: InventoryService) {
+        private _inventoryService: InventoryService, private _trainerService: TrainerService) {
         if (this._storageService.retrieve("lootBoxes")) {
             this.lootBoxList = this._storageService.retrieve("lootBoxes");
         }
@@ -33,7 +35,7 @@ export class LootBoxService {
         this._storageService.resetNotification.subscribe((dummy) => {
             this.lootBoxList = [];
             this.currentlyOpeningBox = null;
-        });        
+        });
 
         this.currentlyOpeningBox = null;
         this.lootBoxOpeningTime = 2500;
@@ -63,6 +65,7 @@ export class LootBoxService {
         }
         this.progressSubject.next("box");
         this.currentlyOpeningBox = this.lootBoxList.pop();
+        this.possiblyOpenBonusBoxes();
         window.setTimeout(() => {
 
             this.gainLoot();
@@ -78,5 +81,15 @@ export class LootBoxService {
 
         this._lootService.getItemsForLootBox(this.currentlyOpeningBox).forEach(item => this._inventoryService.addToInventory(item));
         this.currentlyOpeningBox = null;
+    }
+
+    possiblyOpenBonusBoxes() {
+        while (this.lootBoxList.length > 0) {
+            if (Math.random() > this._trainerService.getRanksForSkillById(skillId.advancedAvarice) * 0.07) {
+                return;
+            }
+            let bonusBox: IShopItem = this.lootBoxList.pop();
+            this._lootService.getItemsForLootBox(bonusBox).forEach(item => this._inventoryService.addToInventory(item));
+        }
     }
 }
