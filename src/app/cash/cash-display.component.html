@@ -15,15 +15,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor='let cash of getCash()'>
-                    <td>
-                        {{cash.quantity}}        
-                    </td>
-                    <td>
-                        {{getCurrencyName(cash)}}        
-                    </td>
-                </tr>
+                <ng-container *ngFor='let cash of getCash()'>
+                    <tr *ngIf="cash.quantity > 0">
+                        <td>
+                            {{cash.quantity}}
+                        </td>
+                        <td>
+                            {{getCurrencyName(cash)}}
+                        </td>
+                    </tr>
+                </ng-container>
             </tbody>
         </table>
-    </div>    
+    </div>
 </div>

@@ -2,12 +2,13 @@
 
 ## 5/27/2018
 
-* Added the Advanced Avaice skill, to open chests faster
+* Added the Advanced Avarice skill, to open chests faster
+* Added a Donate Cash button to the trainer (mostly to get rid of excess currency you no longer want)
 
 ## 5/26/2018
 
 * Compressed the tables to get more on the screen
-* Added a new trainer skill, multi-buy. Removed the Ctrl-click keyboard shortcut.
+* Added a new trainer skill, Multi-Buy. Removed the Ctrl-click keyboard shortcut.
 
 ## 5/25/2018
 

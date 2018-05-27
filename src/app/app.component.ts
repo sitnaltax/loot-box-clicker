@@ -22,6 +22,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class AppComponent {
     title = 'Loot Box Clicker';
     checkState = "hide";
+    exportText: string = "";
 
     constructor(private _storageService: StorageService, private _modalService: NgbModal) {
     }
@@ -38,5 +39,13 @@ export class AppComponent {
 
     reset() {
         this._storageService.triggerReset();
+    }
+
+    import() {
+        alert("imported:" + this.exportText);
+    }
+
+    export() {
+        this.exportText = "y helo";
     }
 }

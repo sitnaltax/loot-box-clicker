@@ -42,6 +42,10 @@ Whenever you open an item in a chest that isn't an upgrade for you, you have a 1
 
 Whenever you click to buy a chest, you'll buy 5 times more for every rank of this skill (so 5, 25, 125, etc.), limited by how much of the currency you have.
 
+### Advanced Avarice
+
+Whenever you open a chest, you have a 7% chance per rank of this skill to open another one immediately. This can repeat as long as you have chests and luck, so with enough ranks and luck you can open 3, 4, or more at a time.
+
 ## Acknowledgements
 
 Thanks to the idle games that inspired me: [Cookie Clicker](http://orteil.dashnet.org/cookieclicker/), [Kittens Game](http://www.bloodrizer.ru/games/kittens/), [Swarm Simulator](https://swarmsim.github.io/#/), and [Clicker Heroes](https://www.clickerheroes.com/).
