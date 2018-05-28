@@ -1,5 +1,9 @@
 # Changelog
 
+## 5/28/2018
+
+* Upgrade items now show their power in green, to more easily spot them.
+
 ## 5/27/2018
 
 * Added the Advanced Avarice skill, to open chests faster

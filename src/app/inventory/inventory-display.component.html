@@ -36,7 +36,7 @@
                         <ng-template #noequip><span ngbTooltip="Unequippable">{{getSlotNameForItem(item)}}</span></ng-template>
                     </td>
                     <td>
-                        {{getPowerOrValueForItem(item)}}
+                        <span [style.color]="getUpgradeStatusForItem(item) | upgradeStatusToColor">{{getPowerOrValueForItem(item)}}</span>
                     </td>
                     <td>
                         <button type="button" class="btn btn-outline-primary" (click)='donate(item)'>Donate</button>

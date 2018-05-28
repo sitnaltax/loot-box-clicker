@@ -29,6 +29,7 @@ import { TrainerService } from './trainer/trainer.service';
 import { RarityToColorPipe } from './shared/rarity-to-color.pipe';
 import { DetailsEditComponent } from './details/details-edit/details-edit.component';
 import { DetailsPageComponent } from './pages/details-page/details-page/details-page.component';
+import {UpgradeStatusToColorPipe} from "./inventory/upgrade-status-to-color.pipe";
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { DetailsPageComponent } from './pages/details-page/details-page/details-
         TrainerPageComponent,
         TrainerDisplayComponent,
         RarityToColorPipe,
+        UpgradeStatusToColorPipe,
         DetailsEditComponent,
         DetailsPageComponent
     ],

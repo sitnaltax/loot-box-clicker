@@ -4,6 +4,7 @@ import { equipmentSlot, IEquipmentItem, equipmentType } from '../equipment/equip
 import { EquipmentService } from '../equipment/equipment.service';
 import { HeroService } from '../hero/hero.service';
 import { RarityToColorPipe } from '../shared/rarity-to-color.pipe';
+import { UpgradeStatusToColorPipe } from './upgrade-status-to-color.pipe';
 
 @Component({
     selector: 'inventory-display',
@@ -47,6 +48,9 @@ export class InventoryDisplayComponent implements OnInit {
     }
 
     getUpgradeStatusForItem(item: IEquipmentItem): string {
+        if (item.type != equipmentType.equippable) {
+            return "Unequippable";
+        }
         let existingEquipment: IEquipmentItem = this._equipmentService.getHeroEquipment()[item.slot];
             if (existingEquipment == null) {
                 return "Upgrade";
