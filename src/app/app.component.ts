@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { StorageService } from './storage/storage.service';
 import { AnimationEvent, trigger, state, style, animate, transition, sequence } from '@angular/animations';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { IExportPackage } from './storage/export-package';
 
 @Component({
     selector: 'app-root',
@@ -42,10 +43,16 @@ export class AppComponent {
     }
 
     import() {
-        alert("imported:" + this.exportText);
+        let pkg: IExportPackage = JSON.parse(this.exportText);
+        this._storageService.importFromPackage(pkg);
+        window.location.reload(false);
     }
 
     export() {
-        this.exportText = "y helo";
+        this._storageService.triggerStore();
+        window.setTimeout(() => {
+            let pkg: IExportPackage = this._storageService.getExportPackage();
+            this.exportText = JSON.stringify(pkg);
+        }, 100)
     }
 }

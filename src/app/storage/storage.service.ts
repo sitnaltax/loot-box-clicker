@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
+import { IExportPackage } from './export-package';
 
 @Injectable()
 export class StorageService {
@@ -44,6 +45,27 @@ export class StorageService {
             localStorage.clear();
             this.resetSubject.next("reset");
             localStorage.clear();
+            window.location.reload(false);
         }
+    }
+
+    getExportPackage(): IExportPackage {
+        return {
+            cash: this.retrieve("cash"),
+            equipment: this.retrieve("equipment"),
+            inventory: this.retrieve("inventory"),
+            hero: this.retrieve("hero"),
+            lootBoxes: this.retrieve("lootBoxes"),
+            skills: this.retrieve("skills")
+        }
+    }
+
+    importFromPackage(pkg: IExportPackage) {
+        this.store("cash", pkg.cash);
+        this.store("equipment", pkg.equipment);
+        this.store("inventory", pkg.inventory);
+        this.store("hero", pkg.hero);
+        this.store("lootBoxes", pkg.lootBoxes);
+        this.store("skills", pkg.skills);
     }
 }
