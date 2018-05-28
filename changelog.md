@@ -3,6 +3,7 @@
 ## 5/28/2018
 
 * Upgrade items now show their power in green, to more easily spot them.
+* Added a bunch more adjectives
 
 ## 5/27/2018
 
