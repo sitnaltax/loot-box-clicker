@@ -18,7 +18,8 @@
             <tbody>
                 <tr *ngFor='let item of allShopItems'>
                     <td>
-                        <a (click)='purchase(item, $event)'><span class="text-primary" style="cursor: pointer; ">{{item.chestName}}</span></a>
+                        <a *ngIf="canPurchase(item)" (click)='purchase(item, $event)'><span class="text-primary" style="cursor: pointer; ">{{item.chestName}}</span></a>
+                        <span *ngIf="!canPurchase(item)">{{item.chestName}}</span>
                     </td>
                     <td>
                         {{item.cost.quantity}} {{getCurrencyName(item.cost)}}
