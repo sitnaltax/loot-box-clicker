@@ -40,16 +40,18 @@ export class LootService {
         "martial", "marital", "venerated", "sonic", "acerbic", "vigilant", "exotic", "quixotic", "hearty",
         "fancy", "alluring", "incisive", "compelling", "extraordinary", "peregrine", "avant-garde", "errant",
         "scintillating", "spendid", "luminous", "splendid", "congenial", "respectable", "pious", "impious",
-        "wicked", "reliable", "vigorous", "advantageous", "prickly", "spiky", "non-Euclidean", "tesselated"];
+        "wicked", "reliable", "vigorous", "advantageous", "prickly", "spiky", "non-Euclidean", "tesselated",
+        "chthonic", "supercilious", "salty", "roaring", "intrepid", "sagacious", "Athena's", "cromulent",
+        "embiggened", "bold", "tragic", "tragicomic"];
     suffixes: string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear",
         "of feather fall", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
         "of the mole rat", "of masculinity/femininity", "+1", "defender", "+2", "of ill repute",
-        "of the night", "aflame", "of holding", "of doom", "of healing"]
+        "of the night", "aflame", "of holding", "of doom", "of healing", "of wisdom"]
     allEnchantments: IEnchantment[] = [];
 
     junkNames: string[] = ["widget", "dingus", "tchotchke", "thingy", "doodad", "wad", "conjecture",
         "nonce", "scribble", "ditty", "tidbit", "trinket", "trifle", "triviality", "mite", "bauble",
-        "novelty", "knickknack", "doggerel", "curio", "novelty", "whatsit", "PHP app"];
+        "novelty", "knickknack", "doggerel", "curio", "novelty", "whatsit", "PHP app", "datum"];
     artNames: string[] = ["painting", "sculpture", "song", "opera", "symphony", "bracelet", "novel", "play",
         "board game", "video game", "comic", "dance", "theorem", "fanfic", "story", "novella", "TV show", "dish",
         "urn", "coffer", "outfit", "statue", "idol"];
