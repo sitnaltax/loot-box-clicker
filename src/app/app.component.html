@@ -3,7 +3,8 @@
         <img src="/LBC/assets/open-treasure-chest.png" width="30" height="30" class="d-inline-block align-top" alt="" /> Loot Box Clicker
         <a class="header-text ml-5" (click)="save()">Save</a>
         <span id="save-check" [@checkState]="checkState"> ✓</span>
-        <span class="header-text ml-5" (click)="open(about)">Options</span>
+        <span class="header-text ml-5" (click)="open(options)">Options</span>
+        <span class="header-text ml-5" (click)="open(about)">About</span>
     </span>
     <span class="navbar-brand mb-0 h1">
         <a class="header-text ml-5" (click)="reset()">Reset</a>
@@ -43,11 +44,29 @@
             <a target="_blank" href="https://github.com/sitnaltax/loot-box-clicker/blob/master/changelog.md">changelog</a> on Github.
             <br/>
         </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" (click)="c()">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #options let-c="close" let-d="dismiss" role="dialog" aria-labelledby="closeLabel" aria-hidden="true">
+    <div class="modal-header main-nav justify-content-start d-flex">
+        <h5 class="modal-title" id="closeLabel">Loot Box Clicker</h5>
+        <img src="/LBC/assets/open-treasure-chest.png" width="30" height="30" class="ml-1" />
+    </div>
+    <div class="modal-body">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="lootBoxNotificationsCB" [checked]="lootBoxNotifications" (click)="setLootBoxNotifications(!lootBoxNotifications)">
+            <label class="form-check-label" for="lootBoxNotificationsCB">
+                All Loot Box Notifications
+            </label>
+        </div>
         <textarea [(ngModel)]="exportText" rows=5></textarea><br/>
         <button type="button" class="btn btn-outline-primary mt-1" (click)="import()">Import</button>
         <button type="button" class="btn btn-outline-primary mt-1 ml-2" (click)="export()">Export</button>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" (click)="c()">OK</button>
+        <button type="button" class="btn btn-outline-primary" (click)="c()">Close</button>
     </div>
 </ng-template>

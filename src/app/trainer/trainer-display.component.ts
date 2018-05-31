@@ -25,7 +25,7 @@ export class TrainerDisplayComponent implements OnInit {
         this.allSkills.forEach((skill) => {
             this.allCosts.push(this.getCostForSkill[skill.skillId]);
             this.allRanks.push(this.getRanksForSkill[skill.skillId]);
-        })
+        });
     }
 
     getCostForSkill(skill: ISkill): number {
@@ -41,18 +41,7 @@ export class TrainerDisplayComponent implements OnInit {
     }
 
     donateCash() {
-        if (this._cashService.allCash.length == 0){
-            return;
-        }
-        let cashIndex: number = 0;
-        while (this._cashService.allCash[cashIndex] && this._cashService.allCash[cashIndex].quantity == 0) {
-            cashIndex += 1;
-        }
-        if (this._cashService.allCash[cashIndex]) {
-            this._heroService.addKarma(Math.floor(this._cashService.allCash[cashIndex].quantity / 1000));
-            this._cashService.allCash[cashIndex].quantity = 0;
-        }
-
+        this._heroService.donateCash();
     }
 
     ngOnInit() {

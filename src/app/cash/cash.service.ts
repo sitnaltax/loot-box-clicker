@@ -10,15 +10,14 @@ export class CashService {
     allCash: ICash[];
 
     constructor(private _storageService: StorageService) {
-        if (this._storageService.retrieve("cash")) {
-            this.allCash = this._storageService.retrieve("cash");
-        }
-        else {
+        if (this._storageService.retrieve('cash')) {
+            this.allCash = this._storageService.retrieve('cash');
+        } else {
             this.allCash = [];
         }
 
         this._storageService.autoSaveNotification.subscribe((dummy) => {
-            this._storageService.store("cash", this.allCash);
+            this._storageService.store('cash', this.allCash);
         });
 
         this._storageService.resetNotification.subscribe((dummy) => {
@@ -30,11 +29,11 @@ export class CashService {
         return this.allCash;
     }
 
-    currencyNames: string[] = ["copper pieces", "denarii", "silver pieces", "bit coins", "carnival tickets",
-        "gold pieces", "unobtainium pieces", "magic beans", "diamonds", "space bucks", "ether crystals", "soul gems",
-        "infinity stones", "completion coins"];
+    currencyNames: string[] = ['copper pieces', 'denarii', 'silver pieces', 'bit coins', 'carnival tickets',
+        'gold pieces', 'unobtainium pieces', 'magic beans', 'diamonds', 'space bucks', 'ether crystals', 'soul gems',
+        'infinity stones', 'completion coins'];
 
-    //to upgrade                cup  di  ag  btc  tix  aur  uno  mgb  dia  spa  et  so  inf
+    // to upgrade                cup  di  ag  btc  tix  aur  uno  mgb  dia  spa  et  so  inf
     currencyRatios: number[] = [100, 80, 40, 125, 100, 100, 100, 125, 100, 100, 80, 60, 500, 9999999];
 
     getCurrencyName(cash: ICash) {
@@ -42,21 +41,20 @@ export class CashService {
     }
 
     adventure(hero: IHero) {
-        //Cash earned = 2dPower - 1
-        var adventurePower = Math.floor(Math.random() * hero.power + 1) + Math.floor(Math.random() * hero.power + 1) - 1;
+        // Cash earned = 2dPower - 1
+        let adventurePower = Math.floor(Math.random() * hero.power + 1) + Math.floor(Math.random() * hero.power + 1) - 1;
 
-        //1 in criticalChance odds of a multiplier, which can explode
+        // 1 in criticalChance odds of a multiplier, which can explode
         while (Math.random() < hero.criticalChance) {
             adventurePower *= hero.criticalPower;
         }
         adventurePower = Math.floor(adventurePower);
 
-        var cashEarned = this.determineCashForAdventurePower(adventurePower);
+        const cashEarned = this.determineCashForAdventurePower(adventurePower);
 
         if (this.allCash[cashEarned.currency]) {
             this.allCash[cashEarned.currency].quantity += cashEarned.quantity;
-        }
-        else {
+        } else {
             this.allCash[cashEarned.currency] = cashEarned;
         }
     }
@@ -74,11 +72,9 @@ export class CashService {
     purchase(item: IShopItem): boolean {
         if (!(item.cost.currency in this.allCash)) {
             return false;
-        }
-        else if (item.cost.quantity > this.allCash[item.cost.currency].quantity) {
+        } else if (item.cost.quantity > this.allCash[item.cost.currency].quantity) {
             return false;
-        }
-        else {
+        } else {
             this.allCash[item.cost.currency].quantity -= item.cost.quantity;
             return true;
         }

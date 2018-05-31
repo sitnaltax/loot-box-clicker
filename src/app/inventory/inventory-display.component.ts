@@ -24,54 +24,48 @@ export class InventoryDisplayComponent implements OnInit {
     }
 
     getSlotNameForItem(item: IEquipmentItem): string {
-        if (item.type == equipmentType.art) {
-            return "Art";
-        }
-        else if (item.type == equipmentType.trophy) {
-            return "Trophy";
-        }
-        else if (item.type == equipmentType.equippable) {
+        if (item.type === equipmentType.art) {
+            return 'Art';
+        } else if (item.type === equipmentType.trophy) {
+            return 'Trophy';
+        } else if (item.type === equipmentType.equippable) {
             return this._equipmentService.getSlotName(item.slot);
-        }
-        else {
-            return "Unknown";
+        } else {
+            return 'Unknown';
         }
     }
 
     getPowerOrValueForItem(item: IEquipmentItem): number {
-        if (item.type == equipmentType.equippable) {
+        if (item.type === equipmentType.equippable) {
             return item.power;
-        }
-        else {
+        } else {
             return item.value;
         }
     }
 
     getUpgradeStatusForItem(item: IEquipmentItem): string {
-        if (item.type != equipmentType.equippable) {
-            return "Unequippable";
+        if (item.type !== equipmentType.equippable) {
+            return 'Unequippable';
         }
-        let existingEquipment: IEquipmentItem = this._equipmentService.getHeroEquipment()[item.slot];
+        const existingEquipment: IEquipmentItem = this._equipmentService.getHeroEquipment()[item.slot];
             if (existingEquipment == null) {
-                return "Upgrade";
+                return 'Upgrade';
             }
             if (item.power < existingEquipment.power) {
-                return "Downgrade";
+                return 'Downgrade';
+            } else if (item.power === existingEquipment.power) {
+                return 'Sidegrade';
+            } else if (item.power > existingEquipment.power) {
+                return 'Upgrade';
             }
-            else if (item.power == existingEquipment.power) {
-                return "Sidegrade";
-            }
-            else if (item.power > existingEquipment.power) {
-                return "Upgrade";
-            }
-            return "Unknown";
+            return 'Unknown';
         }
 
     equip(item: IEquipmentItem) {
-        if (item.type != equipmentType.equippable) {
+        if (item.type !== equipmentType.equippable) {
             return;
         }
-        var oldItem = this._equipmentService.equip(item);
+        const oldItem = this._equipmentService.equip(item);
         this._inventoryService.removeFromInventory(item);
         if (oldItem != null) {
             this._inventoryService.addToInventory(oldItem);
@@ -94,7 +88,7 @@ export class InventoryDisplayComponent implements OnInit {
 
     donateAll() {
         while (this._inventoryService.getInventory().length > 0) {
-            this._inventoryService.getInventory().forEach(item => { this.donate(item) });
+            this._inventoryService.getInventory().forEach(item => { this.donate(item); });
         }
     }
 }

@@ -2,14 +2,14 @@
     <div class="card-header">
         Loot ({{getLootBoxCount()}})
     </div>
-    <div class="card-body mx-auto">
+    <div class="card-body mx-auto w-100">
         <div class="progress">
             <div class="progress-bar" role="progressbar" [@boxState]="boxState" (@boxState.start)="animationStarted($event)" (@boxState.done)="animationEnded($event)" ></div>
         </div>
-        <div *ngIf='getCurrentlyOpeningBox()'>
+        <div *ngIf='getCurrentlyOpeningBox()' class='text-center'>
             Opening a <b>{{getCurrentlyOpeningBox().chestName}}</b>...
         </div>
-        <div *ngIf='!(getCurrentlyOpeningBox())'>
+        <div *ngIf='!(getCurrentlyOpeningBox())' class='text-center'>
             No loot box right now
         </div>
     </div>

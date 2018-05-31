@@ -15,13 +15,13 @@
                 </tr>
             </thead>
             <tbody>
-                <ng-container *ngFor='let cash of getCash()'>
-                    <tr *ngIf="cash.quantity > 0">
+                <ng-container *ngFor='let cash of getCash(); let i = index'>
+                    <tr>
                         <td>
                             {{cash.quantity}}
                         </td>
                         <td>
-                            {{getCurrencyName(cash)}}
+                            {{getCurrencyName(cash)}} <button *ngIf="i === 0 && getCash().length > 1" type="button" class="btn btn-sm btn-outline-primary float-right" (click)='donateCash()'>Donate</button>
                         </td>
                     </tr>
                 </ng-container>

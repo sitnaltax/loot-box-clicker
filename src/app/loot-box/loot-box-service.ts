@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { StorageService } from '../storage/storage.service';
 import { TrainerService } from '../trainer/trainer.service';
 import { skillId } from '../trainer/skill';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class LootBoxService {
@@ -18,8 +19,14 @@ export class LootBoxService {
     progressNotification: Observable<string>;
     private progressSubject: Subject<string>;
 
-    constructor(private _shopService: ShopService, private _lootService: LootService, private _storageService: StorageService,
-        private _inventoryService: InventoryService, private _trainerService: TrainerService) {
+    constructor(
+        private _shopService: ShopService,
+        private _lootService: LootService,
+        private _storageService: StorageService,
+        private _inventoryService: InventoryService,
+        private _trainerService: TrainerService,
+        private _toastrService: ToastrService
+    ) {
         if (this._storageService.retrieve('lootBoxes')) {
             this.lootBoxList = this._storageService.retrieve('lootBoxes');
         } else {
@@ -78,7 +85,7 @@ export class LootBoxService {
             return;
         }
 
-        this._lootService.getItemsForLootBox(this.currentlyOpeningBox).forEach(item => this._inventoryService.addToInventory(item));
+        this.handleBox(this.currentlyOpeningBox);
         this.currentlyOpeningBox = null;
     }
 
@@ -87,8 +94,23 @@ export class LootBoxService {
             if (Math.random() > this._trainerService.getRanksForSkillById(skillId.advancedAvarice) * 0.07) {
                 return;
             }
-            const bonusBox: IShopItem = this.lootBoxList.pop();
-            this._lootService.getItemsForLootBox(bonusBox).forEach(item => this._inventoryService.addToInventory(item));
+            this.handleBox(this.lootBoxList.pop());
         }
     }
+
+    handleBox(box: IShopItem) {
+        const gainedItems = this._lootService.getItemsForLootBox(box);
+        gainedItems.forEach(item => this._inventoryService.addToInventory(item));
+        const gainedItemsStr = gainedItems.map((i) => `<b>${i.itemName}${i.autoDonated ? '*' : ''}</b>` ).join(', ');
+        if (this._storageService.getConfig('lootBoxNotifications', true)) {
+            this._toastrService.info(`Received ${gainedItemsStr}`,
+                                     `Opened ${this.currentlyOpeningBox.chestName}`,
+                                     {
+                                         enableHtml: true,
+                                         positionClass: 'toast-bottom-right',
+                                     });
+        }
+    }
+
+
 }

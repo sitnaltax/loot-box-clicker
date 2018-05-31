@@ -22,10 +22,12 @@ import { IExportPackage } from './storage/export-package';
 })
 export class AppComponent {
     title = 'Loot Box Clicker';
-    checkState = "hide";
-    exportText: string = "";
+    checkState = 'hide';
+    exportText = '';
+    lootBoxNotifications;
 
     constructor(private _storageService: StorageService, private _modalService: NgbModal) {
+        this.lootBoxNotifications = this._storageService.getConfig('lootBoxNotifications', false);
     }
 
     open(content) {
@@ -34,8 +36,8 @@ export class AppComponent {
 
     save() {
         this._storageService.triggerStore();
-        this.checkState = "show";
-        window.setTimeout(() => this.checkState = "hide", 200);
+        this.checkState = 'show';
+        window.setTimeout(() => this.checkState = 'hide', 200);
     }
 
     reset() {
@@ -43,7 +45,7 @@ export class AppComponent {
     }
 
     import() {
-        let pkg: IExportPackage = JSON.parse(this.exportText);
+        const pkg: IExportPackage = JSON.parse(this.exportText);
         this._storageService.importFromPackage(pkg);
         window.location.reload(false);
     }
@@ -51,8 +53,13 @@ export class AppComponent {
     export() {
         this._storageService.triggerStore();
         window.setTimeout(() => {
-            let pkg: IExportPackage = this._storageService.getExportPackage();
+            const pkg: IExportPackage = this._storageService.getExportPackage();
             this.exportText = JSON.stringify(pkg);
-        }, 100)
+        }, 100);
+    }
+
+    setLootBoxNotifications(ev) {
+        this.lootBoxNotifications = !this.lootBoxNotifications;
+        this._storageService.setConfig('lootBoxNotifications', this.lootBoxNotifications);
     }
 }
