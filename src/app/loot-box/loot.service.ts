@@ -1,98 +1,100 @@
 import { Injectable } from '@angular/core';
 import { IShopItem } from '../shop/shop-item';
 import { IEquipmentItem, equipmentType, equipmentSlot, rarity } from '../equipment/equipment-item';
-import { EquipmentService } from "../equipment/equipment.service";
+import { EquipmentService } from '../equipment/equipment.service';
 import { IEnchantment, enchantmentType } from './enchantment';
 
-//Responsible for determining what you get from a chest
+// Responsible for determining what you get from a chest
 
 @Injectable()
 export class LootService {
 
-    allEquipmentSlots: equipmentSlot[]
+    allEquipmentSlots: equipmentSlot[];
     materialsByChestRank;
-    baseItemsBySlot: string[][] = [["wand", "staff", "briefcase", "towel", "screwdriver", "paintbrush", "checkbook", "smartphone", "science phone", "multitool"],
-    ["fidget spinner", "orb", "book", "pint glass", "duckie", "umbrella", "scissors"],
-    ["robe", "armor", "suit", "jacket", "vest", "shirt"], ["hat", "helm", "beanie", "headphones", "beret", "helmet"],
-    ["pants", "pantaloons", "greaves", "leg guards", "chaps", "trousers", "shorts", "skirt", "kilt"],
-    ["sandals", "shoes", "boots", "kicks", "treads", "waders"], ["gloves", "handguards", "gauntlets", "mitts", "mittens"],
-    ["cloak", "cape", "backguard", "backpack"], ["wristguards", "bracelets", "manacles"],
-    ["belt", "girdle", "fanny pack", "waistguard"], ["shoulder pads", "pauldrons", "shoulderguards", "epaulets"],
-    ["ring", "signet", "solitaire", "loop", "hoop", "knot", "band"],
-    ["amulet", "necklace", "choker", "chain", "pendant", "locket", "torc"],
-    ["badge", "hair clip", "wristwatch", "piercing", "purse", "bag"]];
-    //The rookie chest shouldn't have anything. The basic chest can only have the first 5 slots. After that every
-    //chest allows 1 more slot.
+    baseItemsBySlot: string[][] = [
+        ['wand', 'staff', 'briefcase', 'towel', 'screwdriver', 'paintbrush', 'checkbook', 'smartphone', 'science phone', 'multitool'],
+        ['fidget spinner', 'orb', 'book', 'pint glass', 'duckie', 'umbrella', 'scissors'],
+        ['robe', 'armor', 'suit', 'jacket', 'vest', 'shirt'], ['hat', 'helm', 'beanie', 'headphones', 'beret', 'helmet'],
+        ['pants', 'pantaloons', 'greaves', 'leg guards', 'chaps', 'trousers', 'shorts', 'skirt', 'kilt'],
+        ['sandals', 'shoes', 'boots', 'kicks', 'treads', 'waders'], ['gloves', 'handguards', 'gauntlets', 'mitts', 'mittens'],
+        ['cloak', 'cape', 'backguard', 'backpack'], ['wristguards', 'bracelets', 'manacles'],
+        ['belt', 'girdle', 'fanny pack', 'waistguard'], ['shoulder pads', 'pauldrons', 'shoulderguards', 'epaulets'],
+        ['ring', 'signet', 'solitaire', 'loop', 'hoop', 'knot', 'band'],
+        ['amulet', 'necklace', 'choker', 'chain', 'pendant', 'locket', 'torc'],
+        ['badge', 'hair clip', 'wristwatch', 'piercing', 'purse', 'bag']
+    ];
+    // The rookie chest shouldn't have anything. The basic chest can only have the first 5 slots. After that every
+    // chest allows 1 more slot.
 
-    prefixes: string[] = ["lustrous", "vorpal", "acidic", "questionable", "vibrating", "ineffable", "silly",
-        "renowned", "glistening", "gossamer", "toxic", "bejeweled", "shadowy", "shady", "resplendent",
-        "serpentine", "hircine", "hirsute", "xenophilic", "blessed", "well-crafted", "deluxe", "shiny",
-        "humorous", "ill-tempered", "solid", "ectoplasmic", "adamantine", "faceted", "sanctified", "kinky",
-        "perverted", "diurnal", "crepuscular", "nocturnal", "saturnine", "grim", "hardened", "hallowed",
-        "elven", "dwarven", "inhuman", "divine", "profane", "axiomatic", "tautological", "your mom's",
-        "nonbinary", "engorged", "problematic", "blue", "dour", "mythic", "legendary", "menacing", "semiotic",
-        "wondrous", "splendid", "resplendent", "furry", "majestic", "mighty", "mirthful", "unparalleled",
-        "pleasant", "suspicious", "doomed", "blackguard's", "Mordenkainen's", "masterful", "well-intentioned",
-        "lunar", "solar", "quirky", "resolute", "tenacious", "quick", "inhumane", "tight", "oversized",
-        "outlandish", "freezing", "malicious", "beneficient", "portable", "unimaginable", "forbidden",
-        "forbidding", "masterwork", "grand", "grandiose", "loquacious", "laconic", "stoic", "hardy",
-        "reinforced", "adequate", "superior", "superlative", "exquisite", "extraordinary", "jovial",
-        "martial", "marital", "venerated", "sonic", "acerbic", "vigilant", "exotic", "quixotic", "hearty",
-        "fancy", "alluring", "incisive", "compelling", "extraordinary", "peregrine", "avant-garde", "errant",
-        "scintillating", "luminous", "splendid", "congenial", "respectable", "pious", "impious",
-        "wicked", "reliable", "vigorous", "advantageous", "prickly", "spiky", "non-Euclidean", "tesselated",
-        "chthonic", "supercilious", "salty", "roaring", "intrepid", "sagacious", "Athena's", "cromulent",
-        "embiggened", "bold", "tragic", "tragicomic"];
-    suffixes: string[] = ["of the eagle", "of Zagy", "of gainful conjuration", "of the bear",
-        "of feather fall", "of the diplodocus", "of charisma", "of annihilation", "of lordly might",
-        "of the mole rat", "of masculinity/femininity", "+1", "defender", "+2", "of ill repute",
-        "of the night", "aflame", "of holding", "of doom", "of healing", "of wisdom"]
+    prefixes: string[] = ['lustrous', 'vorpal', 'acidic', 'questionable', 'vibrating', 'ineffable', 'silly',
+        'renowned', 'glistening', 'gossamer', 'toxic', 'bejeweled', 'shadowy', 'shady', 'resplendent',
+        'serpentine', 'hircine', 'hirsute', 'xenophilic', 'blessed', 'well-crafted', 'deluxe', 'shiny',
+        'humorous', 'ill-tempered', 'solid', 'ectoplasmic', 'adamantine', 'faceted', 'sanctified', 'kinky',
+        'perverted', 'diurnal', 'crepuscular', 'nocturnal', 'saturnine', 'grim', 'hardened', 'hallowed',
+        'elven', 'dwarven', 'inhuman', 'divine', 'profane', 'axiomatic', 'tautological', 'your mom\'s',
+        'nonbinary', 'engorged', 'problematic', 'blue', 'dour', 'mythic', 'legendary', 'menacing', 'semiotic',
+        'wondrous', 'splendid', 'resplendent', 'furry', 'majestic', 'mighty', 'mirthful', 'unparalleled',
+        'pleasant', 'suspicious', 'doomed', 'blackguard\'s', 'Mordenkainen\'s', 'masterful', 'well-intentioned',
+        'lunar', 'solar', 'quirky', 'resolute', 'tenacious', 'quick', 'inhumane', 'tight', 'oversized',
+        'outlandish', 'freezing', 'malicious', 'beneficient', 'portable', 'unimaginable', 'forbidden',
+        'forbidding', 'masterwork', 'grand', 'grandiose', 'loquacious', 'laconic', 'stoic', 'hardy',
+        'reinforced', 'adequate', 'superior', 'superlative', 'exquisite', 'extraordinary', 'jovial',
+        'martial', 'marital', 'venerated', 'sonic', 'acerbic', 'vigilant', 'exotic', 'quixotic', 'hearty',
+        'fancy', 'alluring', 'incisive', 'compelling', 'extraordinary', 'peregrine', 'avant-garde', 'errant',
+        'scintillating', 'luminous', 'splendid', 'congenial', 'respectable', 'pious', 'impious',
+        'wicked', 'reliable', 'vigorous', 'advantageous', 'prickly', 'spiky', 'non-Euclidean', 'tesselated',
+        'chthonic', 'supercilious', 'salty', 'roaring', 'intrepid', 'sagacious', 'Athena\'s', 'cromulent',
+        'embiggened', 'bold', 'tragic', 'tragicomic'];
+    suffixes: string[] = ['of the eagle', 'of Zagy', 'of gainful conjuration', 'of the bear',
+        'of feather fall', 'of the diplodocus', 'of charisma', 'of annihilation', 'of lordly might',
+        'of the mole rat', 'of masculinity/femininity', '+1', 'defender', '+2', 'of ill repute',
+        'of the night', 'aflame', 'of holding', 'of doom', 'of healing', 'of wisdom'];
     allEnchantments: IEnchantment[] = [];
 
-    junkNames: string[] = ["widget", "dingus", "tchotchke", "thingy", "doodad", "wad", "conjecture",
-        "nonce", "scribble", "ditty", "tidbit", "trinket", "trifle", "triviality", "mite", "bauble",
-        "novelty", "knickknack", "doggerel", "curio", "novelty", "whatsit", "PHP app", "datum"];
-    artNames: string[] = ["painting", "sculpture", "song", "opera", "symphony", "bracelet", "novel", "play",
-        "board game", "video game", "comic", "dance", "theorem", "fanfic", "story", "novella", "TV show", "dish",
-        "urn", "coffer", "outfit", "statue", "idol"];
+    junkNames: string[] = ['widget', 'dingus', 'tchotchke', 'thingy', 'doodad', 'wad', 'conjecture',
+        'nonce', 'scribble', 'ditty', 'tidbit', 'trinket', 'trifle', 'triviality', 'mite', 'bauble',
+        'novelty', 'knickknack', 'doggerel', 'curio', 'novelty', 'whatsit', 'PHP app', 'datum'];
+    artNames: string[] = ['painting', 'sculpture', 'song', 'opera', 'symphony', 'bracelet', 'novel', 'play',
+        'board game', 'video game', 'comic', 'dance', 'theorem', 'fanfic', 'story', 'novella', 'TV show', 'dish',
+        'urn', 'coffer', 'outfit', 'statue', 'idol'];
 
-    extraItemsPerLootBox: number[] = [0, 0, 0, 0.3, 0.3, 0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 1, 1.5, 25, 0]
+    extraItemsPerLootBox: number[] = [0, 0, 0, 0.3, 0.3, 0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 1, 1.5, 25, 0];
     slotsAllowedByRank: number[] = [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14, 14, 14, 14, 14, 14];
     constructor(private _equipmentService: EquipmentService) {
         this.allEquipmentSlots = _equipmentService.getAllEquipmentSlots();
-        this.materialsByChestRank = [[{ name: "unknown", power: 1 }],
-        [{ name: "iron", power: 2 }, { name: "steel", power: 3 }],
-        [{ name: "decrepit", power: 2 }, { name: "unearthed", power: 3 }, { name: "historic", power: 4 }],
-        [{ name: "zinc", power: 2 }, { name: "tin", power: 3 }, { name: "silver", power: 4 }, { name: "mithril", power: 5 }],
-        [{ name: "silicone", power: 3 }, { name: "silicon", power: 4 }, { name: "electric", power: 5 }, { name: "cybernetic", power: 6 }],
-        [{ name: "imitation", power: 4 }, { name: "rubber", power: 5 }, { name: "inflatable", power: 6 }, { name: "rainbow", power: 7 }],
-        [{ name: "pyrite", power: 5 }, { name: "gilt", power: 6 }, { name: "gold", power: 7 }, { name: "orichalcum", power: 8 }],
-        [{ name: "unclaimed", power: 6 }, { name: "hovering", power: 7 }, { name: "impossible", power: 8 }, { name: "prophesied", power: 9 }],
-        [{ name: "wooden", power: 7 }, { name: "organic", power: 8 }, { name: "living", power: 9 }, { name: "biological", power: 10 }],
-        [{ name: "quartz", power: 8 }, { name: "crystalline", power: 9 }, { name: "diamond", power: 10 }, { name: "adamantine", power: 11 }],
-        [{ name: "meteoric", power: 9 }, { name: "planetary", power: 10 }, { name: "stellar", power: 11 }, { name: "galactic", power: 12 }],
-        //At this point all the slots are used so the power increases more
-        [{ name: "wispy", power: 11 }, { name: "ectoplasmic", power: 13 }, { name: "ethereal", power: 15 }, { name: "astral", power: 17 }],
-        [{ name: "black", power: 14 }, { name: "silver-filigreed", power: 17 }, { name: "obsidian", power: 20 }, { name: "bloodstone", power: 23 }],
-        [{ name: "inconceivable", power: 18 }, { name: "infinite", power: 22 }, { name: "eternal", power: 26 }, { name: "endless", power: 30 }]
+        this.materialsByChestRank = [[{ name: 'unknown', power: 1 }],
+        [{ name: 'iron', power: 2 }, { name: 'steel', power: 3 }],
+        [{ name: 'decrepit', power: 2 }, { name: 'unearthed', power: 3 }, { name: 'historic', power: 4 }],
+        [{ name: 'zinc', power: 2 }, { name: 'tin', power: 3 }, { name: 'silver', power: 4 }, { name: 'mithril', power: 5 }],
+        [{ name: 'silicone', power: 3 }, { name: 'silicon', power: 4 }, { name: 'electric', power: 5 }, { name: 'cybernetic', power: 6 }],
+        [{ name: 'imitation', power: 4 }, { name: 'rubber', power: 5 }, { name: 'inflatable', power: 6 }, { name: 'rainbow', power: 7 }],
+        [{ name: 'pyrite', power: 5 }, { name: 'gilt', power: 6 }, { name: 'gold', power: 7 }, { name: 'orichalcum', power: 8 }],
+        [{ name: 'unclaimed', power: 6 }, { name: 'hovering', power: 7 }, { name: 'impossible', power: 8 }, { name: 'prophesied', power: 9 }],
+        [{ name: 'wooden', power: 7 }, { name: 'organic', power: 8 }, { name: 'living', power: 9 }, { name: 'biological', power: 10 }],
+        [{ name: 'quartz', power: 8 }, { name: 'crystalline', power: 9 }, { name: 'diamond', power: 10 }, { name: 'adamantine', power: 11 }],
+        [{ name: 'meteoric', power: 9 }, { name: 'planetary', power: 10 }, { name: 'stellar', power: 11 }, { name: 'galactic', power: 12 }],
+        // At this point all the slots are used so the power increases more
+        [{ name: 'wispy', power: 11 }, { name: 'ectoplasmic', power: 13 }, { name: 'ethereal', power: 15 }, { name: 'astral', power: 17 }],
+        [{ name: 'black', power: 14 }, { name: 'silver-filigreed', power: 17 }, { name: 'obsidian', power: 20 }, { name: 'bloodstone', power: 23 }],
+        [{ name: 'inconceivable', power: 18 }, { name: 'infinite', power: 22 }, { name: 'eternal', power: 26 }, { name: 'endless', power: 30 }]
         ];
         this.prefixes.forEach((item) => this.allEnchantments.push({ text: item, type: enchantmentType.prefix }));
         this.suffixes.forEach((item) => this.allEnchantments.push({ text: item, type: enchantmentType.suffix }));
     }
 
     getItemsForLootBox(lootBox: IShopItem): IEquipmentItem[] {
-        if (lootBox.rank == 0) {
+        if (lootBox.rank === 0) {
             return [{
-                itemName: "Claymore of Commencement", type: equipmentType.equippable, slot: equipmentSlot.mainhand,
+                itemName: 'Claymore of Commencement', type: equipmentType.equippable, slot: equipmentSlot.mainhand,
                 power: 3, value: 1, rarity: 1
-            }]
+            }];
         }
-        if (lootBox.rank == 14) {
+        if (lootBox.rank === 14) {
             return this.getItemsForVictoryChest();
         }
 
-        let allItems = [];
-        let possibleItems = [];
+        const allItems = [];
+        const possibleItems = [];
 
         possibleItems.push(this.createEquipmentItemForLootBox(lootBox));
 
@@ -108,16 +110,16 @@ export class LootService {
 
         allItems.push(this.findMostPowerfulItem(possibleItems));
 
-        let junkItems: IEquipmentItem[] = this.getJunkForLootBox(lootBox);
-        junkItems.forEach((item) => { allItems.push(item) });
+        const junkItems: IEquipmentItem[] = this.getJunkForLootBox(lootBox);
+        junkItems.forEach((item) => { allItems.push(item); });
 
         return allItems;
     }
 
     createEquipmentItemForLootBox(lootBox: IShopItem): IEquipmentItem {
-        let slot = this.getRandomSlotForLootBox(lootBox);
-        let baseItem = this.getNameAndPowerForItem(lootBox, slot);
-        let rarity = this.getRarityForItem(lootBox, baseItem.power);
+        const slot = this.getRandomSlotForLootBox(lootBox);
+        const baseItem = this.getNameAndPowerForItem(lootBox, slot);
+        const rarity = this.getRarityForItem(lootBox, baseItem.power);
 
         return {
             itemName: baseItem.name, type: equipmentType.equippable, slot: slot,
@@ -126,19 +128,23 @@ export class LootService {
     }
 
     getRandomSlotForLootBox(lootBox: IShopItem): equipmentSlot {
+        const slotsAllowed = this.getSlotsAllowedForLootBox(lootBox);
+        return this.allEquipmentSlots[Math.floor(Math.random() * slotsAllowed)];
+    }
+
+    getSlotsAllowedForLootBox(lootBox: IShopItem): number {
         let slotsAllowed;
         if (lootBox.rank > this.slotsAllowedByRank.length + 1) {
             slotsAllowed = this.allEquipmentSlots.length;
         }
-        slotsAllowed = Math.min(this.allEquipmentSlots.length, this.slotsAllowedByRank[lootBox.rank])
-        return this.allEquipmentSlots[Math.floor(Math.random() * slotsAllowed)];
+        return Math.min(this.allEquipmentSlots.length, this.slotsAllowedByRank[lootBox.rank]);
     }
 
     getNameAndPowerForItem(lootBox: IShopItem, slot: equipmentSlot) {
-        let materialAndPowerList = this.materialsByChestRank[lootBox.rank];
-        let materialAndPower = materialAndPowerList[Math.floor(Math.random() * materialAndPowerList.length)];
-        let enchantmentCount = this.getEnchantmentCountForChest(lootBox);
-        let baseName = materialAndPower.name + " " + this.getBaseItemBySlot(slot);
+        const materialAndPowerList = this.materialsByChestRank[lootBox.rank];
+        const materialAndPower = materialAndPowerList[Math.floor(Math.random() * materialAndPowerList.length)];
+        const enchantmentCount = this.getEnchantmentCountForChest(lootBox);
+        const baseName = materialAndPower.name + ' ' + this.getBaseItemBySlot(slot);
 
         return {
             name: this.getEnchantedName(baseName, enchantmentCount),
@@ -146,13 +152,13 @@ export class LootService {
         };
     }
 
-    findMostPowerfulItem(items: IEquipmentItem[]): IEquipmentItem{
+    findMostPowerfulItem(items: IEquipmentItem[]): IEquipmentItem {
         let best: IEquipmentItem = items[0];
-        items.forEach((item) => {if (item.power > best.power) {best = item;}});
+        items.forEach((item) => {if (item.power > best.power) {best = item; }});
         return best;
     }
 
-    //TODO: see what works with these values                 
+    // TODO: see what works with these values
     uncommonThresholds: number[] =  [99, 99, 5,  6,  8,   9, 11, 13, 15, 18, 20, 25, 30, 40];
     rareThresholds: number[] =      [99, 99, 99, 8,  9,  11, 14, 16, 18, 21, 24, 28, 35, 45];
     epicThresholds: number[] =      [99, 99, 99, 99, 99, 13, 17, 19, 21, 25, 30, 35, 40, 50];
@@ -161,35 +167,30 @@ export class LootService {
     getRarityForItem(lootBox: IShopItem, power: number): rarity {
         if (power >= this.legendaryThresholds[lootBox.rank]) {
             return rarity.legendary;
-        }
-        else if (power >= this.epicThresholds[lootBox.rank]) {
+        } else if (power >= this.epicThresholds[lootBox.rank]) {
             return rarity.epic;
-        }
-        else if (power >= this.rareThresholds[lootBox.rank]) {
+        } else if (power >= this.rareThresholds[lootBox.rank]) {
             return rarity.rare;
-        }
-        else if (power >= this.uncommonThresholds[lootBox.rank]) {
+        } else if (power >= this.uncommonThresholds[lootBox.rank]) {
             return rarity.uncommon;
-        }
-        else {
+        } else {
             return rarity.common;
         }
     }
 
     getEnchantedName(baseName: string, enchantmentCount: number): string {
-        let enchantments: IEnchantment[] = [];
+        const enchantments: IEnchantment[] = [];
         for (let i = 0; i < enchantmentCount; i++) {
             enchantments.push(this.allEnchantments[Math.floor(Math.random() * this.allEnchantments.length)]);
         }
         let workingName: string = baseName;
         enchantments.forEach((enchantment) => {
-            if (enchantment.type == enchantmentType.prefix) {
-                workingName = enchantment.text + " " + workingName;
+            if (enchantment.type === enchantmentType.prefix) {
+                workingName = enchantment.text + ' ' + workingName;
+            } else { // it's a suffix
+                workingName = workingName + ' ' + enchantment.text;
             }
-            else { //it's a suffix
-                workingName = workingName + " " + enchantment.text;
-            }
-        })
+        });
         return workingName;
     }
 
@@ -201,7 +202,7 @@ export class LootService {
         let enchantments = 0;
         let possibleEnchantments = lootBox.rank;
         if (lootBox.rank >= 11) {
-            possibleEnchantments += ((lootBox.rank - 10) * (lootBox.rank - 10)); //At this level there are no slots left so allow more enchantments
+            possibleEnchantments += ((lootBox.rank - 10) * (lootBox.rank - 10)); // At this level there are no slots left so allow more enchantments
         }
         for (let i = 1; i < lootBox.rank; i++) {
             if (Math.random() < this.chanceOfEnchantment) {
@@ -218,16 +219,16 @@ export class LootService {
     }
 
     getBaseItemBySlot(slot: equipmentSlot): string {
-        let possibleBaseItems = this.baseItemsBySlot[slot];
+        const possibleBaseItems = this.baseItemsBySlot[slot];
         return possibleBaseItems[Math.floor(Math.random() * possibleBaseItems.length)];
     }
 
-    chanceOfJunk: number = 1 / 8; //chance of finding some junk item
-    chanceOfArt: number = 1 / 4; //chance of it being valuable (more Fame) art
+    chanceOfJunk: number = 1 / 8; // chance of finding some junk item
+    chanceOfArt: number = 1 / 4; // chance of it being valuable (more Fame) art
 
 
     getJunkForLootBox(box: IShopItem): IEquipmentItem[] {
-        let items: IEquipmentItem[] = [];
+        const items: IEquipmentItem[] = [];
         let junkName: string;
         let junkValue: number;
         if (Math.random() < this.chanceOfJunk) {
@@ -237,18 +238,17 @@ export class LootService {
                 for (let i = 0; i < 3; i++) {
                     junkValue += Math.floor(Math.random() * box.rank * box.rank * 10);
                 }
-            }
-            else {
+            } else {
                 junkName = this.junkNames[Math.floor(Math.random() * this.junkNames.length)];
                 junkValue = Math.floor(Math.random() * box.rank * 10) + 1;
             }
 
-            let fullName = this.prefixes[Math.floor(Math.random() * this.prefixes.length)] + " " + junkName;
+            const fullName = this.prefixes[Math.floor(Math.random() * this.prefixes.length)] + ' ' + junkName;
 
             items.push({
                 itemName: fullName, type: equipmentType.art,
                 value: junkValue, rarity: rarity.junk
-            })
+            });
         }
 
         return items;
@@ -256,59 +256,59 @@ export class LootService {
 
     getItemsForVictoryChest(): IEquipmentItem[] {
         return [{
-            itemName: "Claymore of Completion", type: equipmentType.equippable, slot: equipmentSlot.mainhand,
+            itemName: 'Claymore of Completion', type: equipmentType.equippable, slot: equipmentSlot.mainhand,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Cassette of Culmination", type: equipmentType.equippable, slot: equipmentSlot.offhand,
+            itemName: 'Cassette of Culmination', type: equipmentType.equippable, slot: equipmentSlot.offhand,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Armor of Achievement", type: equipmentType.equippable, slot: equipmentSlot.armor,
+            itemName: 'Armor of Achievement', type: equipmentType.equippable, slot: equipmentSlot.armor,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Trilby of Triumph", type: equipmentType.equippable, slot: equipmentSlot.helm,
+            itemName: 'Trilby of Triumph', type: equipmentType.equippable, slot: equipmentSlot.helm,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Pants of Performance", type: equipmentType.equippable, slot: equipmentSlot.legs,
+            itemName: 'Pants of Performance', type: equipmentType.equippable, slot: equipmentSlot.legs,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Shoes of Success", type: equipmentType.equippable, slot: equipmentSlot.feet,
+            itemName: 'Shoes of Success', type: equipmentType.equippable, slot: equipmentSlot.feet,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Gloves of Greatness", type: equipmentType.equippable, slot: equipmentSlot.hands,
+            itemName: 'Gloves of Greatness', type: equipmentType.equippable, slot: equipmentSlot.hands,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Cloak of Conclusion", type: equipmentType.equippable, slot: equipmentSlot.cloak,
+            itemName: 'Cloak of Conclusion', type: equipmentType.equippable, slot: equipmentSlot.cloak,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Manacles of Merit", type: equipmentType.equippable, slot: equipmentSlot.wrists,
+            itemName: 'Manacles of Merit', type: equipmentType.equippable, slot: equipmentSlot.wrists,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Cummerbund of Consummation", type: equipmentType.equippable, slot: equipmentSlot.waist,
+            itemName: 'Cummerbund of Consummation', type: equipmentType.equippable, slot: equipmentSlot.waist,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Epaulets of Effort", type: equipmentType.equippable, slot: equipmentSlot.shoulders,
+            itemName: 'Epaulets of Effort', type: equipmentType.equippable, slot: equipmentSlot.shoulders,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Ring of Realization", type: equipmentType.equippable, slot: equipmentSlot.ring,
+            itemName: 'Ring of Realization', type: equipmentType.equippable, slot: equipmentSlot.ring,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Amulet of Achievement", type: equipmentType.equippable, slot: equipmentSlot.amulet,
+            itemName: 'Amulet of Achievement', type: equipmentType.equippable, slot: equipmentSlot.amulet,
             power: 200, value: 50000, rarity: rarity.legendary
         },
         {
-            itemName: "Wallet of Winning", type: equipmentType.equippable, slot: equipmentSlot.accessory,
+            itemName: 'Wallet of Winning', type: equipmentType.equippable, slot: equipmentSlot.accessory,
             power: 200, value: 50000, rarity: rarity.legendary
         }
         ];

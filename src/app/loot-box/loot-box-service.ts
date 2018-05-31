@@ -8,6 +8,8 @@ import { Subject } from 'rxjs';
 import { StorageService } from '../storage/storage.service';
 import { TrainerService } from '../trainer/trainer.service';
 import { skillId } from '../trainer/skill';
+import { equipmentSlot } from '../equipment/equipment-item';
+import { EquipmentService } from '../equipment/equipment.service';
 
 @Injectable()
 export class LootBoxService {
@@ -18,8 +20,14 @@ export class LootBoxService {
     progressNotification: Observable<string>;
     private progressSubject: Subject<string>;
 
-    constructor(private _shopService: ShopService, private _lootService: LootService, private _storageService: StorageService,
-        private _inventoryService: InventoryService, private _trainerService: TrainerService) {
+    constructor(
+        private _shopService: ShopService,
+        private _lootService: LootService,
+        private _storageService: StorageService,
+        private _inventoryService: InventoryService,
+        private _trainerService: TrainerService,
+        private _equipmentService: EquipmentService,
+    ) {
         if (this._storageService.retrieve('lootBoxes')) {
             this.lootBoxList = this._storageService.retrieve('lootBoxes');
         } else {
@@ -90,5 +98,10 @@ export class LootBoxService {
             const bonusBox: IShopItem = this.lootBoxList.pop();
             this._lootService.getItemsForLootBox(bonusBox).forEach(item => this._inventoryService.addToInventory(item));
         }
+    }
+
+    getPossibleContentsForLootBox(lootBox: IShopItem): equipmentSlot[] {
+        const maxSlotType = this._lootService.getSlotsAllowedForLootBox(lootBox);
+        return this._equipmentService.getAllEquipmentSlots().slice(0, maxSlotType);
     }
 }
