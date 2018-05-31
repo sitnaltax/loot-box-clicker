@@ -1,5 +1,10 @@
 # Changelog
 
+## 5/31/2018
+
+* Hero power now displays in scientific notation if it's at least 100000.
+* Fixed the inadvertently broken Advanced Avarice skill
+
 ## 5/30/2018
 
 * Thanks to TheFirstAvenger for the following contributions:

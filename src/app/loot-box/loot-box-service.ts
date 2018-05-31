@@ -84,7 +84,7 @@ export class LootBoxService {
 
     possiblyOpenBonusBoxes() {
         while (this.lootBoxList.length > 0) {
-            if (Math.random() > Math.min(this._trainerService.getRanksForSkillById(skillId.advancedAvarice) * 0.07), 0.9) {
+            if (Math.random() > Math.min(this._trainerService.getRanksForSkillById(skillId.advancedAvarice) * 0.07, 0.9)) {
                 return;
             }
             const bonusBox: IShopItem = this.lootBoxList.pop();
