@@ -9,6 +9,7 @@
                     <th>
                         Item
                     </th>
+                    <th>Owned</th>
                     <th>
                         Cost
                     </th>
@@ -19,6 +20,9 @@
                 <tr *ngFor='let item of allShopItems'>
                     <td>
                         <a (click)='purchase(item, $event)'><span class="text-primary text-noselect" style="cursor: pointer; ">{{item.chestName}}</span></a>
+                    </td>
+                    <td>
+                        {{ownedItemCount(item)}}
                     </td>
                     <td>
                         {{item.cost.quantity}} {{getCurrencyName(item.cost)}}

@@ -17,6 +17,7 @@ export class LootBoxService {
     lootBoxOpeningProgress: number;
     progressNotification: Observable<string>;
     private progressSubject: Subject<string>;
+    private lootBoxCountsForItems = {};
 
     constructor(private _shopService: ShopService, private _lootService: LootService, private _storageService: StorageService,
         private _inventoryService: InventoryService, private _trainerService: TrainerService) {
@@ -34,7 +35,7 @@ export class LootBoxService {
             this.lootBoxList = [];
             this.currentlyOpeningBox = null;
         });
-
+        this.setLootBoxCountsForItems();
         this.currentlyOpeningBox = null;
         this.lootBoxOpeningTime = 2500;
         this.progressSubject = new Subject<string>();
@@ -44,6 +45,7 @@ export class LootBoxService {
 
     addLootBox(lootBox: IShopItem) {
         this.lootBoxList.push(lootBox);
+        this.setLootBoxCountsForItems();
         this.openBox();
     }
 
@@ -64,6 +66,7 @@ export class LootBoxService {
         }
         this.progressSubject.next('box');
         this.currentlyOpeningBox = this.lootBoxList.pop();
+        this.setLootBoxCountsForItems();
         this.possiblyOpenBonusBoxes();
         window.setTimeout(() => {
 
@@ -88,7 +91,25 @@ export class LootBoxService {
                 return;
             }
             const bonusBox: IShopItem = this.lootBoxList.pop();
+            this.setLootBoxCountsForItems();
             this._lootService.getItemsForLootBox(bonusBox).forEach(item => this._inventoryService.addToInventory(item));
         }
+    }
+
+    setLootBoxCountsForItems() {
+        const newList = {};
+        for (const box of this.lootBoxList) {
+            if (!newList[box.chestName]) {
+                newList[box.chestName] = 1;
+            } else {
+                newList[box.chestName] += 1;
+            }
+        }
+        this.lootBoxCountsForItems = newList;
+    }
+
+    getLootBoxCountForItem(item: IShopItem): number {
+        const count = this.lootBoxCountsForItems[item.chestName];
+        return count ? count : 0;
     }
 }

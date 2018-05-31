@@ -26,15 +26,19 @@ export class ShopComponent implements OnInit {
     }
 
     purchase(item: IShopItem, event) {
-        let iterations: number = Math.pow(5, this._trainerService.getRanksForSkillById(skillId.multiBuy));
+        const iterations: number = Math.pow(5, this._trainerService.getRanksForSkillById(skillId.multiBuy));
         for (let i = 0; i < iterations; i++) {
             if (this._cashService.purchase(item)) {
                 this._lootBoxService.addLootBox(item);
-            }
-            else {
+            } else {
                 break;
             }
         }
+    }
+
+    ownedItemCount(item: IShopItem) {
+        const count = this._lootBoxService.getLootBoxCountForItem(item);
+        return count > 0 ? count : '';
     }
 
     ngOnInit() {
