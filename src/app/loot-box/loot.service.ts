@@ -39,7 +39,7 @@ export class LootService {
         "reinforced", "adequate", "superior", "superlative", "exquisite", "extraordinary", "jovial",
         "martial", "marital", "venerated", "sonic", "acerbic", "vigilant", "exotic", "quixotic", "hearty",
         "fancy", "alluring", "incisive", "compelling", "extraordinary", "peregrine", "avant-garde", "errant",
-        "scintillating", "spendid", "luminous", "splendid", "congenial", "respectable", "pious", "impious",
+        "scintillating", "luminous", "splendid", "congenial", "respectable", "pious", "impious",
         "wicked", "reliable", "vigorous", "advantageous", "prickly", "spiky", "non-Euclidean", "tesselated",
         "chthonic", "supercilious", "salty", "roaring", "intrepid", "sagacious", "Athena's", "cromulent",
         "embiggened", "bold", "tragic", "tragicomic"];

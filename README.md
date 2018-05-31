@@ -48,6 +48,6 @@ Whenever you open a chest, you have a 7% chance per rank of this skill to open a
 
 ## Acknowledgements
 
-Thanks to the idle games that inspired me: [Cookie Clicker](http://orteil.dashnet.org/cookieclicker/), [Kittens Game](http://www.bloodrizer.ru/games/kittens/), [Swarm Simulator](https://swarmsim.github.io/#/), and [Clicker Heroes](https://www.clickerheroes.com/).
+Thanks to the idle games that inspired me: [Cookie Clicker](http://orteil.dashnet.org/cookieclicker/), [Kittens Game](http://www.bloodrizer.ru/games/kittens/), [Swarm Simulator](https://swarmsim.github.io/#/), [Clicker Heroes](https://www.clickerheroes.com/), and [Progress Quest](http://progressquest.com/).
 
 This was built using [Angular](https://angular.io/) and [Bootstrap](http://getbootstrap.com/). The logo is from http://game-icons.net.
