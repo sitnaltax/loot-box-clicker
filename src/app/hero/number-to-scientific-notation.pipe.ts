@@ -8,7 +8,7 @@ export class NumberToScientificNotationPipe implements PipeTransform {
         if (input < 100000) {
             return "" + input;
         }
-        let power = Math.round(Math.log10(input));
+        let power = Math.round(Math.log10(input)) - 1;
         let mantissa = (input / (Math.pow(10, power))).toFixed(3);
         return mantissa.toString() + ' × 10<sup>' + power.toString() + '</sup>';
     }
