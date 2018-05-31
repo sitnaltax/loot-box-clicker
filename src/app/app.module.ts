@@ -29,7 +29,8 @@ import { TrainerService } from './trainer/trainer.service';
 import { RarityToColorPipe } from './shared/rarity-to-color.pipe';
 import { DetailsEditComponent } from './details/details-edit/details-edit.component';
 import { DetailsPageComponent } from './pages/details-page/details-page/details-page.component';
-import {UpgradeStatusToColorPipe} from "./inventory/upgrade-status-to-color.pipe";
+import {UpgradeStatusToColorPipe} from './inventory/upgrade-status-to-color.pipe';
+import { ExponentialPipe } from './shared/exponential.pipe';
 
 @NgModule({
     declarations: [
@@ -46,12 +47,17 @@ import {UpgradeStatusToColorPipe} from "./inventory/upgrade-status-to-color.pipe
         TrainerPageComponent,
         TrainerDisplayComponent,
         RarityToColorPipe,
+        ExponentialPipe,
         UpgradeStatusToColorPipe,
         DetailsEditComponent,
         DetailsPageComponent
     ],
     imports: [
-        NgbModule.forRoot(), BrowserModule, BrowserAnimationsModule, FormsModule, RouterModule.forRoot([
+        NgbModule.forRoot(),
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        RouterModule.forRoot([
             { path: 'hero', component: HeroPageComponent },
             { path: 'shop', component: ShopPageComponent },
             { path: 'inventory', component: InventoryPageComponent },
@@ -61,8 +67,16 @@ import {UpgradeStatusToColorPipe} from "./inventory/upgrade-status-to-color.pipe
             { path: '**', redirectTo: 'hero', pathMatch: 'full' },
         ])
     ],
-    providers: [HeroService, CashService, ShopService, LootBoxService, EquipmentService,
-        InventoryService, LootService, StorageService, TrainerService],
+    providers: [
+        HeroService,
+        CashService,
+        ShopService,
+        LootBoxService,
+        EquipmentService,
+        InventoryService,
+        LootService,
+        StorageService,
+        TrainerService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
