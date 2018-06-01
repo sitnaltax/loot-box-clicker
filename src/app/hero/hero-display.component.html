@@ -15,7 +15,7 @@
                 </tr>
                 <tr>
                     <td>Power:</td>
-                    <td>{{hero.power}}</td>
+                    <td><span [innerHtml]="hero.power | numberToScientificNotation"></span></td>
                 </tr>
                 <tr>
                     <td>Fame:</td>

@@ -39,7 +39,7 @@ export class LootService {
         "reinforced", "adequate", "superior", "superlative", "exquisite", "extraordinary", "jovial",
         "martial", "marital", "venerated", "sonic", "acerbic", "vigilant", "exotic", "quixotic", "hearty",
         "fancy", "alluring", "incisive", "compelling", "extraordinary", "peregrine", "avant-garde", "errant",
-        "scintillating", "spendid", "luminous", "splendid", "congenial", "respectable", "pious", "impious",
+        "scintillating", "luminous", "splendid", "congenial", "respectable", "pious", "impious",
         "wicked", "reliable", "vigorous", "advantageous", "prickly", "spiky", "non-Euclidean", "tesselated",
         "chthonic", "supercilious", "salty", "roaring", "intrepid", "sagacious", "Athena's", "cromulent",
         "embiggened", "bold", "tragic", "tragicomic"];
@@ -154,7 +154,7 @@ export class LootService {
 
     //TODO: see what works with these values                 
     uncommonThresholds: number[] =  [99, 99, 5,  6,  8,   9, 11, 13, 15, 18, 20, 25, 30, 40];
-    rareThresholds: number[] =      [99, 99, 99, 8,  9,  11, 14, 16, 18, 21, 24, 28, 35, 45];
+    rareThresholds: number[] =      [99, 99, 99, 8,  10,  11, 14, 16, 18, 21, 24, 28, 35, 45];
     epicThresholds: number[] =      [99, 99, 99, 99, 99, 13, 17, 19, 21, 25, 30, 35, 40, 50];
     legendaryThresholds: number[] = [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70];
 

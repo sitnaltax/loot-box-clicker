@@ -1,5 +1,19 @@
 # Changelog
 
+## 5/31/2018
+
+* Hero power now displays in scientific notation if it's at least 100000.
+* Fixed the inadvertently broken Advanced Avarice skill
+
+## 5/30/2018
+
+* Thanks to TheFirstAvenger for the following contributions:
+    * Loot boxes now start opening when you open the game
+    * The Inventory header now shows the number of items you have
+* Advanced Avarice now has a maximum 90% chance to trigger. This should not affect any game that isn't already won
+* Fixed typos in adjectives, added a couple more
+* Chest text is now nonselectable, so you can click it without highlighting it
+
 ## 5/28/2018
 
 * Upgrade items now show their power in green, to more easily spot them

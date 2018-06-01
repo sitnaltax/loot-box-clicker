@@ -30,7 +30,8 @@ import { TrainerService } from './trainer/trainer.service';
 import { RarityToColorPipe } from './shared/rarity-to-color.pipe';
 import { DetailsEditComponent } from './details/details-edit/details-edit.component';
 import { DetailsPageComponent } from './pages/details-page/details-page/details-page.component';
-import {UpgradeStatusToColorPipe} from './inventory/upgrade-status-to-color.pipe';
+import { UpgradeStatusToColorPipe } from "./inventory/upgrade-status-to-color.pipe";
+import { NumberToScientificNotationPipe } from "./hero/number-to-scientific-notation.pipe"
 
 @NgModule({
     declarations: [
@@ -48,6 +49,7 @@ import {UpgradeStatusToColorPipe} from './inventory/upgrade-status-to-color.pipe
         TrainerDisplayComponent,
         RarityToColorPipe,
         UpgradeStatusToColorPipe,
+        NumberToScientificNotationPipe,
         DetailsEditComponent,
         DetailsPageComponent
     ],
