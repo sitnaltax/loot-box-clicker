@@ -2,6 +2,8 @@
 
 An idle game designed to let you get the thrill of opening ever-better treasure boxes without any pressure to pay for them. (Or any pesky game in the way, for that matter.)
 
+Play online at https://rule0.com/LBC/hero
+
 ## Gameplay
 
 Press Adventure to go on an adventure and collect treasure. The more power you have, the more treasure you collect. As your power increases you'll eventually be able to collect better types of currency, which can be used to purchase better chests with better loot.
