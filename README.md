@@ -2,7 +2,7 @@
 
 An idle game designed to let you get the thrill of opening ever-better treasure boxes without any pressure to pay for them. (Or any pesky game in the way, for that matter.)
 
-Play online at https://rule0.com/LBC/hero
+Play online at https://rule0.com/LBC
 
 ## Gameplay
 
